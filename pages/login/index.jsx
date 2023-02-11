@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 import logo from '../../public/webo.png';
 import googleLogo from '../../public/google.svg';
+import appleLogo from '../../public/apple.svg';
 
 
 
 export default function Login() {
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState({});
+  const [password, setPassword] = useState({})
+  const [emailOrUsername, setEmailOrUsername] = useState("");
+  const [next, setNext] = useState(false);
 
   function handleChange(event) {
     setValue({value: event.target.value});
+    setEmailOrUsername(event.target.value);
   }
 
+  function handleClick(event) {
+    setNext(true);
+  }
+
+  function reHandleChange(event) {
+    setPassword({value: event.target.value})
+  }
   return (
     <React.Fragment>
       <StyledLogin>
@@ -26,23 +39,50 @@ export default function Login() {
               placeholder='blur'
             />
           </div>
-          <div className='container2'>
-            <h1 className='header'>Sign in to Webo</h1>
-            <div className='googl'>
-              <Image 
-                src={googleLogo} 
-                alt='google svg'
-                height={20}
-                width={20}
-              />
+          {next ? 
+            <div className='container3'>
+              <h1 className='header2'>Enter your password</h1>
+              <form>
+                {
+                  emailOrUsername.includes("@") ? 
+                  <textarea className='ctx3' onChange={handleChange} placeholder={'email' + '\n' + emailOrUsername} disabled />
+                  :
+                  <textarea className='ctx3' onChange={handleChange} placeholder={'username' + '\n' + emailOrUsername} disabled />
+                }
+                <textarea className='ctx3s' value={password.value} onChange={reHandleChange} placeholder='Password' />
+                <Link className='forgotPwd' href='/'>Forgot password?</Link>
+              </form>
+              <button className='loginBtn' type='button'>Log in</button> 
+              <p className='noAcct'>Don't have an account? <Link className='signup' href='/signup'>Sign up</Link></p>
             </div>
-            <h2><span>or</span></h2>
-            <form>
-              <textarea value={value.value} onChange={handleChange} placeholder='email or username' />
-            </form>
-            <button className='nextBtn' type='button'>Next</button>
-            <button className='forgotPwd' type='button'>Forgot password?</button>
-          </div>
+            :
+            <div className='container2'>
+              <h1 className='header'>Sign in to Webo</h1>
+              <div className='googl'>
+                <Image 
+                  src={googleLogo} 
+                  alt='google svg'
+                  height={20}
+                  width={20}
+                />
+              </div>
+              <div className='apple'>
+                <Image 
+                  src={appleLogo}
+                  alt='apple svg'
+                  height={20}
+                  width={20}
+                />
+                <span>Sign up with Apple</span>
+              </div>
+              <h2><span>or</span></h2>
+              <form>
+                <textarea value={value.value} onChange={handleChange} placeholder='email or username' />
+              </form>
+              <button className='nextBtn' type='button' onClick={handleClick}>Next</button>
+              <button className='forgotPwd' type='button'>Forgot password?</button>
+              <p className='nacctx'>Don't have an account? <Link href='/signup'>Sign up</Link></p>
+            </div>}
         </div>
       </StyledLogin>
     </React.Fragment>
@@ -94,7 +134,27 @@ const StyledLogin = styled.div`
     width: 50%;
     margin: auto;
   }
+
+  .container3 {
+    width: 70%;
+    margin: auto;
+  }
   
+  .apple {
+    margin-top: 25px;
+    padding: 5px;
+    border: 1px solid #d2d5d9;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .apple span {
+    font-weight: bolder;
+    padding-left: 5px;
+  }
+
   .googl {
     margin-top: 25px;
     padding: 5px;
@@ -105,7 +165,7 @@ const StyledLogin = styled.div`
     align-items: center;
   }
 
-  .googl:hover {
+  .googl:hover, .apple:hover {
     cursor: pointer;
   }
 
@@ -150,5 +210,68 @@ const StyledLogin = styled.div`
     background-color: white;
     border: 1px solid #d2d5d9;
     font-weight: bolder;
+  }
+
+  button.nextBtn:hover {
+    background-color: #212020;
+  }
+
+  button.forgotPwd:hover {
+    background-color: #e0dede;
+  }
+
+  .header2 {
+    display: flex;
+    text-align: center;
+    padding-top: 20px;
+    flex-wrap: nowrap;
+  }
+
+  .loginBtn {
+    text-align: center;
+    width: 100%;
+    margin-top: 160px;
+    padding: 15px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    font-weight: bolder;
+    color: white;
+    background-color: #000000
+  }
+
+  .ctx3, .ctx3s {
+    margin-top: 30px;
+  }
+
+  .ctx3 {
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    border: none;
+    line-height: 1.5;
+  }
+
+  .ctx3s {
+    background-color: inherit;
+    padding: auto;
+  }
+
+  .signup, .forgotPwd {
+    color: #f5f125;
+  }
+
+  p.noAcct {
+    margin-top: 15px;
+  }
+
+  p.nacctx {
+    text-align: start;
+    padding-top: 50px;
+    color: #87898a;
+  }
+
+  p.nacctx a {
+    color: #f5f125;
   }
 `
