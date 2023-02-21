@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import styles from '../../styles/Home.module.css';
+import styles from './Navbar.module.css';
 
 import bookmarks from '../../public/bookmarks.png';
 import chatMessage from '../../public/chat-message.png';
@@ -14,7 +14,7 @@ import profile from '../../public/profile.png';
 
 export default function Navbar() {
 	return (
-		<div>
+		<div className={styles.navigation}>
 			<Image
 				className={styles.logo}
 				src={logo}

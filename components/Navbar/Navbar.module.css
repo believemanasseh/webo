@@ -1,0 +1,62 @@
+/* Navigation bar */
+
+.navigation {
+	position: fixed;
+	left: 400px;
+}
+
+.home,
+.explore,
+.notifications,
+.messages,
+.bookmarks,
+.profile,
+.more {
+	font-size: 25px;
+	width: 100%;
+}
+
+.image {
+	margin-right: 25px;
+}
+
+.navbar {
+	display: block;
+	align-items: center;
+	list-style-type: none;
+	margin-top: 50px;
+	text-align: left;
+	margin-left: 0px;
+	width: 15vw;
+}
+
+.navItem {
+	margin: 35px 0px;
+}
+
+.navItem:hover {
+	font-weight: bolder;
+}
+
+.twitchBtn {
+	padding: 15px;
+	width: 70%;
+	border-radius: var(--border-radius);
+	margin-top: 10px;
+	background-color: black;
+	color: white;
+	border: none;
+	font-weight: bolder;
+	margin-right: 105px;
+}
+
+.twitchBtn:hover {
+	cursor: pointer;
+	background-color: var(--primary-color-lighter);
+}
+
+.logo {
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 15px;
+}

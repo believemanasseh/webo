@@ -49,7 +49,467 @@ export default function Home() {
 						<button className={styles.statusBtn}>Twitch</button>
 					</div>
 				</form>
-				<div className={styles.feeds}>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
+					<div>
+						<Image
+							className={styles.profilePic}
+							src={black}
+							alt='user pic'
+							height={50}
+							width={50}
+						/>
+					</div>
+					<div>
+						<h6>
+							Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						</h6>
+						<p>
+							I kinda need help deciding what drawing I wanna mint. Or if I
+							should just wait
+						</p>
+						<span className={styles.actions}>
+							<Image
+								className={styles.actionBtn}
+								src={comment}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={retwitch}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={favorite}
+								height={20}
+								width={20}
+							/>
+							<Image
+								className={styles.actionBtn}
+								src={bookmark}
+								height={20}
+								width={20}
+							/>
+						</span>
+					</div>
+				</div>
+				<div className={styles.feed}>
 					<div>
 						<Image
 							className={styles.profilePic}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import styles from '../../styles/Home.module.css';
+import styles from './Sidebar.module.css';
 
 export default function Sidebar() {
 	const [value, setValue] = useState('');
