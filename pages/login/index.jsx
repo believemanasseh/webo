@@ -79,17 +79,18 @@ export default function Login() {
 					) : (
 						<div className='container2'>
 							<h1 className='header'>Sign in to Webo</h1>
-							<div className='googl'>
+							<div className='authBtn'>
 								<Image
 									src={googleLogo}
 									alt='google svg'
 									height={20}
 									width={20}
 								/>
+								<span>Sign in with Google</span>
 							</div>
-							<div className='apple'>
+							<div className='authBtn'>
 								<Image src={appleLogo} alt='apple svg' height={20} width={20} />
-								<span>Sign up with Apple</span>
+								<span>Sign in with Apple</span>
 							</div>
 							<h2>
 								<span>or</span>
@@ -169,7 +170,7 @@ const StyledLogin = styled.div`
 		margin: auto;
 	}
 
-	.apple {
+	.authBtn {
 		margin-top: 25px;
 		padding: 5px;
 		border: 1px solid #d2d5d9;
@@ -179,23 +180,12 @@ const StyledLogin = styled.div`
 		align-items: center;
 	}
 
-	.apple span {
+	.authBtn span {
 		font-weight: bolder;
 		padding-left: 5px;
 	}
 
-	.googl {
-		margin-top: 25px;
-		padding: 5px;
-		border: 1px solid #d2d5d9;
-		border-radius: 25px;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-	}
-
-	.googl:hover,
-	.apple:hover {
+	.authBtn:hover {
 		cursor: pointer;
 	}
 
