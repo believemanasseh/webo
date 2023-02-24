@@ -14,8 +14,9 @@ const StyledLayout = styled.div`
 	flex-flow: nowrap row;
 	justify-content: space-around;
 	padding: auto;
-	height: 100vh;
+	height: auto;
 	width: 60vw;
 	margin: auto;
 	text-align: center;
+	margin-bottom: 5px;
 `;

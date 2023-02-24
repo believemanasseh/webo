@@ -14,6 +14,7 @@
 	margin: auto;
 	width: 300px;
 	margin-right: 250px;
+	background-color: #ccc;
 }
 
 .search:focus {
@@ -22,7 +23,7 @@
 }
 
 .trends {
-	background-color: white;
+	background-color: #ccc;
 	border-radius: 12px;
 	padding: 15px;
 	margin-top: 20px;
