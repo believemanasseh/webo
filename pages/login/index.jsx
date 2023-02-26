@@ -198,7 +198,7 @@ const StyledLogin = styled.div`
 		height: 55px;
 		padding: 20px;
 		box-sizing: border-box;
-		border: 2px solid #ccc;
+		border: 2px solid var(--border-color);
 		border-radius: 4px;
 		background-color: #f8f8f8;
 		font-size: 14px;
@@ -254,7 +254,7 @@ const StyledLogin = styled.div`
 		margin-top: 160px;
 		padding: 15px;
 		border-radius: 30px;
-		border: 1px solid #ccc;
+		border: 1px solid var(--border-color);
 		font-weight: bolder;
 		color: white;
 		background-color: #000000;

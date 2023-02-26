@@ -60,13 +60,13 @@ export default function Profile() {
 						</div>
 					</div>
 				</div>
-				<main>
+				<div>
 					<div className='mainHeader'>
 						<h4>Webs</h4>
 						<h4>Webs & replies</h4>
 						<h4>Likes</h4>
 					</div>
-				</main>
+				</div>
 				<div className='webs'>
 					<Webs />
 				</div>
@@ -75,7 +75,7 @@ export default function Profile() {
 	);
 }
 
-const StyledProfile = styled.div`
+const StyledProfile = styled.main`
 	border-right: 1px solid #ccc;
 	border-left: 1px solid #ccc;
 	width: 30vw;
@@ -172,7 +172,7 @@ const StyledProfile = styled.div`
 	.mainHeader {
 		display: flex;
 		justify-content: space-around;
-		margin: 40px;
+		margin-top: 40px;
 		color: var(--font-two);
 	}
 `;
