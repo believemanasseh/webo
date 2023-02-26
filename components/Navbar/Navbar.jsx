@@ -113,7 +113,7 @@ export default function Navbar() {
 					</Link>
 				</li>
 			</ul>
-			<button className={styles.twitchBtn}>Twitch</button>
+			<button className={styles.twitchBtn}>Web</button>
 		</div>
 	);
 }
