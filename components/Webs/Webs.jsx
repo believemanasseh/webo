@@ -22,7 +22,7 @@ export default function Webs(props) {
 				</div>
 				<div>
 					<h6>
-						Azuchi K. <span>@azuuchi_kinika</span> <span>&#x2022; 11h</span>
+						Manasseh <span>@believemanasseh</span> <span>&#x2022; 11h</span>
 					</h6>
 					<p>
 						I kinda need help deciding what drawing I wanna mint. Or if I should
