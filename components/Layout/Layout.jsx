@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Layout(props) {
 	return (
 		<React.Fragment>
-			<StyledLayout>{props.children}</StyledLayout>
+			<StyledLayout>
+				<Navbar />
+				{props.children}
+				<Sidebar />
+			</StyledLayout>
 		</React.Fragment>
 	);
 }
