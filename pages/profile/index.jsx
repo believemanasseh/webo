@@ -106,6 +106,11 @@ const StyledProfile = styled.div`
 		color: #87898a;
 	}
 
+	.profileBanner:hover,
+	.profilePic:hover {
+		cursor: pointer;
+	}
+
 	.profilePic {
 		border: 4px solid white;
 		border-radius: 80px;
