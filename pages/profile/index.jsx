@@ -3,8 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import Layout from '@/components/Layout/Layout';
-import Navbar from '@/components/Navbar/Navbar';
-import Sidebar from '@/components/Sidebar/Sidebar';
+import Webs from '@/components/Webs/Webs.jsx';
 
 import black from '@/public/black.png';
 import calendar from '@/public/calendar.png';
@@ -13,7 +12,6 @@ import leftArrow from '@/public/left.png';
 export default function Profile() {
 	return (
 		<Layout>
-			<Navbar />
 			<StyledProfile>
 				<div className='profileHeader'>
 					<div>
@@ -62,8 +60,17 @@ export default function Profile() {
 						</div>
 					</div>
 				</div>
+				<main>
+					<div className='mainHeader'>
+						<h4>Webs</h4>
+						<h4>Webs & replies</h4>
+						<h4>Likes</h4>
+					</div>
+				</main>
+				<div className='webs'>
+					<Webs />
+				</div>
 			</StyledProfile>
-			<Sidebar />
 		</Layout>
 	);
 }
@@ -160,5 +167,12 @@ const StyledProfile = styled.div`
 	.followingCount,
 	.followersCount {
 		font-weight: 600;
+	}
+
+	.mainHeader {
+		display: flex;
+		justify-content: space-around;
+		margin: 40px;
+		color: var(--font-two);
 	}
 `;
