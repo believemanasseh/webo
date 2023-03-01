@@ -17,12 +17,12 @@ export default function Notifications() {
 				</div>
 				<div className='notification'>
 					<div className='img'>
-						<Image src={globe} alt='globe' height={30} width={30} />
+						<Image src={globe} alt='globe' height={20} width={20} />
 					</div>
 					<div className='feed'>
 						<div>
 							<Image
-								className={'profilePic'}
+								className='profilePic'
 								src={black}
 								alt='user pic'
 								height={30}

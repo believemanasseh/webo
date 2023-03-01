@@ -40,7 +40,7 @@ export default function Home() {
 							onChange={handleChange}
 							placeholder="What's happening?"
 						/>
-						<button className={styles.statusBtn}>Twitch</button>
+						<button className={styles.statusBtn}>Web</button>
 					</div>
 				</form>
 				<Webs />
