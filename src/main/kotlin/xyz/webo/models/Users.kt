@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.javatime.datetime
 object User : IntIdTable() {
     val handle: Column<String> = varchar("handle", 50).uniqueIndex()
     val email: Column<String> = varchar("email", 50).uniqueIndex()
-    val password: Column<String> = varchar("password", 50)
+    val password: Column<String> = varchar("password", 255)
     val dateCreated: Column<LocalDateTime> = datetime("date created")
     val dateModified: Column<LocalDateTime> = datetime("date modified")
     val following = reference("following", User).nullable()

@@ -24,4 +24,10 @@ fun Route.authRouting() {
             call.respond(res.await())
         }
     }
+
+    route("/") {
+        get {
+            call.respond("Hello World!")
+        }
+    }
 }
