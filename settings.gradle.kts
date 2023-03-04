@@ -1,1 +1,1 @@
-rootProject.name = "com.example.webo-server"
+rootProject.name = "xyz.webo.webo-server"
