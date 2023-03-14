@@ -3,8 +3,8 @@ package xyz.webo.utils
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
-import xyz.webo.models.Profile
-import xyz.webo.models.User
+import xyz.webo.models.Profiles
+import xyz.webo.models.Users
 import java.time.LocalDateTime
 
 fun configureDatabase() {
@@ -15,18 +15,18 @@ fun configureDatabase() {
     transaction {
         addLogger(StdOutSqlLogger)
 //        SchemaUtils.drop(User, Profile)
-        SchemaUtils.create(User, Profile)
+        SchemaUtils.create(Users, Profiles)
         try {
             val hashedPwd = BCrypt.hashpw("password", BCrypt.gensalt())
             println(hashedPwd)
-            val id = User.insertAndGetId {
+            val id = Users.insertAndGetId {
                 it[email] = "test@email.com"
                 it[handle] = "test_handle"
                 it[password] = hashedPwd
                 it[dateCreated] = LocalDateTime.now()
                 it[dateModified] = LocalDateTime.now()
             }
-            Profile.insert {
+            Profiles.insert {
                 it[name] = "Test Profile"
                 it[userId] = id.value
             }
