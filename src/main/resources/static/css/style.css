@@ -8,11 +8,10 @@ body {
 nav.models {
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: flex-start;
-	gap: 25px;
+/*	gap: 20px;*/
 	text-align: center;
 	background-color: #286e9c;
-	padding: 20px;
+	height: 5vh;
 }
 
 nav.models li {
@@ -20,4 +19,33 @@ nav.models li {
 	font-weight: bolder;
 	font-size: 16px;
 	color: white;
+	padding: 15px;
+	cursor: pointer;
+}
+
+nav.models li:active,
+nav.models li:hover {
+	background-color: #000000;
+}
+
+nav.models a {
+	text-decoration: none;
+	color: white;
+/*	padding-top: 20px;*/
+}
+
+.dim {
+	background-color: #000000;
+}
+
+table {
+	width: 100%;
+	margin-top: 40px;
+	border: 0.1px solid black;
+}
+
+th, td {
+	padding-top: 10px;
+	text-align: center;
+	margin: auto;
 }
