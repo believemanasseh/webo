@@ -10,10 +10,6 @@ import io.ktor.server.plugins.contentnegotiation.*
 import xyz.webo.routes.*
 
 fun Application.configureRouting() {
-    install(ContentNegotiation) {
-        json()
-    }
-
     routing {
         static("/static") {
             resources("static")
