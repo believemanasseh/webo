@@ -19,7 +19,7 @@ import java.time.LocalDateTime
 
 
 fun Route.authRouting() {
-    route("/signup") {
+    route("/v1/signup") {
         post {
             try {
                 val res = async {
@@ -51,7 +51,7 @@ fun Route.authRouting() {
             }
         }
     }
-    route("/login") {
+    route("/v1/login") {
         post {
             try {
                 val data = call.receive<LoginUserSerializer>()
@@ -69,7 +69,12 @@ fun Route.authRouting() {
                 } else {
                     mapOf("status" to "error", "message" to "Invalid email or password!")
                 }
-                call.respond(status = HttpStatusCode.Accepted, res)
+                if (res["status"] == "success") {
+                    call.respond(status = HttpStatusCode.Accepted, res)
+                } else {
+                    call.respond(status = HttpStatusCode.UnprocessableEntity, res)
+                }
+
             } catch (e: BadRequestException) {
                 call.respond(
                     status = HttpStatusCode.BadRequest,
@@ -77,12 +82,6 @@ fun Route.authRouting() {
                 )
             }
 
-        }
-    }
-
-    route("/") {
-        get {
-            call.respond("Hello World!")
         }
     }
 }

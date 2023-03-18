@@ -6,7 +6,7 @@ val exposedVersion: String by project
 plugins {
     kotlin("jvm") version "1.8.10"
     id("io.ktor.plugin") version "2.2.4"
-    kotlin(plugin.serialization") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.10"
 }
 
 group = "xyz.webo"
@@ -43,4 +43,6 @@ dependencies {
     implementation("io.ktor:ktor-features:1.6.0")
     implementation("org.mindrot:jbcrypt:0.4")
     implementation("io.ktor:ktor-server-mustache:$ktorVersion")
+    implementation("io.ktor:ktor-server-swagger:$ktorVersion")
+    implementation("io.ktor:ktor-server-cors:$ktorVersion")
 }

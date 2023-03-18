@@ -8,9 +8,6 @@ import io.ktor.server.request.*
 import io.ktor.server.routing.*
 
 fun Application.configureSerialization() {
-    install(ContentNegotiation) {
-        json()
-    }
     routing {
         get("/json/kotlinx-serialization") {
                 call.respond(mapOf("status" to "success", "message" to "Welcome to webo"))
