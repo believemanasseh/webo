@@ -1,8 +1,14 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Layout from '@/components/Layout/Layout';
 import Webs from '@/components/Webs/Webs';
 
 export default function Bookmarks() {
+	useEffect(() => {
+		const bookmarksBtn = document.getElementsByTagName('li')[4];
+		bookmarksBtn.style.fontWeight = 'bolder';
+	}, []);
+
 	return (
 		<Layout>
 			<StyledBookmarks>

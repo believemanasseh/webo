@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image.js';
 
 import { Inter } from '@next/font/google';
@@ -17,6 +17,11 @@ export default function Home() {
 	function handleChange(event) {
 		setValue(event.target.value);
 	}
+
+	useEffect(() => {
+		const homeBtn = document.getElementsByTagName('li')[0];
+		homeBtn.style.fontWeight = 'bolder';
+	}, []);
 
 	return (
 		<Layout>

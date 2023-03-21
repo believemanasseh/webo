@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -10,6 +10,11 @@ import calendar from '@/public/calendar.png';
 import leftArrow from '@/public/left.png';
 
 export default function Profile() {
+	useEffect(() => {
+		const profileBtn = document.getElementsByTagName('li')[5];
+		profileBtn.style.fontWeight = 'bolder';
+	}, []);
+
 	return (
 		<Layout>
 			<StyledProfile>

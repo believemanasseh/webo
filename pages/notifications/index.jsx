@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import Layout from '@/components/Layout/Layout';
@@ -5,6 +6,11 @@ import black from '@/public/black.png';
 import globe from '@/public/globe.png';
 
 export default function Notifications() {
+	useEffect(() => {
+		const notificationBtn = document.getElementsByTagName('li')[2];
+		notificationBtn.style.fontWeight = 'bolder';
+	}, []);
+
 	return (
 		<Layout>
 			<StyledNotifications>
