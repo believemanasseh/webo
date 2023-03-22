@@ -43,7 +43,7 @@
 	width: 70%;
 	border-radius: var(--border-radius);
 	margin-top: 10px;
-	background-color: black;
+	background-color: var(--primary-color);
 	color: white;
 	border: none;
 	font-weight: bolder;

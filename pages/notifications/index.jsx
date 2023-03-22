@@ -6,9 +6,13 @@ import black from '@/public/black.png';
 import globe from '@/public/globe.png';
 
 export default function Notifications() {
-	useEffect(() => {
+	function makeElementBolder() {
 		const notificationBtn = document.getElementsByTagName('li')[2];
 		notificationBtn.style.fontWeight = 'bolder';
+	}
+
+	useEffect(() => {
+		makeElementBolder();
 	}, []);
 
 	return (

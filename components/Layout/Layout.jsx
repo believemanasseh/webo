@@ -9,7 +9,7 @@ export default function Layout(props) {
 			<StyledLayout>
 				<Navbar />
 				{props.children}
-				<Sidebar />
+				{props.hideSidebar ? <></> : <Sidebar />}
 			</StyledLayout>
 		</React.Fragment>
 	);

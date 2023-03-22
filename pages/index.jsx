@@ -18,9 +18,13 @@ export default function Home() {
 		setValue(event.target.value);
 	}
 
+	function makeElementBolder() {
+		const element = document.getElementsByTagName('li')[0];
+		element.style.fontWeight = 'bolder';
+	}
+
 	useEffect(() => {
-		const homeBtn = document.getElementsByTagName('li')[0];
-		homeBtn.style.fontWeight = 'bolder';
+		makeElementBolder();
 	}, []);
 
 	return (

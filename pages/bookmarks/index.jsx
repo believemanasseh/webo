@@ -4,9 +4,13 @@ import Layout from '@/components/Layout/Layout';
 import Webs from '@/components/Webs/Webs';
 
 export default function Bookmarks() {
-	useEffect(() => {
+	function makeElementBolder() {
 		const bookmarksBtn = document.getElementsByTagName('li')[4];
 		bookmarksBtn.style.fontWeight = 'bolder';
+	}
+
+	useEffect(() => {
+		makeElementBolder();
 	}, []);
 
 	return (

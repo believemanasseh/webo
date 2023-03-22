@@ -10,9 +10,13 @@ import calendar from '@/public/calendar.png';
 import leftArrow from '@/public/left.png';
 
 export default function Profile() {
+	function makeElementBolder() {
+		const element = document.getElementsByTagName('li')[5];
+		element.style.fontWeight = 'bolder';
+	}
+
 	useEffect(() => {
-		const profileBtn = document.getElementsByTagName('li')[5];
-		profileBtn.style.fontWeight = 'bolder';
+		makeElementBolder();
 	}, []);
 
 	return (
