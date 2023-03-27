@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import Layout from '@/components/Layout/Layout';
@@ -60,20 +61,20 @@ export default function Profile() {
 							<p className='joinedDate'>Joined October 2012</p>
 						</div>
 						<div>
-							<p>
+							<Link href='/profile/following'>
 								<span className='followingCount'>178</span> Following
-							</p>
-							<p>
+							</Link>
+							<Link href='/profile/followers'>
 								<span className='followersCount'>584</span> Followers
-							</p>
+							</Link>
 						</div>
 					</div>
 				</div>
 				<div>
 					<div className='mainHeader'>
-						<h4>Webs</h4>
-						<h4>Webs & replies</h4>
-						<h4>Likes</h4>
+						<Link href='/profile'>Webs</Link>
+						<Link href='/profile/replies'>Webs & replies</Link>
+						<Link href='/profile/likes'>Likes</Link>
 					</div>
 				</div>
 				<div className='webs'>
@@ -88,7 +89,7 @@ const StyledProfile = styled.main`
 	border-right: 1px solid #ccc;
 	border-left: 1px solid #ccc;
 	width: 30vw;
-	height: auto;
+	height: 100vh;
 
 	.profileHeader div:nth-child(1) {
 		display: flex;
@@ -183,5 +184,11 @@ const StyledProfile = styled.main`
 		justify-content: space-around;
 		margin-top: 40px;
 		color: var(--font-two);
+	}
+
+	.mainHeader a:hover {
+		font-weight: 600;
+		color: var(--font-one);
+		cursor: pointer;
 	}
 `;

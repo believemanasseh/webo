@@ -57,6 +57,7 @@ const StyledNotifications = styled.main`
 	border-right: 1px solid var(--border-color);
 	border-left: 1px solid var(--border-color);
 	width: 30vw;
+	height: 100vh;
 
 	.header {
 		font-size: 28px;

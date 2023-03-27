@@ -5,8 +5,8 @@ import Webs from '@/components/Webs/Webs';
 
 export default function Bookmarks() {
 	function makeElementBolder() {
-		const bookmarksBtn = document.getElementsByTagName('li')[4];
-		bookmarksBtn.style.fontWeight = 'bolder';
+		const element = document.getElementsByTagName('li')[4];
+		element.style.fontWeight = 'bolder';
 	}
 
 	useEffect(() => {
@@ -30,6 +30,7 @@ const StyledBookmarks = styled.div`
 	border-right: 1px solid var(--border-color);
 	border-left: 1px solid var(--border-color);
 	width: 30vw;
+	height: 100vh;
 
 	.header,
 	.handle {

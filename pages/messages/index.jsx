@@ -5,6 +5,15 @@ import Layout from '@/components/Layout/Layout';
 import black from '@/public/black.png';
 
 export default function Messages() {
+	function makeElementBolder() {
+		const element = document.getElementsByTagName('li')[3];
+		element.style.fontWeight = 'bolder';
+	}
+
+	useEffect(() => {
+		makeElementBolder();
+	}, []);
+
 	return (
 		<Layout hideSidebar>
 			<StyledMessages>
@@ -99,6 +108,7 @@ const StyledMessages = styled.div`
 
 	.message:hover {
 		background-color: var(--background-color);
+		cursor: pointer;
 	}
 
 	.profilePic {
@@ -113,6 +123,7 @@ const StyledMessages = styled.div`
 
 	.message > div p {
 		color: var(--font-two);
+		margin-top: 3px;
 	}
 
 	.message > div h6 {
@@ -152,5 +163,9 @@ const StyledMessages = styled.div`
 		color: white;
 		font-weight: bolder;
 		border: none;
+	}
+
+	.chatBox button:hover {
+		cursor: pointer;
 	}
 `;

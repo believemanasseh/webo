@@ -1,18 +1,25 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './Navbar.module.css';
 
-import bookmarks from '../../public/bookmarks.png';
-import chatMessage from '../../public/chat-message.png';
-import logo from '../../public/webo.png';
-import home from '../../public/home.png';
-import hashtag from '../../public/hashtag.png';
-import more from '../../public/more.png';
-import notification from '../../public/notification.png';
-import profile from '../../public/profile.png';
+import black from '@/public/black.png';
+import bookmarks from '@/public/bookmarks.png';
+import chatMessage from '@/public/chat-message.png';
+import ellipsis from '@/public/ellipsis.png';
+import logo from '@/public/webo.png';
+import home from '@/public/home.png';
+import hashtag from '@/public/hashtag.png';
+import more from '@/public/more.png';
+import notification from '@/public/notification.png';
+import profile from '@/public/profile.png';
 
-export default function Navbar() {
+export default function Navbar(props) {
+	const [showModal, setShowModal] = useState(false);
+	const handleClick = () => {
+		setShowModal(true);
+	};
 	return (
 		<div className={styles.navigation}>
 			<Image
@@ -100,7 +107,7 @@ export default function Navbar() {
 						Profile
 					</Link>
 				</li>
-				<li className={styles.navItem}>
+				<li className={styles.navItem} onClick={handleClick}>
 					<Image
 						className={styles.image}
 						src={more}
@@ -114,6 +121,26 @@ export default function Navbar() {
 				</li>
 			</ul>
 			<button className={styles.twitchBtn}>Web</button>
+			<div className={styles.profileBtn}>
+				<Image
+					className={styles.profilePic}
+					src={black}
+					alt='user pic'
+					height={50}
+					width={50}
+				/>
+				<div>
+					<h3>Manasseh</h3>
+					<p>@believemanasseh</p>
+				</div>
+				<Image
+					className={styles.ellipsis}
+					src={ellipsis}
+					alt='ellipsis'
+					height={12}
+					width={12}
+				/>
+			</div>
 		</div>
 	);
 }

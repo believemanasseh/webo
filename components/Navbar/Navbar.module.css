@@ -60,3 +60,33 @@
 	justify-content: flex-start;
 	margin-top: 15px;
 }
+
+.profileBtn {
+	display: flex;
+	flex-flow: nowrap row;
+	gap: 15px;
+	/* margin-top: 20px; */
+	padding: 10px 10px;
+	text-align: left;
+	margin-top: 250px;
+}
+
+.profileBtn:hover {
+	background-color: var(--background-color);
+	width: 90%;
+	border-radius: 100px;
+	cursor: pointer;
+}
+
+.profileBtn h3 {
+	margin-top: 3px;
+}
+
+.profilePic {
+	border-radius: var(--border-radius);
+}
+
+.ellipsis {
+	margin-top: 20px;
+	margin-left: 10px;
+}
