@@ -9,7 +9,7 @@ import black from '@/public/black.png';
 import ellipsis from '@/public/ellipsis.png';
 import leftArrow from '@/public/left.png';
 
-export default function Following() {
+export default function Followers() {
 	function makeElementBolder() {
 		var element = document.getElementsByTagName('li')[5];
 		element.style.fontWeight = 'bolder';
@@ -22,7 +22,7 @@ export default function Following() {
 
 	return (
 		<Layout>
-			<StyledFollowing>
+			<StyledFollowers>
 				<div>
 					<Image
 						className='leftArrow'
@@ -67,16 +67,17 @@ export default function Following() {
 						</p>
 					</div>
 				</div>
-			</StyledFollowing>
+			</StyledFollowers>
 		</Layout>
 	);
 }
 
-const StyledFollowing = styled.div`
+const StyledFollowers = styled.div`
 	border-right: 1px solid var(--border-color);
 	border-left: 1px solid var(--border-color);
 	width: 30vw;
 	height: 100vh;
+	margin: auto;
 
 	div:nth-child(1) {
 		display: flex;
@@ -135,12 +136,12 @@ const StyledFollowing = styled.div`
 	}
 
 	.userHandle {
-		display: flex;
-		flex-flow: column wrap;
-		line-height: 0px;
+		margin: auto;
+		width: 20px;
 	}
 
-	.bio {
-		margin-left: 20px;
+	.user2,
+	.handle2 {
+		margin: auto;
 	}
 `;
