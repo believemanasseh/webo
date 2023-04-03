@@ -16,7 +16,7 @@ export default function Likes() {
 	useEffect(() => {
 		makeElementBolder();
 	}, []);
-
+	``;
 	return (
 		<Layout>
 			<StyledLikes>
@@ -24,7 +24,7 @@ export default function Likes() {
 				<div>
 					<div className='mainHeader'>
 						<Link href='/profile'>Webs</Link>
-						<Link href='/profile/replies'>Webs & replies</Link>
+						<Link href='/profile/replies'>Replies</Link>
 						<Link href='/profile/likes'>Likes</Link>
 					</div>
 				</div>
