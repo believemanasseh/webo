@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './Navbar.module.css';
 
+import at from '@/public/at.png';
 import black from '@/public/black.png';
 import bookmarks from '@/public/bookmarks.png';
 import chatMessage from '@/public/chat-message.png';
+import draft from '@/public/draft.png';
 import ellipsis from '@/public/ellipsis.png';
 import logo from '@/public/webo.png';
 import home from '@/public/home.png';
@@ -17,11 +19,35 @@ import profile from '@/public/profile.png';
 
 export default function Navbar(props) {
 	const [showModal, setShowModal] = useState(false);
+
 	const handleClick = () => {
-		setShowModal(true);
+		setShowModal(!showModal);
 	};
+
+	useEffect(() => {
+		const modal = document.querySelector('#modal');
+
+		if (showModal) {
+			modal.style.visibility = 'visible';
+		} else {
+			modal.style.visibility = 'hidden';
+		}
+	}, [showModal]);
+
 	return (
 		<div className={styles.navigation}>
+			<div id='modal' className={styles.modal}>
+				<div>
+					<div>
+						<Image src={at} alt='at' width={20} height={20} />
+						<span>Connect</span>
+					</div>
+					<div>
+						<Image src={draft} alt='drafts' width={20} height={20} />
+						<span>Drafts</span>
+					</div>
+				</div>
+			</div>
 			<Image
 				className={styles.logo}
 				src={logo}
@@ -115,9 +141,7 @@ export default function Navbar(props) {
 						width={20}
 						height={20}
 					/>
-					<Link className={styles.more} href='/more'>
-						More
-					</Link>
+					<span className={styles.more}>More</span>
 				</li>
 			</ul>
 			<button className={styles.twitchBtn}>Web</button>
