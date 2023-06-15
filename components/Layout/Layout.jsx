@@ -16,13 +16,12 @@ export default function Layout(props) {
 }
 
 const StyledLayout = styled.div`
-	display: flex;
-	flex-flow: nowrap row;
-	justify-content: space-around;
+	display: grid;
+	grid-template-columns: 20% 50% 25%;
+	gap: 20px;
 	padding: auto;
 	height: auto;
 	width: 60vw;
 	margin: auto;
 	text-align: center;
-	margin-bottom: 5px;
 `;

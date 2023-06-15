@@ -144,7 +144,7 @@ export default function Navbar(props) {
 					<span className={styles.more}>More</span>
 				</li>
 			</ul>
-			<button className={styles.twitchBtn}>Web</button>
+			<button className={styles.webBtn}>Web</button>
 			<div className={styles.profileBtn}>
 				<Image
 					className={styles.profilePic}

@@ -92,7 +92,7 @@ const StyledProfileHeader = styled.div`
 		border-radius: 80px;
 		position: fixed;
 		top: 200px;
-		left: 690px;
+		left: 650px;
 	}
 
 	.editProfileBtn {
