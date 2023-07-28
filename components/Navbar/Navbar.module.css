@@ -1,5 +1,6 @@
 .navigation {
 	width: 100%;
+	z-index: auto;
 }
 
 .home,
@@ -91,10 +92,39 @@
 .modal {
 	visibility: hidden;
 	position: fixed;
-	top: 400px;
-	left: 450px;
+	top: 350px;
+	left: 380px;
 	margin: auto;
-	z-index: 100;
+	z-index: 2;
 	padding: 10px;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	background-color: white;
+	min-width: 300px;
+	border-radius: 12px;
+	text-align: left;
+	line-height: 2;
+}
+
+.modal a {
+	font-size: 25px;
+}
+
+.modalItem {
+	display: flex;
+	gap: 30px;
+	align-items: center;
+}
+
+.modalItem2 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 0px;
+}
+
+.modalItem2 p {
+	font-weight: bolder;
+}
+.borderLine {
+	border-top: 1px solid var(--border-color);
 }

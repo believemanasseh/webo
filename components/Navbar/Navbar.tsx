@@ -5,6 +5,8 @@ import Link from 'next/link';
 import styles from './Navbar.module.css';
 
 import at from '@/public/at.png';
+import arrowDown from '@/public/arrow-down.png';
+import arrowUp from '@/public/arrow-up.png';
 import black from '@/public/black.png';
 import bookmarks from '@/public/bookmarks.png';
 import chatMessage from '@/public/chat-message.png';
@@ -26,6 +28,8 @@ export default function Navbar(props) {
 
 	useEffect(() => {
 		const modal = document.querySelector('#modal');
+		const image = document.getElementById('image');
+		console.log(image, 'image');
 
 		if (showModal) {
 			modal.style.visibility = 'visible';
@@ -37,15 +41,24 @@ export default function Navbar(props) {
 	return (
 		<div className={styles.navigation}>
 			<div id='modal' className={styles.modal}>
-				<div>
-					<div>
-						<Image src={at} alt='at' width={20} height={20} />
-						<span>Connect</span>
-					</div>
-					<div>
-						<Image src={draft} alt='drafts' width={20} height={20} />
-						<span>Drafts</span>
-					</div>
+				<div className={styles.modalItem}>
+					<Image src={at} alt='at' width={20} height={20} />
+					<Link href='/connect'>Connect</Link>
+				</div>
+				<div className={styles.modalItem}>
+					<Image src={draft} alt='drafts' width={20} height={20} />
+					<Link href='/drafts'>Drafts</Link>
+				</div>
+				<hr className={styles.borderLine} />
+				<div className={styles.modalItem2}>
+					<p>Creator Studio</p>
+					<Image
+						id='image'
+						src={arrowDown}
+						alt='arrow down'
+						width={20}
+						height={20}
+					/>
 				</div>
 			</div>
 			<Image

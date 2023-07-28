@@ -4,8 +4,8 @@ import Image from 'next/image.js';
 import { Inter } from '@next/font/google';
 import styles from '@/styles/Home.module.css';
 
-import Layout from '@/components/Layout/Layout.jsx';
-import Webs from '@/components/Webs/Webs.jsx';
+import Layout from '@/components/Layout/Layout.tsx';
+import Webs from '@/components/Webs/Webs.tsx';
 
 import black from '@/public/black.png';
 

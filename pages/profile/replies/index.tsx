@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 import Layout from '@/components/Layout/Layout';
 import ProfileHeader from '@/components/ProfileHeader/ProfileHeader';
-import Webs from '@/components/Webs/Webs.jsx';
+import Webs from '@/components/Webs/Webs.tsx';
 
-export default function Profile() {
+export default function Replies() {
 	function makeElementBolder() {
 		const element = document.getElementsByTagName('li')[5];
 		element.style.fontWeight = 'bolder';
@@ -19,7 +19,7 @@ export default function Profile() {
 
 	return (
 		<Layout>
-			<StyledProfile>
+			<StyledReplies>
 				<ProfileHeader />
 				<div>
 					<div className='mainHeader'>
@@ -31,12 +31,12 @@ export default function Profile() {
 				<div className='webs'>
 					<Webs />
 				</div>
-			</StyledProfile>
+			</StyledReplies>
 		</Layout>
 	);
 }
 
-const StyledProfile = styled.main`
+const StyledReplies = styled.main`
 	border-right: 1px solid #ccc;
 	border-left: 1px solid #ccc;
 	width: 30vw;
@@ -55,7 +55,7 @@ const StyledProfile = styled.main`
 		cursor: pointer;
 	}
 
-	.mainHeader a:nth-child(1) {
+	.mainHeader a:nth-child(2) {
 		color: var(--font-one);
 		font-weight: 600;
 	}
