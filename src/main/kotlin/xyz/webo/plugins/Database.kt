@@ -1,4 +1,4 @@
-package xyz.webo.utils
+package xyz.webo.plugins
 
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
