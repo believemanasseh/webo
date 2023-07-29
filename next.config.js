@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
+const withTM = require('next-transpile-modules')([]);
 const nextConfig = {
-    reactStrictMode: true,
-    compiler: {
-        // Enables the styled-components SWC transform
-        styledComponents: true
-    }
-}
+	reactStrictMode: true,
+	compiler: {
+		// Enables the styled-components SWC transform
+		styledComponents: true,
+	},
+};
 
-module.exports = nextConfig
+module.exports = withTM(nextConfig);

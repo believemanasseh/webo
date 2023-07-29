@@ -15,20 +15,21 @@
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@next/font": "13.1.6",
         "@reduxjs/toolkit": "^1.9.5",
-        "axios": "^0.21.1",
         "eslint": "8.33.0",
         "eslint-config-next": "13.1.6",
         "next": "13.1.6",
         "next-redux-wrapper": "^8.1.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-redux": "^8.0.5",
+        "react-redux": "^8.1.1",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
         "@types/node": "^20.4.5",
         "@types/react": "^18.2.17",
+        "@types/react-redux": "^7.1.25",
         "@types/styled-components": "^5.1.26",
+        "next-transpile-modules": "^10.0.1",
         "typescript": "^5.1.6"
     }
 }
