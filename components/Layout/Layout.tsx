@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import Navbar from '@/components/Navbar/Navbar';
 import Sidebar from '@/components/Sidebar/Sidebar';
 
-export default function Layout(props) {
+interface LayoutProps {
+    children: JSX.Element;
+    hideSidebar?: boolean;
+}
+
+export default function Layout(props: LayoutProps): JSX.Element {
 	return (
 		<React.Fragment>
 			<StyledLayout>

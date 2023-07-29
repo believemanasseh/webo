@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import Link from 'next/link';
 import styles from './Sidebar.module.css';
 
 export default function Sidebar() {
 	const [value, setValue] = useState('');
 
-	function handleChange(event) {
+	function handleChange(event: ChangeEvent<HTMLInputElement>) {
 		setValue(event.target.value);
 	}
 

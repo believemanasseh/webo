@@ -7,7 +7,7 @@ import black from '@/public/black.png';
 import calendar from '@/public/calendar.png';
 import leftArrow from '@/public/left.png';
 
-export default function ProfileHeader() {
+export default function ProfileHeader(): JSX.Element {
 	return (
 		<StyledProfileHeader>
 			<div>
@@ -23,9 +23,9 @@ export default function ProfileHeader() {
 					<p className='tweetsCount'>2,564 Tweets</p>
 				</div>
 			</div>
-			<Image className='profileBanner' src={black} height={200} width={575} />
+			<Image className='profileBanner' alt='profile banner' src={black} height={200} width={575} />
 			<div>
-				<Image className='profilePic' src={black} height={150} width={150} />
+				<Image className='profilePic' alt='profile pic' src={black} height={150} width={150} />
 				<button className='editProfileBtn'>Edit profile</button>
 			</div>
 			<div className='bioSection'>
@@ -33,7 +33,7 @@ export default function ProfileHeader() {
 				<p className='handle'>@believemanasseh</p>
 				<p className='bio'>De gustibus non est disputandum.</p>
 				<div>
-					<Image className='calendar' src={calendar} />
+					<Image className='calendar' alt='calendar' src={calendar} />
 					<p className='joinedDate'>Joined October 2012</p>
 				</div>
 				<div>

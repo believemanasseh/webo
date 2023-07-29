@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,10 +20,10 @@ import more from '@/public/more.png';
 import notification from '@/public/notification.png';
 import profile from '@/public/profile.png';
 
-export default function Navbar(props) {
+export default function Navbar(): JSX.Element {
 	const [showModal, setShowModal] = useState(false);
 
-	const handleClick = () => {
+	const handleClick = (): void => {
 		setShowModal(!showModal);
 	};
 
@@ -32,9 +33,9 @@ export default function Navbar(props) {
 		console.log(image, 'image');
 
 		if (showModal) {
-			modal.style.visibility = 'visible';
+			(modal as any).style.visibility = 'visible';
 		} else {
-			modal.style.visibility = 'hidden';
+			(modal as any).style.visibility = 'hidden';
 		}
 	}, [showModal]);
 

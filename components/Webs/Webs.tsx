@@ -10,7 +10,7 @@ import favorite from '@/public/favorite.png';
 import favoriteWhite from '@/public/favoritewhite.png';
 import retwitch from '@/public/retwitch.png';
 
-export default function Webs(props) {
+export default function Webs(): JSX.Element {
 	const [liked, setLiked] = useState(false);
 	const [bookmarked, setBookmarked] = useState(false);
 
