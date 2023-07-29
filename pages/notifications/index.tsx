@@ -5,8 +5,8 @@ import Layout from '@/components/Layout/Layout';
 import black from '@/public/black.png';
 import globe from '@/public/globe.png';
 
-export default function Notifications() {
-	function makeElementBolder() {
+export default function Notifications(): JSX.Element {
+	function makeElementBolder(): void {
 		const notificationBtn = document.getElementsByTagName('li')[2];
 		notificationBtn.style.fontWeight = 'bolder';
 	}
@@ -21,7 +21,7 @@ export default function Notifications() {
 				<div>
 					<h3 className='header'>Notifications</h3>
 				</div>
-				<div className='mainHeader'>
+				<div className='main-header'>
 					<h4>All</h4>
 					<h4>Mentions</h4>
 				</div>
@@ -32,7 +32,7 @@ export default function Notifications() {
 					<div className='feed'>
 						<div>
 							<Image
-								className='profilePic'
+								className='profile-pic'
 								src={black}
 								alt='user pic'
 								height={30}
@@ -65,7 +65,7 @@ const StyledNotifications = styled.main`
 		margin: 15px;
 	}
 
-	.mainHeader {
+	.main-header {
 		display: flex;
 		justify-content: space-around;
 		margin-top: 40px;
@@ -84,7 +84,7 @@ const StyledNotifications = styled.main`
 		padding-right: 100px;
 	}
 
-	.profilePic {
+	.profile-pic {
 		border-radius: var(--border-radius);
 		margin-right: 400px;
 	}

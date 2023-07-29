@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import Layout from '@/components/Layout/Layout';
 import leftArrow from '@/public/left.png';
 
-export default function Following() {
-	function makeElementBolder() {
+export default function Following(): JSX.Element {
+	function makeElementBolder(): void {
 		var element = document.getElementsByTagName('li')[5];
 		element.style.fontWeight = 'bolder';
 		element.style.color = 'var(--font-one)';
@@ -22,7 +22,7 @@ export default function Following() {
 			<StyledFollowing>
 				<div>
 					<Image
-						className='leftArrow'
+						className='left-arrow'
 						src={leftArrow}
 						alt='left arrow'
 						height={20}
@@ -33,7 +33,7 @@ export default function Following() {
 						<p className='handle'>@believemanasseh</p>
 					</div>
 				</div>
-				<div className='mainHeader'>
+				<div className='main-header'>
 					<Link href='/profile/followers'>Followers</Link>
 					<Link href='/profile/following'>Following</Link>
 				</div>
@@ -57,12 +57,12 @@ const StyledFollowing = styled.div`
 		width: 100%;
 	}
 
-	.leftArrow {
+	.left-arrow {
 		margin-top: 20px;
 		margin-left: 10px;
 	}
 
-	.leftArrow:hover {
+	.left-arrow:hover {
 		cursor: pointer;
 	}
 
@@ -71,20 +71,20 @@ const StyledFollowing = styled.div`
 		font-size: 24px;
 	}
 
-	.mainHeader {
+	.main-header {
 		display: flex;
 		justify-content: space-around;
 		margin-top: 40px;
 		color: var(--font-two);
 	}
 
-	.mainHeader a:hover {
+	.main-header a:hover {
 		font-weight: 600;
 		color: var(--font-one);
 		cursor: pointer;
 	}
 
-	.mainHeader a:nth-child(2) {
+	.main-header a:nth-child(2) {
 		color: var(--font-one);
 		font-weight: 600;
 	}

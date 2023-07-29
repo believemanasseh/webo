@@ -9,8 +9,8 @@ import black from '@/public/black.png';
 import ellipsis from '@/public/ellipsis.png';
 import leftArrow from '@/public/left.png';
 
-export default function Followers() {
-	function makeElementBolder() {
+export default function Followers(): JSX.Element {
+	function makeElementBolder(): void {
 		var element = document.getElementsByTagName('li')[5];
 		element.style.fontWeight = 'bolder';
 		element.style.color = 'var(--font-one)';
@@ -25,7 +25,7 @@ export default function Followers() {
 			<StyledFollowers>
 				<div>
 					<Image
-						className='leftArrow'
+						className='left-arrow'
 						src={leftArrow}
 						alt='left arrow'
 						height={20}
@@ -36,21 +36,21 @@ export default function Followers() {
 						<p className='handle'>@believemanasseh</p>
 					</div>
 				</div>
-				<div className='mainHeader'>
+				<div className='main-header'>
 					<Link href='/profile/followers'>Followers</Link>
 					<Link href='/profile/following'>Following</Link>
 				</div>
-				<div className='followersList'>
+				<div className='followers-list'>
 					<Image
-						className='profilePic'
+						className='profile-pic'
 						src={black}
-						alt='profilePic'
+						alt='profile-pic'
 						height={50}
 						width={50}
 					/>
 					<div className='follower'>
 						<div>
-							<div className='userHandle'>
+							<div className='user-handle'>
 								<h3 className='user2'>Francesca</h3>
 								<p className='handle2'>@frankiee</p>
 							</div>
@@ -88,12 +88,12 @@ const StyledFollowers = styled.div`
 		width: 100%;
 	}
 
-	.leftArrow {
+	.left-arrow {
 		margin-top: 20px;
 		margin-left: 10px;
 	}
 
-	.leftArrow:hover {
+	.left-arrow:hover {
 		cursor: pointer;
 	}
 
@@ -102,32 +102,32 @@ const StyledFollowers = styled.div`
 		font-size: 24px;
 	}
 
-	.mainHeader {
+	.main-header {
 		display: flex;
 		justify-content: space-around;
 		margin-top: 40px;
 		color: var(--font-two);
 	}
 
-	.mainHeader a:hover {
+	.main-header a:hover {
 		font-weight: 600;
 		color: var(--font-one);
 		cursor: pointer;
 	}
 
-	.mainHeader a:nth-child(1) {
+	.main-header a:nth-child(1) {
 		color: var(--font-one);
 		font-weight: 600;
 	}
 
-	.followersList {
+	.followers-list {
 		display: flex;
 		justify-content: flex-start;
 		margin: auto;
 		padding: 20px;
 	}
 
-	.profilePic {
+	.profile-pic {
 		border-radius: var(--border-radius);
 	}
 
@@ -135,7 +135,7 @@ const StyledFollowers = styled.div`
 		text-align: left;
 	}
 
-	.userHandle {
+	.user-handle {
 		margin: auto;
 		width: 20px;
 	}

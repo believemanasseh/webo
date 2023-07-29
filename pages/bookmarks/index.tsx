@@ -1,10 +1,11 @@
+import React from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import Layout from '@/components/Layout/Layout';
 import Webs from '@/components/Webs/Webs';
 
-export default function Bookmarks() {
-	function makeElementBolder() {
+export default function Bookmarks(): JSX.Element {
+	function makeElementBolder(): void {
 		const element = document.getElementsByTagName('li')[4];
 		element.style.fontWeight = 'bolder';
 	}

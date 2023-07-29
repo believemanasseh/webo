@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Explore() {
+export default function Explore(): JSX.Element {
 	return (
 		<StyledExplore>
 			<div className='outer'>

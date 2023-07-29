@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import Layout from '@/components/Layout/Layout';
 import ProfileHeader from '@/components/ProfileHeader/ProfileHeader';
-import Webs from '@/components/Webs/Webs.tsx';
+import Webs from '@/components/Webs/Webs';
 
-export default function Replies() {
-	function makeElementBolder() {
+export default function Replies(): JSX.Element {
+	function makeElementBolder(): void {
 		const element = document.getElementsByTagName('li')[5];
 		element.style.fontWeight = 'bolder';
 	}

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Layout from '@/components/Layout/Layout';
 import black from '@/public/black.png';
 
-export default function Messages() {
-	function makeElementBolder() {
+export default function Messages(): JSX.Element {
+	function makeElementBolder(): void {
 		const element = document.getElementsByTagName('li')[3];
 		element.style.fontWeight = 'bolder';
 	}
@@ -17,14 +17,14 @@ export default function Messages() {
 	return (
 		<Layout hideSidebar>
 			<StyledMessages>
-				<div className='messageList'>
+				<div className='message-list'>
 					<h3 className='header'>Messages</h3>
 					<form>
 						<input type='text' placeholder='Search Direct Messages' />
 					</form>
 					<div className='message'>
 						<Image
-							className='profilePic'
+							className='profile-pic'
 							src={black}
 							alt='user pic'
 							height={50}
@@ -38,14 +38,14 @@ export default function Messages() {
 						</div>
 					</div>
 				</div>
-				<div className='chatBox'>
+				<div className='chat-box'>
 					<div>
 						<h1>Select a message</h1>
 						<p>
 							Choose from your existing conversations, start a new one, or just
 							keep swimming.
 						</p>
-						<button className='newMsgBtn'>New message</button>
+						<button className='new-msg-btn'>New message</button>
 					</div>
 				</div>
 			</StyledMessages>
@@ -71,17 +71,17 @@ const StyledMessages = styled.div`
 		margin-left: 15px;
 	}
 
-	.messageList,
-	.chatBox {
+	.message-list,
+	.chat-box {
 		overflow-y: auto;
 	}
 
-	.messageList {
+	.message-list {
 		border-right: 1px solid var(--border-color);
 		border-left: 1px solid var(--border-color);
 	}
 
-	.chatBox {
+	.chat-box {
 		border-right: 1px solid var(--border-color);
 	}
 
@@ -111,7 +111,7 @@ const StyledMessages = styled.div`
 		cursor: pointer;
 	}
 
-	.profilePic {
+	.profile-pic {
 		margin-left: 15px;
 		border-radius: var(--border-radius);
 	}

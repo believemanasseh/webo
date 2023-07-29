@@ -3,23 +3,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { setLogin } from '@/redux/features/auth/authSlice';
-import logo from '../../public/webo.png';
-import googleLogo from '../../public/google.svg';
-import appleLogo from '../../public/apple.svg';
+import { setInitialValue } from '@/redux/features/auth/authSlice';
+import logo from '@/public/webo.png';
+import googleLogo from '@/public/google.svg';
+import appleLogo from '@/public/apple.svg';
 
 export default function Login(): JSX.Element {
   const dispatch = useAppDispatch()
 	const [currentSlide, setCurrentSlide] = useState(1)
-  const login = useAppSelector((state) => state.auth.login)
+  const initialValue = useAppSelector((state) => state.auth.initialValue)
 
 
 	function handleSubmit(e: ChangeEvent<HTMLFormElement>): void {
 		e.preventDefault()
     const formData: FormData = new FormData(e.target)
-
     if (currentSlide === 1) {
-      dispatch(setLogin({initialValue: formData.get("id")}))
+      const initValue = formData.get("id")?.toString()
+      dispatch(setInitialValue(initValue))
     }
 
     if (currentSlide === 2) {
@@ -78,16 +78,16 @@ export default function Login(): JSX.Element {
             <div className='slide-two'>
               <h1 className='header'>Enter your password</h1>
               <form onSubmit={handleSubmit}>
-                {login.initialValue && login.initialValue.includes('@') ? (
+                {initialValue && initialValue.includes("@") ? (
                   <textarea
                     className='email'
-                    placeholder={'email' + '\n' + login.initialValue}
+                    placeholder={'email' + '\n' + initialValue}
                     disabled
                   />
                 ) : (
                   <textarea
                     className='username'
-                    placeholder={'username' + '\n' + login.initialValue}
+                    placeholder={'username' + '\n' + initialValue}
                     disabled
                   />
                 )}
