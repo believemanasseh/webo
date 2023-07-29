@@ -1,38 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
-import logo from '../../public/webo.png';
-import googleLogo from '../../public/google.svg';
-import appleLogo from '../../public/apple.svg';
 
-export default function Signup() {
-	const [config, setConfig] = useState({
-		username: '',
-		email: '',
-		next: false,
-	});
+import logo from '@/public/webo.png';
+import googleLogo from '@/public/google.svg';
+import appleLogo from '@/public/apple.svg';
 
-	function handleClick(event) {
-		setConfig({ ...config, next: true });
-	}
+export default function Signup(): JSX.Element {
+  const [currentSlide, setCurrentSlide] = useState(1)
 
-	function handleChangeUsername(event) {
-		setConfig({ ...config, username: event.target.value });
-	}
-
-	function handleChangeEmail(event) {
-		setConfig({ ...config, email: event.target.value });
+	function handleSubmit(e: ChangeEvent<HTMLFormElement>): void {
+		e.preventDefault()
+    const formData = new FormData(e.target)
+    console.log(formData.get("dob"))
+    console.log(formData.get("email"))
 	}
 
 	return (
 		<React.Fragment>
 			<StyledSignup>
 				<div className='container'>
-					{config.next ? (
-						<></>
-					) : (
-						<div className='logo'>
+					{currentSlide === 1 && (
+            <div className='logo'>
 							<Image
 								src={logo}
 								alt='logo'
@@ -42,38 +32,10 @@ export default function Signup() {
 							/>
 						</div>
 					)}
-					{config.next ? (
-						<div className='container3'>
-							<h1 className='header'>Create your account</h1>
-							<form>
-								<textarea
-									className='username'
-									value={config.username}
-									onChange={handleChangeUsername}
-									placeholder='Username'
-								/>
-								<textarea
-									className='email'
-									value={config.email}
-									onChange={handleChangeEmail}
-									placeholder='Email'
-								/>
-								<div className='dob'>
-									<h6>Date of birth</h6>
-									<p className='dobText'>
-										This will not be shown publicly. Confirm your own age, even
-										if this account is for a business, a pet, or something else.
-									</p>
-								</div>
-								<button className='signup' type='button' onClick={handleClick}>
-									Sign up
-								</button>
-							</form>
-						</div>
-					) : (
-						<div className='container2'>
+					{currentSlide === 1 ? (
+						<div className='slide-one'>
 							<h1 className='header'>Join Webo today</h1>
-							<div className='authBtn'>
+							<div className='auth-btn'>
 								<Image
 									src={googleLogo}
 									alt='google svg'
@@ -82,7 +44,7 @@ export default function Signup() {
 								/>
 								<span>Sign up with Google</span>
 							</div>
-							<div className='authBtn'>
+							<div className='auth-btn'>
 								<Image src={appleLogo} alt='apple svg' height={20} width={20} />
 								<span>Sign up with Apple</span>
 							</div>
@@ -90,9 +52,9 @@ export default function Signup() {
 								<span>or</span>
 							</h2>
 							<button
-								className='createAccount'
+								className='create-account'
 								type='button'
-								onClick={handleClick}
+								onClick={() => setCurrentSlide(currentSlide + 1)}
 							>
 								Create account
 							</button>
@@ -104,7 +66,25 @@ export default function Signup() {
 								Have an account already? <Link href='/login'>Log in</Link>
 							</p>
 						</div>
-					)}
+            ) : (
+            <div className='slide-two'>
+              <h1 className='header'>Create your account</h1>
+              <form onSubmit={handleSubmit}>
+                <textarea name='username' className='username' placeholder='Username' required />
+                <textarea name='email' className='email' placeholder='Email' required />
+                <div className='dob'>
+                  <h6>Date of birth</h6>
+                  <p className='dob-text'>
+                    This will not be shown publicly. Confirm your own age, even
+                    if this account is for a business, a pet, or something else.
+                  </p>
+                  <input name='dob' type='date' required />
+                </div>
+                <button className='signup' type='submit'>
+                  Sign up
+                </button>
+              </form>
+            </div>)}
 				</div>
 			</StyledSignup>
 		</React.Fragment>
@@ -112,20 +92,31 @@ export default function Signup() {
 }
 
 const StyledSignup = styled.div`
-	background-color: #eeeee4;
-	height: 100vh;
-	width: 100vw;
-	margin: auto;
-	padding-top: 150px;
+  background-color: #eeeee4;
+  height: 100vh;
+  width: 100vw;
+  margin: auto;
+  padding: auto;
+  display: flex;
 
-	.container {
-		background-color: white;
-		border: 1px solid white;
-		border-radius: 20px;
-		height: 600px;
-		width: 550px;
+  .container {
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    height: 600px;
+    width: 30%;
+    margin: auto;
+  }
+
+  .container .slide-one {
+		width: 50%;
 		margin: auto;
 	}
+
+  .container .slide-two {
+    width: 80%;
+    margin: auto;
+  }
 
 	.logo {
 		margin: auto;
@@ -152,19 +143,9 @@ const StyledSignup = styled.div`
 		padding: 0 10px;
 	}
 
-	.container2 {
-		width: 50%;
-		margin: auto;
-	}
-
-	.container3 {
-		width: 75%;
-		margin: auto;
-	}
-
-	.authBtn {
+	.auth-btn {
 		margin-top: 25px;
-		padding: 5px;
+		padding: 10px;
 		border: 1px solid #d2d5d9;
 		border-radius: 25px;
 		display: flex;
@@ -172,12 +153,12 @@ const StyledSignup = styled.div`
 		align-items: center;
 	}
 
-	.authBtn span {
+	.auth-btn span {
 		font-weight: bolder;
 		padding-left: 5px;
 	}
 
-	.authBtn:hover {
+	.auth-btn:hover {
 		cursor: pointer;
 	}
 
@@ -187,7 +168,8 @@ const StyledSignup = styled.div`
 		padding: 10px;
 		margin-top: 5px;
 		color: white;
-		font-weight: bolder;
+		font-weight: 800;
+    font-size: 16px;
 		border: none;
 		background-color: #000000;
 	}
@@ -247,14 +229,20 @@ const StyledSignup = styled.div`
 		overflow: hidden;
 	}
 
+  input {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 15px;
+  }
+
 	.dob h6 {
-		padding-top: 50px;
-		margin-bottom: -35px;
+		padding-top: 30px;
 		font-size: 16px;
 		color: #000000;
 	}
 
-	.dobText {
+	.dob-text {
 		color: #87898a;
 		font-size: 14px;
 		font-weight: lighter;
@@ -263,13 +251,13 @@ const StyledSignup = styled.div`
 	}
 
 	.signup {
-		margin-top: 150px;
+		margin-top: 120px;
 		padding: 16px;
 		font-weight: bolder;
 	}
 
 	.signup:hover,
-	button.createAccount:hover {
+	button.create-account:hover {
 		background-color: #212020;
 	}
 `;
