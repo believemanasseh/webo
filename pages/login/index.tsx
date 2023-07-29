@@ -70,7 +70,7 @@ export default function Login(): JSX.Element {
 									Forgot password?
 								</button>
 								<p className='no-account'>
-									Don't have an account? <Link href='/signup'>Sign up</Link>
+									Don&apos;t have an account? <Link href='/signup'>Sign up</Link>
 								</p>
 							</form>
 						</div>
@@ -100,7 +100,7 @@ export default function Login(): JSX.Element {
                 </button>
               </form>
               <p className='no-account'>
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link className='signup' href='/signup'>
                   Sign up
                 </Link>
@@ -158,7 +158,11 @@ const StyledLogin = styled.div`
 		padding: 0 10px;
 	}
 
-	.container .slide-one,
+	.container .slide-one {
+    width: 50%;
+    margin: auto;
+  }
+  
   .container .slide-two {
 		width: 80%;
 		margin: auto;
