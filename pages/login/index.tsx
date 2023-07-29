@@ -1,29 +1,34 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setLogin } from '@/redux/features/auth/authSlice';
 import logo from '../../public/webo.png';
 import googleLogo from '../../public/google.svg';
 import appleLogo from '../../public/apple.svg';
 
-export default function Login() {
-	const [config, setConfig] = useState({
-		value: '',
-		password: '',
-		next: false,
-	});
+export default function Login(): JSX.Element {
+  const dispatch = useAppDispatch()
+	const [currentSlide, setCurrentSlide] = useState(1)
+  const login = useAppSelector((state) => state.auth.login)
 
-	function handleChange(event) {
-		setConfig({ ...config, value: event.target.value });
-	}
 
-	function handleClick(event) {
-		setConfig({ ...config, next: true });
-	}
+	function handleSubmit(e: ChangeEvent<HTMLFormElement>): void {
+		e.preventDefault()
+    const formData: FormData = new FormData(e.target)
 
-	function handleChangePassword(event) {
-		setConfig({ ...config, password: event.target.value });
-	}
+    if (currentSlide === 1) {
+      dispatch(setLogin({initialValue: formData.get("id")}))
+    }
+
+    if (currentSlide === 2) {
+      console.log("login")
+    }
+    
+    setCurrentSlide(currentSlide + 1)
+  }
+
 	return (
 		<React.Fragment>
 			<StyledLogin>
@@ -37,49 +42,10 @@ export default function Login() {
 							placeholder='blur'
 						/>
 					</div>
-					{config.next ? (
-						<div className='container3'>
-							<h1 className='header2'>Enter your password</h1>
-							<form>
-								{config.value.includes('@') ? (
-									<textarea
-										className='email'
-										onChange={handleChange}
-										placeholder={'email' + '\n' + config.value}
-										disabled
-									/>
-								) : (
-									<textarea
-										className='username'
-										onChange={handleChange}
-										placeholder={'username' + '\n' + config.value}
-										disabled
-									/>
-								)}
-								<textarea
-									className='password'
-									value={config.password}
-									onChange={handleChangePassword}
-									placeholder='Password'
-								/>
-								<Link className='forgotPwd' href='/'>
-									Forgot password?
-								</Link>
-							</form>
-							<button className='loginBtn' type='button'>
-								Log in
-							</button>
-							<p className='noAcct'>
-								Don't have an account?{' '}
-								<Link className='signup' href='/signup'>
-									Sign up
-								</Link>
-							</p>
-						</div>
-					) : (
-						<div className='container2'>
+					{currentSlide === 1 ? (
+						<div className='slide-one'>
 							<h1 className='header'>Sign in to Webo</h1>
-							<div className='authBtn'>
+							<div className='auth-btn'>
 								<Image
 									src={googleLogo}
 									alt='google svg'
@@ -88,31 +54,58 @@ export default function Login() {
 								/>
 								<span>Sign in with Google</span>
 							</div>
-							<div className='authBtn'>
+							<div className='auth-btn'>
 								<Image src={appleLogo} alt='apple svg' height={20} width={20} />
 								<span>Sign in with Apple</span>
 							</div>
 							<h2>
 								<span>or</span>
 							</h2>
-							<form>
-								<textarea
-									value={config.value}
-									onChange={handleChange}
-									placeholder='email or username'
-								/>
-								<button className='nextBtn' type='button' onClick={handleClick}>
+							<form onSubmit={handleSubmit}>
+								<textarea name='id' placeholder='email or username' required />
+								<button className='next-btn' type='submit'>
 									Next
 								</button>
-								<button className='forgotPwd' type='button'>
+								<button className='forgot-pwd' type='button'>
 									Forgot password?
 								</button>
-								<p className='nacctx'>
+								<p className='no-account'>
 									Don't have an account? <Link href='/signup'>Sign up</Link>
 								</p>
 							</form>
 						</div>
-					)}
+					  ) : (
+            <div className='slide-two'>
+              <h1 className='header'>Enter your password</h1>
+              <form onSubmit={handleSubmit}>
+                {login.initialValue && login.initialValue.includes('@') ? (
+                  <textarea
+                    className='email'
+                    placeholder={'email' + '\n' + login.initialValue}
+                    disabled
+                  />
+                ) : (
+                  <textarea
+                    className='username'
+                    placeholder={'username' + '\n' + login.initialValue}
+                    disabled
+                  />
+                )}
+                <textarea className='password' placeholder='Password' required />
+                <Link className='forgot-pwd' href='/'>
+                  Forgot password?
+                </Link>
+                <button className='login-btn' type='submit'>
+                  Log in
+                </button>
+              </form>
+              <p className='no-account'>
+                Don't have an account?{' '}
+                <Link className='signup' href='/signup'>
+                  Sign up
+                </Link>
+              </p>
+            </div>)}
 				</div>
 			</StyledLogin>
 		</React.Fragment>
@@ -124,14 +117,15 @@ const StyledLogin = styled.div`
 	height: 100vh;
 	width: 100vw;
 	margin: auto;
-	padding-top: 150px;
+	padding: auto;
+  display: flex;
 
 	.container {
 		background-color: white;
 		border: 1px solid white;
 		border-radius: 20px;
 		height: 600px;
-		width: 550px;
+		width: 30%;
 		margin: auto;
 	}
 
@@ -144,8 +138,12 @@ const StyledLogin = styled.div`
 
 	.header {
 		text-align: center;
-		padding-top: 30px;
 	}
+
+  .slide-two .header {
+    margin-top: 20px;
+    text-align: left;
+  }
 
 	h2 {
 		width: 100%;
@@ -160,19 +158,15 @@ const StyledLogin = styled.div`
 		padding: 0 10px;
 	}
 
-	.container2 {
-		width: 50%;
+	.container .slide-one,
+  .container .slide-two {
+		width: 80%;
 		margin: auto;
 	}
 
-	.container3 {
-		width: 70%;
-		margin: auto;
-	}
-
-	.authBtn {
+	.auth-btn {
 		margin-top: 25px;
-		padding: 5px;
+		padding: 10px;
 		border: 1px solid #d2d5d9;
 		border-radius: 25px;
 		display: flex;
@@ -180,12 +174,12 @@ const StyledLogin = styled.div`
 		align-items: center;
 	}
 
-	.authBtn span {
+	.auth-btn span {
 		font-weight: bolder;
 		padding-left: 5px;
 	}
 
-	.authBtn:hover {
+	.auth-btn:hover {
 		cursor: pointer;
 	}
 
@@ -206,13 +200,14 @@ const StyledLogin = styled.div`
 		overflow: hidden;
 	}
 
-	button.nextBtn {
+	button.next-btn {
 		width: 100%;
 		border-radius: 30px;
 		padding: 10px;
 		margin-top: 20px;
 		color: white;
-		font-weight: bolder;
+		font-weight: 800;
+    font-size: 16px;
 		border: none;
 		background-color: #000000;
 	}
@@ -221,7 +216,7 @@ const StyledLogin = styled.div`
 		cursor: pointer;
 	}
 
-	button.forgotPwd {
+	button.forgot-pwd {
 		width: 100%;
 		border-radius: 30px;
 		padding: 10px;
@@ -229,30 +224,24 @@ const StyledLogin = styled.div`
 		color: #000000;
 		background-color: white;
 		border: 1px solid #d2d5d9;
-		font-weight: bolder;
+		font-weight: 800;
+    font-size: 16px;
 	}
 
-	button.nextBtn:hover,
-	button.loginBtn:hover {
+	button.next-btn:hover,
+	button.login-btn:hover {
 		background-color: #212020;
 	}
 
-	button.forgotPwd:hover {
+	button.forgot-pwd:hover {
 		background-color: #e0dede;
 	}
 
-	.header2 {
-		display: flex;
-		text-align: center;
-		padding-top: 20px;
-		flex-wrap: nowrap;
-	}
-
-	.loginBtn {
+	.login-btn {
 		text-align: center;
 		width: 100%;
-		margin-top: 160px;
 		padding: 15px;
+    margin-top: 150px;
 		border-radius: 30px;
 		border: 1px solid var(--border-color);
 		font-weight: bolder;
@@ -282,21 +271,16 @@ const StyledLogin = styled.div`
 	}
 
 	.signup,
-	.forgotPwd {
+	.forgot-pwd {
 		color: #f5f125;
 	}
 
-	p.noAcct {
-		margin-top: 15px;
-	}
-
-	p.nacctx {
-		text-align: start;
-		padding-top: 50px;
+	p.no-account {
+    margin-top: 30px;
 		color: #87898a;
 	}
 
-	p.nacctx a {
+	p.no-account a {
 		color: #f5f125;
 	}
 `;
