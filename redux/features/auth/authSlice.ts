@@ -1,36 +1,33 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import store from '@/redux/store';
 
 interface authState {
-	currentUser: {
-		id?: number | null;
-		email?: string | null;
-	};
-	login: {
-		initialValue?: string;
-	};
+	id?: number | null;
+	email?: string | null;
+	initialValue?: string | null | undefined;
 }
 
 export const authInitialState: authState = {
-	currentUser: { id: null, email: null },
-	login: {
-		initialValue: '',
-	},
+	id: null,
+	email: null,
+	initialValue: null,
 };
 
 const slice = createSlice({
 	name: 'auth',
 	initialState: authInitialState,
 	reducers: {
-		setCurrentUser: (state, action: PayloadAction<object>) => {
-			state.currentUser = action.payload;
+		setId: (state, action: PayloadAction<number>) => {
+			state.id = action.payload;
 		},
-		setLogin: (state, action: PayloadAction<object>) => {
-			state.login = action.payload;
+		setEmail: (state, action: PayloadAction<string>) => {
+			state.email = action.payload;
+		},
+		setInitialValue: (state, action: PayloadAction<string | undefined>) => {
+			state.initialValue = action.payload;
 		},
 	},
 });
 
-export const { setCurrentUser, setLogin } = slice.actions;
+export const { setId, setEmail, setInitialValue } = slice.actions;
 
 export default slice.reducer;
