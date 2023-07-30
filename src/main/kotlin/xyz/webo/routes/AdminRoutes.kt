@@ -1,42 +1,66 @@
 package xyz.webo.routes
 
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.transactions.transaction
 import io.ktor.server.application.*
 import io.ktor.server.mustache.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import io.ktor.server.mustache.MustacheContent
-import xyz.webo.models.*
-
+import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.transactions.transaction
+import xyz.webo.models.Profiles
+import xyz.webo.models.Users
+import xyz.webo.serializers.ProfileSerializer
+import xyz.webo.serializers.UserSerializer
 
 fun Route.adminRouting() {
     route("/admin") {
         get {
-            val users = transaction {
-                Users.selectAll()
-            }
-            println(users)
             call.respond(
                 MustacheContent(
-                    "src/main/resources/static/index.hbs",
-                    mapOf("model" to mapOf("name" to mapOf("users" to "User", "profiles" to "Profile")))
+                    "src/main/resources/static/index.hbs", mapOf("" to "")
                 )
             )
         }
         get("/users") {
+            val users = transaction {
+                val res = Users.selectAll()
+                res.map {
+                    UserSerializer(
+                        it[Users.email],
+                        it[Users.handle],
+                        it[Users.password],
+                        it[Users.dateCreated].toString(),
+                        it[Users.dateModified].toString(),
+                        it[Users.id],
+                    )
+                }
+            }
             call.respond(
                 MustacheContent(
                     "src/main/resources/static/users.hbs",
-                    mapOf("model" to mapOf("name" to mapOf("users" to "User")))
+                    mapOf("users" to users, "count" to users.count())
                 )
             )
         }
         get("/profiles") {
+            val profiles = transaction {
+                val res = Profiles.selectAll()
+                res.map {
+                    ProfileSerializer(
+                        it[Profiles.name].toString(),
+                        it[Profiles.bio].toString(),
+                        it[Profiles.location].toString(),
+                        it[Profiles.website].toString(),
+                        it[Profiles.displayPicture].toString(),
+                        it[Profiles.bannerPicture].toString(),
+                        it[Profiles.dateOfBirth].toString(),
+                        it[Profiles.id]
+                    )
+                }
+            }
             call.respond(
                 MustacheContent(
                     "src/main/resources/static/profiles.hbs",
-                    mapOf("model" to "profiles")
+                    mapOf("profiles" to profiles)
                 )
             )
         }

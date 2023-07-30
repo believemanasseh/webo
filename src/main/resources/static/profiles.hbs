@@ -8,9 +8,15 @@
 <header>
     <nav class="models">
         <li>Webo</li>
-        <li><a href="/admin">Home</a></li>
-        <li><a href="/admin/users">Users</a></li>
-        <li class="dim"><a href="/admin/profiles">Profiles</a></li>
+        <a href="/admin">
+            <li>Home</li>
+        </a>
+        <a href="/admin/users">
+            <li>Users</li>
+        </a>
+        <a href="/admin/profiles">
+            <li class="dim">Profiles</li>
+        </a>
     </nav>
 </header>
 <section>
@@ -26,15 +32,19 @@
             <th>displayPicture</th>
             <th>dateOfBirth</th>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        {{#profiles}}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{bio}}</td>
+                <td>{{location}}</td>
+                <td>{{website}}</td>
+                <td>{{displayPicture}}</td>
+                <th>{{dateOfBirth}}</th>
+            </tr>
+        {{/profiles}}
     </table>
 </section>
 </body>

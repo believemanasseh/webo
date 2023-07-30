@@ -3,36 +3,53 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <title>Users</title>
+    <script src="https://kit.fontawesome.com/3dc89e56d7.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
     <nav class="models">
         <li>Webo</li>
-        <li><a href="/admin">Home</a></li>
-        <li class="dim"><a href="/admin/users">Users</a></li>
-        <li><a href="/admin/profiles">Profiles</a></li>
+        <a href="/admin">
+            <li>Home</li>
+        </a>
+        <a href="/admin/users">
+            <li class="dim">Users</li>
+        </a>
+        <a href="/admin/profiles">
+            <li>Profiles</li>
+        </a>
     </nav>
 </header>
 <section>
+    <ul class="tab-list">
+        <li class="active"><a href="#">List({{count}})</a></li>
+        <li><a href="/admin/users/new/create">Create</a></li>
+        <li>With selected</li>
+    </ul>
     <table>
         <tr>
             <th><input type="checkbox" id="all" name="all" value="all"></th>
-            <th></th>
+            <th class="white">white</th>
             <th>id</th>
             <th>handle</th>
             <th>email</th>
             <th>dateCreated</th>
             <th>dateModified</th>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        {{#users}}
+            <tr>
+                <td><input type="checkbox" id="all" name="all" value="all"></td>
+                <td class="icons">
+                    <a href="/admin/users/edit/{{id}}"><i class="fas fa-pencil-alt"></i></a>
+                    <a><i class="fas fa-trash-alt"></i></a>
+                </td>
+                <td>{{id}}</td>
+                <td>{{handle}}</td>
+                <td>{{email}}</td>
+                <td>{{dateCreated}}</td>
+                <td>{{dateModified}}</td>
+            </tr>
+        {{/users}}
     </table>
 </section>
 </body>
