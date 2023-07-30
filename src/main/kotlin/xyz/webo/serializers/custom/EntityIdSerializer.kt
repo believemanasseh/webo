@@ -1,4 +1,4 @@
-package xyz.webo.serializers
+package xyz.webo.serializers.custom
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
