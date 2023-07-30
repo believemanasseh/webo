@@ -14,7 +14,7 @@ fun Route.adminRouting() {
     route("/admin") {
         get {
             val users = transaction {
-                User.selectAll()
+                Users.selectAll()
             }
             println(users)
             call.respond(
