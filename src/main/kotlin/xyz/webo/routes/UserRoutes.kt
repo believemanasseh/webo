@@ -25,7 +25,8 @@ fun Route.userRouting() {
                             it[Users.handle],
                             it[Users.password],
                             it[Users.dateCreated].toString(),
-                            it[Users.dateModified].toString()
+                            it[Users.dateModified].toString(),
+                            it[Users.id]
                         )
                     }
                 }

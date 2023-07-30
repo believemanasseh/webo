@@ -13,25 +13,25 @@ import xyz.webo.plugins.configureSecurity
 import xyz.webo.plugins.configureSerialization
 
 fun main() {
+    System.setProperty("io.ktor.development", "true")
     embeddedServer(
         Netty,
         watchPaths = listOf("src", "resources"),
         port = 8080,
         host = "0.0.0.0",
         module = Application::module
-    )
-        .start(wait = true)
+    ).start(wait = true)
 }
 
 fun Application.module() {
     install(Authentication)
     install(Mustache)
+    configureSerialization()
     install(CORS) {
         anyHost()
         allowHeader(HttpHeaders.ContentType)
     }
     configureDatabase()
     configureSecurity()
-    configureSerialization()
     configureRouting()
 }
