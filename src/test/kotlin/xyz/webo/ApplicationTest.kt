@@ -1,21 +1,15 @@
 package xyz.webo
 
-import io.ktor.client.call.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.server.testing.*
-import kotlin.test.*
-import io.ktor.http.*
-
-//class ApplicationTest {
+class ApplicationTest {
 //    @Test
 //    fun testRoot() = testApplication {
-//        application {
-//            configureRouting()
+//        val res = client.post("/v1/login") {
+//            header(HttpHeaders.ContentType, ContentType.Application.FormUrlEncoded.toString())
+//            setBody(listOf("email" to "test@email.com", "password" to "password"))
 //        }
-//        client.post("/v1/login").apply {
-//            assertEquals(HttpStatusCode.Accepted, status)
-//            assertEquals(mapOf("status" to "success", "message" to "Login successful!"), body())
-//        }
+//        println(res)
+//        assertEquals(HttpStatusCode.Accepted, res.status)
+////        assertEquals(mapOf("status" to "success", "message" to "Login successful!"), res.body())
+//
 //    }
-//}
+}
