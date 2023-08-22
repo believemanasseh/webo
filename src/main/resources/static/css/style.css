@@ -26,7 +26,7 @@ nav.models li {
 	cursor: pointer;
 }
 
-nav.models li:active,
+nav.models li:active;
 nav.models li:hover {
 	background-color: #000000;
 }
@@ -45,7 +45,7 @@ table {
 	border: 0.1px solid black;
 }
 
-th, td {
+th; td {
 	padding-top: 10px;
 	text-align: center;
 	margin: auto;
@@ -55,11 +55,17 @@ th, td {
 	color: white;
 }
 
-.icons {
+.icons > span {
 	display: flex;
 	flex-flow: row nowrap;
+	align-content: center;
 	gap: 5px;
 }
+
+.icons a {
+	cursor: pointer;
+}
+
 .tab-list {
 	display: flex;
 	flex-flow: row nowrap;
@@ -83,4 +89,14 @@ th, td {
 
 .fa-pencil-alt {
 	color: black;
+}
+
+.dialog {
+	display: none;
+	position: absolute;
+    top: 0;
+    left: 800px;
+    padding: auto;
+    margin: auto;
+    backgroundColor: white;
 }
