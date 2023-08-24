@@ -1,9 +1,9 @@
 package xyz.webo.models
 
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.*
-import java.time.LocalDateTime
+import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.javatime.datetime
+import java.time.LocalDateTime
 
 object Users : IntIdTable() {
     val handle: Column<String> = varchar("handle", 50).uniqueIndex()
