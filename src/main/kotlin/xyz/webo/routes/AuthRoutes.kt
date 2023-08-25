@@ -15,7 +15,7 @@ import org.jetbrains.exposed.sql.insertAndGetId
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
-import xyz.webo.models.Profiles
+import xyz.webo.models.Profile
 import xyz.webo.models.Users
 import xyz.webo.serializers.CreateUserSerializer
 import xyz.webo.serializers.LoginUserSerializer
@@ -43,8 +43,8 @@ fun Route.authRouting() {
                                 it[dateModified] = LocalDateTime.now()
                             }
                             val formatter = DateTimeFormatter.ISO_LOCAL_DATE
-                            Profiles.insert {
-                                it[userId] = id.value
+                            Profile.insert {
+                                it[user] = id.value
                                 it[dateOfBirth] = LocalDate.parse(data.dateOfBirth, formatter)
                             }
                         }

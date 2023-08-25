@@ -5,10 +5,13 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
 import xyz.webo.Config
-import xyz.webo.models.Profiles
+import xyz.webo.models.Profile
 import xyz.webo.models.Users
+import xyz.webo.utils.getLogger
 import java.time.LocalDate
 import java.time.LocalDateTime
+
+val logger = getLogger()
 
 fun Application.configureDatabase() {
     Database.connect(
@@ -16,8 +19,8 @@ fun Application.configureDatabase() {
     )
     transaction {
         addLogger(StdOutSqlLogger)
-        SchemaUtils.drop(Users, Profiles)
-        SchemaUtils.create(Users, Profiles)
+        SchemaUtils.drop(Users, Profile)
+        SchemaUtils.create(Users, Profile)
         try {
             val hashedPwd = BCrypt.hashpw(Config.ADMIN_USER_PASSWORD, BCrypt.gensalt())
 
@@ -28,14 +31,15 @@ fun Application.configureDatabase() {
                 it[dateCreated] = LocalDateTime.now()
                 it[dateModified] = LocalDateTime.now()
             }
+            logger.info("Created admin user instance successfully")
 
-            Profiles.insert {
+            Profile.insert {
                 it[name] = "Test Profile"
                 it[dateOfBirth] = LocalDate.now()
-                it[userId] = id.value
+                it[user] = id.value
             }
+            logger.info("Created admin profile instance successfully")
         } catch (e: Exception) {
-            log
             throw Exception("Database Error: $e")
         }
     }
