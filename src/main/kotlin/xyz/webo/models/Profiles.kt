@@ -7,6 +7,7 @@ import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.javatime.date
 import java.time.LocalDate
 
+
 object Profile : IntIdTable() {
     val name: Column<String?> = varchar("name", 50).nullable()
     val bio: Column<String?> = varchar("bio", 50).nullable()

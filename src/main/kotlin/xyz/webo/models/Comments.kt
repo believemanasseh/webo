@@ -11,6 +11,7 @@ import xyz.webo.models.intermediaries.CommentRewebstory
 import xyz.webo.models.intermediaries.UserComment
 import java.time.LocalDateTime
 
+
 object Comments : IntIdTable() {
     val text: Column<String> = varchar("text", 300)
     val likesCount: Column<Int> = integer("likes_count").default(0)

@@ -7,6 +7,7 @@ import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.javatime.datetime
 import java.time.LocalDateTime
 
+
 object Bookmark : IntIdTable() {
     val created: Column<LocalDateTime> = datetime("created")
     val user: Column<EntityID<Int>> = reference("user_id", Users, onDelete = ReferenceOption.CASCADE)

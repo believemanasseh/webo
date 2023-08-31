@@ -7,6 +7,7 @@ import org.jetbrains.exposed.sql.Table
 import xyz.webo.models.Comments
 import xyz.webo.models.Rewebstories
 
+
 object CommentRewebstory : Table() {
     val rebwebstory: Column<EntityID<Int>> =
         reference("rebwebstory_id", Rewebstories, onDelete = ReferenceOption.CASCADE)

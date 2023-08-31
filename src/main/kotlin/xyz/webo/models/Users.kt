@@ -9,6 +9,7 @@ import org.jetbrains.exposed.sql.javatime.datetime
 import xyz.webo.models.intermediaries.UserWebstory
 import java.time.LocalDateTime
 
+
 object Users : IntIdTable() {
     val handle: Column<String> = varchar("handle", 50).uniqueIndex()
     val email: Column<String> = varchar("email", 50).uniqueIndex()

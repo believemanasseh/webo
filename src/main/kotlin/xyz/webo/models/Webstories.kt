@@ -10,6 +10,7 @@ import org.jetbrains.exposed.sql.javatime.datetime
 import xyz.webo.models.intermediaries.UserWebstory
 import java.time.LocalDateTime
 
+
 object Webstories : IntIdTable() {
     val text: Column<String> = varchar("text", 300)
     val rewebstoriesCount: Column<Int> = integer("rebwebstories_count").default(0)
