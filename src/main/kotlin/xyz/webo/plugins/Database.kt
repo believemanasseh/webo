@@ -13,14 +13,16 @@ import java.time.LocalDateTime
 
 val logger = getLogger()
 
-fun Application.configureDatabase() {
+fun Application.configureDatabase(testing: Boolean = false) {
+    val dbUrl: String = if (!testing) Config.DB_URL else Config.TEST_DB_URL
     Database.connect(
-        Config.DB_URL, driver = Config.DB_DRIVER, user = Config.DB_USER, password = Config.DB_PASSWORD
+        dbUrl, driver = Config.DB_DRIVER, user = Config.DB_USER, password = Config.DB_PASSWORD
     )
     transaction {
         addLogger(StdOutSqlLogger)
         SchemaUtils.drop(Users, Profile)
         SchemaUtils.create(Users, Profile)
+
         try {
             val hashedPwd = BCrypt.hashpw(Config.ADMIN_USER_PASSWORD, BCrypt.gensalt())
 

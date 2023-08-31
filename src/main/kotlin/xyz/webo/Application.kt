@@ -9,6 +9,7 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.cors.routing.*
 import xyz.webo.plugins.*
 
+
 fun main() {
     embeddedServer(
         Netty,
