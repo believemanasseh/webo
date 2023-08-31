@@ -21,12 +21,12 @@ fun Route.userRouting() {
                     val res = Users.selectAll()
                     res.map {
                         UserSerializer(
-                            it[Users.email],
-                            it[Users.handle],
-                            it[Users.password],
-                            it[Users.dateCreated].toString(),
-                            it[Users.dateModified].toString(),
-                            it[Users.id]
+                            id = it[Users.id],
+                            email = it[Users.email],
+                            handle = it[Users.handle],
+                            password = it[Users.password],
+                            dateCreated = it[Users.dateCreated],
+                            dateModified = it[Users.dateModified]
                         )
                     }
                 }

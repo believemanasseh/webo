@@ -1,12 +1,11 @@
 package xyz.webo.serializers
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.id.EntityID
+import xyz.webo.serializers.custom.EntityIDSerializer
+import xyz.webo.serializers.custom.LocalDateTimeSerializer
+import java.time.LocalDateTime
 
-
-@Serializable
-data class LoginUserSerializer(val email: String, val password: String)
 
 @Serializable
 data class CreateUserSerializer(
@@ -19,23 +18,15 @@ data class CreateUserSerializer(
 @Serializable
 data class UserSerializer(
     val email: String,
-    val handle: String,
-    val password: String,
-    val dateCreated: String,
-    val dateModified: String,
-    @Contextual
-    val id: EntityID<Int>
+    val handle: String? = null,
+    @Serializable(with = LocalDateTimeSerializer::class)
+    val dateCreated: LocalDateTime? = null,
+    @Serializable(with = LocalDateTimeSerializer::class)
+    val dateModified: LocalDateTime? = null,
+    @Serializable(with = EntityIDSerializer::class)
+    val id: EntityID<Int>? = null,
+    val password: String? = null
 )
 
 @Serializable
-data class ProfileSerializer(
-    val name: String,
-    val bio: String,
-    val location: String,
-    val website: String,
-    val displayPicture: String,
-    val bannerPicture: String,
-    val dateOfBirth: String,
-    @Contextual
-    val id: EntityID<Int>,
-)
+data class UserResponse(val status: String, val message: String, val data: UserSerializer)

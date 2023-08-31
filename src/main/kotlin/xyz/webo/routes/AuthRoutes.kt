@@ -18,7 +18,8 @@ import org.mindrot.jbcrypt.BCrypt
 import xyz.webo.models.Profile
 import xyz.webo.models.Users
 import xyz.webo.serializers.CreateUserSerializer
-import xyz.webo.serializers.LoginUserSerializer
+import xyz.webo.serializers.UserResponse
+import xyz.webo.serializers.UserSerializer
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -30,8 +31,6 @@ fun Route.authRouting() {
             try {
                 val res = async {
                     val data = call.receive<CreateUserSerializer>()
-                    println(data.dateOfBirth)
-                    println("date of birth")
                     val hashedPwd = BCrypt.hashpw(data.password, BCrypt.gensalt())
                     try {
                         transaction {
@@ -78,7 +77,7 @@ fun Route.authRouting() {
         post {
             try {
                 val res = async {
-                    var data = call.receive<LoginUserSerializer>()
+                    var data = call.receive<UserSerializer>()
                     var pwdValid = false
                     var user: ResultRow? = null
                     transaction {
@@ -95,13 +94,24 @@ fun Route.authRouting() {
                         }
                     }
                     if (pwdValid && user != null) {
-                        mapOf("status" to "success", "message" to "Login successful!")
+                        UserResponse(
+                            status = "success",
+                            message = "User login successful",
+                            data = UserSerializer(
+                                id = user!![Users.id],
+                                email = user!![Users.email],
+                                handle = user!![Users.handle],
+                                dateCreated = user!![Users.dateCreated],
+                                dateModified = user!![Users.dateModified]
+                            )
+                        )
+
                     } else {
                         mapOf("status" to "error", "message" to "Invalid email or password!")
                     }
                 }
-                val response = res.await()
-                if (response["status"] == "success") {
+                val response: UserResponse = res.await() as UserResponse
+                if (response.status == "success") {
                     call.respond(status = HttpStatusCode.Accepted, response)
                 } else {
                     call.respond(status = HttpStatusCode.UnprocessableEntity, response)
