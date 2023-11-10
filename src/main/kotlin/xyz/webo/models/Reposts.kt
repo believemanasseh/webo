@@ -6,11 +6,12 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ReferenceOption
+import xyz.webo.models.intermediaries.CommentRepost
 
 
 object Reposts : IntIdTable() {
     val user: Column<EntityID<Int>> = reference("user_id", Users, onDelete = ReferenceOption.CASCADE)
-    val post: Column<EntityID<Int>> = reference("post_id", Webstories, onDelete = ReferenceOption.CASCADE)
+    val post: Column<EntityID<Int>> = reference("post_id", Posts, onDelete = ReferenceOption.CASCADE)
 
     init {
         uniqueIndex(user, post)

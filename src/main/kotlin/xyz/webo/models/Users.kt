@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.javatime.datetime
-import xyz.webo.models.intermediaries.UserWebstory
+import xyz.webo.models.intermediaries.UserPost
 import java.time.LocalDateTime
 
 
@@ -21,5 +21,5 @@ object Users : IntIdTable() {
 class User(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<User>(Users)
 
-    var webstories by Webstory via UserWebstory
+    var webstories by Post via UserPost
 }

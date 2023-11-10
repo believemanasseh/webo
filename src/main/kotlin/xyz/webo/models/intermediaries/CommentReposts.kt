@@ -5,12 +5,12 @@ import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 import xyz.webo.models.Comments
-import xyz.webo.models.Rewebstories
+import xyz.webo.models.Reposts
 
 
-object CommentRewebstory : Table() {
-    val rebwebstory: Column<EntityID<Int>> =
-        reference("rebwebstory_id", Rewebstories, onDelete = ReferenceOption.CASCADE)
+object CommentRepost : Table() {
+    val repost: Column<EntityID<Int>> =
+        reference("repost_id", Reposts, onDelete = ReferenceOption.CASCADE)
     val comment: Column<EntityID<Int>> = reference("comment_id", Comments, onDelete = ReferenceOption.CASCADE)
-    override val primaryKey = PrimaryKey(rebwebstory, comment)
+    override val primaryKey = PrimaryKey(repost, comment)
 }
