@@ -17,7 +17,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
 import xyz.webo.models.Profile
 import xyz.webo.models.Users
-import xyz.webo.serializers.CreateUserSerializer
+import xyz.webo.serializers.UserData
 import xyz.webo.serializers.UserResponse
 import xyz.webo.serializers.UserSerializer
 import java.time.LocalDate
@@ -30,8 +30,9 @@ fun Route.authRouting() {
         post {
             try {
                 val res = async {
-                    val data = call.receive<CreateUserSerializer>()
+                    val data = call.receive<UserSerializer>()
                     val hashedPwd = BCrypt.hashpw(data.password, BCrypt.gensalt())
+                    val formatter = DateTimeFormatter.ISO_LOCAL_DATE
                     try {
                         transaction {
                             val id = Users.insertAndGetId {
@@ -41,10 +42,12 @@ fun Route.authRouting() {
                                 it[dateCreated] = LocalDateTime.now()
                                 it[dateModified] = LocalDateTime.now()
                             }
-                            val formatter = DateTimeFormatter.ISO_LOCAL_DATE
                             Profile.insert {
                                 it[user] = id.value
-                                it[dateOfBirth] = LocalDate.parse(data.dateOfBirth, formatter)
+                                it[dateOfBirth] = if (data.dateOfBirth != null) LocalDate.parse(
+                                    data.dateOfBirth,
+                                    formatter
+                                ) else LocalDate.now()
                             }
                         }
                         mapOf("status" to "success", "message" to "Registration successful!")
@@ -97,12 +100,14 @@ fun Route.authRouting() {
                         UserResponse(
                             status = "success",
                             message = "User login successful",
-                            data = UserSerializer(
-                                id = user!![Users.id],
-                                email = user!![Users.email],
-                                handle = user!![Users.handle],
-                                dateCreated = user!![Users.dateCreated],
-                                dateModified = user!![Users.dateModified]
+                            data = UserData.SingleUser(
+                                UserSerializer(
+                                    id = user!![Users.id],
+                                    email = user!![Users.email],
+                                    handle = user!![Users.handle],
+                                    dateCreated = user!![Users.dateCreated].toString(),
+                                    dateModified = user!![Users.dateModified].toString()
+                                )
                             )
                         )
 

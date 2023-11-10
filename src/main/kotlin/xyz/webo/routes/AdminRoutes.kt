@@ -30,8 +30,8 @@ fun Route.adminRouting() {
                         email = it[Users.email],
                         handle = it[Users.handle],
                         password = it[Users.password],
-                        dateCreated = it[Users.dateCreated],
-                        dateModified = it[Users.dateModified]
+                        dateCreated = it[Users.dateCreated].toString(),
+                        dateModified = it[Users.dateModified].toString()
                     )
                 }
             }

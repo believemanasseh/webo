@@ -10,6 +10,8 @@ import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import xyz.webo.models.Users
+import xyz.webo.serializers.UserData
+import xyz.webo.serializers.UserResponse
 import xyz.webo.serializers.UserSerializer
 
 
@@ -25,17 +27,17 @@ fun Route.userRouting() {
                             email = it[Users.email],
                             handle = it[Users.handle],
                             password = it[Users.password],
-                            dateCreated = it[Users.dateCreated],
-                            dateModified = it[Users.dateModified]
+                            dateCreated = it[Users.dateCreated].toString(),
+                            dateModified = it[Users.dateModified].toString()
                         )
                     }
                 }
                 call.respond(
                     status = HttpStatusCode.Accepted,
-                    mapOf(
-                        "status" to "success",
-                        "message" to "Users retrieved successfully",
-                        "data" to users
+                    UserResponse(
+                        status = "success",
+                        message = "User login successful",
+                        data = UserData.UserList(users)
                     )
                 )
             } catch (e: Exception) {
@@ -65,7 +67,19 @@ fun Route.userRouting() {
                 }
                 call.respond(
                     status = HttpStatusCode.Accepted,
-                    mapOf("status" to "success", "message" to "User retrieved successfully", "data" to user)
+                    UserResponse(
+                        status = "success",
+                        message = "User retrieved successfully",
+                        data = UserData.SingleUser(
+                            UserSerializer(
+                                id = user.await()!![Users.id],
+                                email = user.await()!![Users.email],
+                                handle = user.await()!![Users.handle],
+                                dateCreated = user.await()!![Users.dateCreated].toString(),
+                                dateModified = user.await()!![Users.dateModified].toString()
+                            )
+                        )
+                    )
                 )
             } catch (e: BadRequestException) {
                 call.respond(

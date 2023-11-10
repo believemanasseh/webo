@@ -21,5 +21,5 @@ object Users : IntIdTable() {
 class User(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<User>(Users)
 
-    var webstories by Post via UserPost
+    var posts by Post via UserPost
 }
