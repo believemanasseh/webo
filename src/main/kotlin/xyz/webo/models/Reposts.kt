@@ -6,20 +6,19 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ReferenceOption
-import xyz.webo.models.intermediaries.CommentRewebstory
 
 
-object Rewebstories : IntIdTable() {
+object Reposts : IntIdTable() {
     val user: Column<EntityID<Int>> = reference("user_id", Users, onDelete = ReferenceOption.CASCADE)
-    val webstory: Column<EntityID<Int>> = reference("webstory_id", Webstories, onDelete = ReferenceOption.CASCADE)
+    val post: Column<EntityID<Int>> = reference("post_id", Webstories, onDelete = ReferenceOption.CASCADE)
 
     init {
-        uniqueIndex(user, webstory)
+        uniqueIndex(user, post)
     }
 }
 
-class Rewebstory(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<Rewebstory>(Rewebstories)
+class Repost(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<Repost>(Reposts)
 
-    var comments by Comment via CommentRewebstory
+    var comments by Comment via CommentRepost
 }
