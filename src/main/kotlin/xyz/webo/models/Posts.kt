@@ -12,11 +12,11 @@ import java.time.LocalDateTime
 
 
 object Posts : IntIdTable() {
-    val text: Column<String> = varchar("text", 300)
-    val repostsCount: Column<Int> = integer("reposts_count").default(0)
-    val likesCount: Column<Int> = integer("likes_count").default(0)
-    val dateCreated: Column<LocalDateTime> = datetime("date_created")
-    val user: Column<EntityID<Int>> = reference("user_id", Users, onDelete = ReferenceOption.CASCADE)
+    var text: Column<String> = varchar("text", 300)
+    var repostsCount: Column<Int> = integer("reposts_count").default(0)
+    var likesCount: Column<Int> = integer("likes_count").default(0)
+    var dateCreated: Column<LocalDateTime> = datetime("date_created")
+    var user: Column<EntityID<Int>> = reference("user_id", Users, onDelete = ReferenceOption.CASCADE)
 }
 
 class Post(id: EntityID<Int>) : IntEntity(id) {

@@ -9,15 +9,17 @@ import xyz.webo.serializers.custom.EntityIDSerializer
 data class CreateUserSerializer(
     val email: String,
     val handle: String,
-    val password: String
+    val password: String,
+    val dateOfBirth: String? = null,
 )
 
 @Serializable
 data class UserSerializer(
     val email: String,
-    val handle: String,
+    val handle: String? = null,
     val dateOfBirth: String? = null,
     val dateCreated: String? = null,
+    val token: String? = null,
     val dateModified: String? = null,
     @Serializable(with = EntityIDSerializer::class)
     val id: EntityID<Int>? = null,
