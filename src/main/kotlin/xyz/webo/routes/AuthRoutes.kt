@@ -83,7 +83,7 @@ fun Route.authRouting() {
     route("/v1/login") {
         post {
             try {
-                var data = call.receive<UserSerializer>()
+                val data = call.receive<UserSerializer>()
                 val res = async {
                     val user = transaction {
                         Users.select { Users.email eq data.email }.first()
