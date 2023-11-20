@@ -14,6 +14,7 @@ import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 import xyz.webo.models.Posts
 import xyz.webo.models.Tokens
+import xyz.webo.serializers.PostData
 import xyz.webo.serializers.PostResponse
 import xyz.webo.serializers.PostSerializer
 import java.time.LocalDateTime
@@ -26,20 +27,20 @@ fun Route.postRouting() {
                 val token = call.principal<UserIdPrincipal>()
                 try {
                     val res = async {
-                        if (token != null) {
-                            val post = transaction {
-                                val tokenObj = Tokens.select { Tokens.value eq token.name }.first()
-                                val id = Posts.insertAndGetId {
-                                    it[user] = tokenObj[Tokens.user]
-                                    it[text] = data.text
-                                    it[dateCreated] = LocalDateTime.now()
-                                }
-                                Posts.select { Posts.id eq id }.first()
+                        val post = transaction {
+                            val tokenObj = Tokens.select { Tokens.value eq token!!.name }.first()
+                            val id = Posts.insertAndGetId {
+                                it[user] = tokenObj[Tokens.user]
+                                it[text] = data.text
+                                it[dateCreated] = LocalDateTime.now()
                             }
-                            PostResponse(
-                                status = "success",
-                                message = "Post created successfully!",
-                                data = PostSerializer(
+                            Posts.select { Posts.id eq id }.first()
+                        }
+                        PostResponse(
+                            status = "success",
+                            message = "Post created successfully!",
+                            data = PostData.SinglePost(
+                                PostSerializer(
                                     id = post[Posts.id],
                                     text = post[Posts.text],
                                     repostsCount = post[Posts.repostsCount],
@@ -48,12 +49,7 @@ fun Route.postRouting() {
                                     user = post[Posts.user]
                                 )
                             )
-                        } else {
-                            mapOf(
-                                "status" to "error",
-                                "message" to "Invalid auth token"
-                            )
-                        }
+                        )
                     }
                     val response = res.await()
                     if (response is PostResponse) {
@@ -70,6 +66,42 @@ fun Route.postRouting() {
                     call.respond(
                         status = HttpStatusCode.BadRequest,
                         mapOf("status" to "error", "message" to "Invalid request!")
+                    )
+                }
+            }
+            get {
+                try {
+                    val token = call.principal<UserIdPrincipal>()
+                    val tokenObj = transaction {
+                        Tokens.select { Tokens.value eq token!!.name }.firstOrNull()
+                    }
+                    val postObjs = transaction {
+                        Posts.select { Posts.user eq tokenObj!![Tokens.user] }
+                    }
+                    val posts = transaction {
+                        postObjs.map {
+                            PostSerializer(
+                                text = it[Posts.text],
+                                repostsCount = it[Posts.repostsCount],
+                                likesCount = it[Posts.likesCount],
+                                dateCreated = it[Posts.dateCreated].toString(),
+                                id = it[Posts.id],
+                                user = it[Posts.user]
+                            )
+                        }
+                    }
+                    call.respond(
+                        status = HttpStatusCode.OK,
+                        PostResponse(
+                            status = "success",
+                            message = "Posts retrieved successfully!",
+                            data = PostData.PostList(posts)
+                        )
+                    )
+                } catch (e: MissingFieldException) {
+                    call.respond(
+                        status = HttpStatusCode.BadRequest,
+                        mapOf("status" to "error", "message" to "Invalid request!", "error" to e.toString())
                     )
                 }
             }

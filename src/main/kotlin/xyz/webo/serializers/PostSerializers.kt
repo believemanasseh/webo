@@ -21,5 +21,14 @@ data class PostSerializer(
 data class PostResponse(
     val status: String,
     val message: String,
-    val data: PostSerializer
+    val data: PostData
 )
+
+@Serializable
+sealed class PostData {
+    @Serializable
+    data class SinglePost(val post: PostSerializer) : PostData()
+
+    @Serializable
+    data class PostList(val postList: List<PostSerializer>) : PostData()
+}
