@@ -28,9 +28,9 @@ fun Route.postRouting() {
                     val res = async {
                         if (token != null) {
                             val post = transaction {
-                                val token = Tokens.select { Tokens.value eq token.name }.first()
+                                val tokenObj = Tokens.select { Tokens.value eq token.name }.first()
                                 val id = Posts.insertAndGetId {
-                                    it[user] = token[Tokens.user]
+                                    it[user] = tokenObj[Tokens.user]
                                     it[text] = data.text
                                     it[dateCreated] = LocalDateTime.now()
                                 }

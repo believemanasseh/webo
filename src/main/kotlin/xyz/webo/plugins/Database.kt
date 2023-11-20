@@ -5,8 +5,11 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
 import xyz.webo.Config
+import xyz.webo.models.Posts
 import xyz.webo.models.Profile
+import xyz.webo.models.Tokens
 import xyz.webo.models.Users
+import xyz.webo.utils.generateToken
 import xyz.webo.utils.getLogger
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -20,8 +23,8 @@ fun Application.configureDatabase(testing: Boolean = false) {
     )
     transaction {
         addLogger(StdOutSqlLogger)
-        SchemaUtils.drop(Users, Profile)
-        SchemaUtils.create(Users, Profile)
+        SchemaUtils.drop(Users, Profile, Tokens, Posts)
+        SchemaUtils.create(Users, Profile, Tokens, Posts)
 
         try {
             val hashedPwd = BCrypt.hashpw(Config.ADMIN_USER_PASSWORD, BCrypt.gensalt())
@@ -39,6 +42,10 @@ fun Application.configureDatabase(testing: Boolean = false) {
                 it[name] = "Test Profile"
                 it[dateOfBirth] = LocalDate.now()
                 it[user] = id.value
+            }
+            Tokens.insert {
+                it[value] = generateToken()
+                it[user] = id
             }
             logger.info("Created admin profile instance successfully")
         } catch (e: Exception) {

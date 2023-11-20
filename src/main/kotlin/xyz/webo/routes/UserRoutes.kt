@@ -26,14 +26,14 @@ fun Route.userRouting() {
                         val res = Users.selectAll()
                         val token = call.principal<UserIdPrincipal>()
                         if (token != null) {
-                            val token = Tokens.select { Tokens.value eq token.name }.first()
+                            val tokenObj = Tokens.select { Tokens.value eq token.name }.first()
                             res.map {
                                 UserSerializer(
                                     id = it[Users.id],
                                     email = it[Users.email],
                                     handle = it[Users.handle],
                                     password = it[Users.password],
-                                    token = token[Tokens.value],
+                                    token = tokenObj[Tokens.value],
                                     dateCreated = it[Users.dateCreated].toString(),
                                     dateModified = it[Users.dateModified].toString()
                                 )
