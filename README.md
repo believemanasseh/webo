@@ -1,6 +1,6 @@
 # Webo client
 
-This is a web-based decentralised social networking app with real-time messaging and voice/video calls. Webo incentivises creators to monetise their ideas.
+This is the frontend of a web-based decentralised social networking app with real-time messaging and voice/video calls. Webo incentivises creators to monetise their ideas.
 
 ## Features
 
