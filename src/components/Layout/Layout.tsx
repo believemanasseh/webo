@@ -1,6 +1,6 @@
 import {styled} from '@linaria/react';
-import Navbar from '@/src/components/Navbar/Navbar';
-import Trends from '@/src/components/Trends/Trends';
+import Navbar from '../Navbar/Navbar.tsx';
+import Trends from '../Trends/Trends.tsx';
 
 type LayoutProps = {
 	children: JSX.Element;

@@ -1,13 +1,15 @@
-import {StrictMode} from 'react';
+import React, {StrictMode} from 'react';
 import {createRoot, hydrateRoot, Root} from 'react-dom/client';
-import type {OnRenderClientAsync, PageContextClient} from 'vike/types';
+import type {PageContextClient as PCClient} from 'vike/types';
 
 export {onRenderClient};
 
+type PageContextClient = PCClient & {
+	Page: React.FC;
+};
+
 let root: Root | null;
-async function onRenderClient(
-	pageContext: PageContextClient
-): ReturnType<OnRenderClientAsync> {
+function onRenderClient(pageContext: PageContextClient) {
 	const {Page} = pageContext;
 	console.log(Page, 'page');
 

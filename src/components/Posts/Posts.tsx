@@ -1,13 +1,13 @@
 import {useState} from 'react';
 import {styled} from '@linaria/react';
 
-import black from '@/src/assets/black.png';
-import bookmark from '@/src/assets/bookmark.png';
-import bookmarkWhite from '@/src/assets/bookmarkwhite.png';
-import comment from '@/src/assets/comment.png';
-import favorite from '@/src/assets/favorite.png';
-import favoriteWhite from '@/src/assets/favoritewhite.png';
-import retwitch from '@/src/assets/retwitch.png';
+import black from '../../assets/black.png';
+import bookmark from '../../assets/bookmark.png';
+import bookmarkWhite from '../../assets/bookmarkwhite.png';
+import comment from '../../assets/comment.png';
+import favorite from '../../assets/favorite.png';
+import favoriteWhite from '../../assets/favoritewhite.png';
+import retwitch from '../../assets/retwitch.png';
 
 type Actions = {
 	liked: boolean;

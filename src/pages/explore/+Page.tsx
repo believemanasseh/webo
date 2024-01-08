@@ -1,8 +1,6 @@
 import {styled} from '@linaria/react';
 
-export default Page;
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
 	return (
 		<StyledPage>
 			<div className='outer'>

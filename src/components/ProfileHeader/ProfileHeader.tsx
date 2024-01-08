@@ -1,8 +1,8 @@
 import {styled} from '@linaria/react';
 
-import black from '@/public/black.png';
-import calendar from '@/public/calendar.png';
-import leftArrow from '@/public/left.png';
+import black from '../../assets/black.png';
+import calendar from '../../assets/calendar.png';
+import leftArrow from '../../assets/left.png';
 
 export default function ProfileHeader(): JSX.Element {
 	return (

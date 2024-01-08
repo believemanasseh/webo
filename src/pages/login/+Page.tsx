@@ -1,13 +1,11 @@
 import React, {ChangeEvent, useState} from 'react';
 import {styled} from '@linaria/react';
-import useStore from '@/src/store';
-import logo from '@/src/assets/webo.png';
-import googleLogo from '@/src/assets/google.svg';
-import appleLogo from '@/src/assets/apple.svg';
+import useStore from '../../store.ts';
+import logo from '../../assets/webo.png';
+import googleLogo from '../../assets/google.svg';
+import appleLogo from '../../assets/apple.svg';
 
-export default Page;
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
 	const [currentSlide, setCurrentSlide] = useState(1);
 	const authState = useStore((state) => state.auth);
 	const setAuthState = useStore((state) => state.setAuthState);

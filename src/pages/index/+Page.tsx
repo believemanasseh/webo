@@ -1,12 +1,10 @@
 import {ChangeEvent} from 'react';
 import {styled} from '@linaria/react';
-import Layout from '@/src/components/Layout/Layout';
-import Posts from '@/src/components/Posts/Posts';
-import black from '@/src/assets/black.png';
+import Layout from '../../components/Layout/Layout.tsx';
+import Posts from '../../components/Posts/Posts.tsx';
+import black from '../../assets/black.png';
 
-export default Page;
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
 	function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
 		e.preventDefault();
 		console.log(e);

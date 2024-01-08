@@ -1,10 +1,8 @@
 import {styled} from '@linaria/react';
-import Layout from '@/src/components/Layout/Layout';
-import black from '@/src/assets/black.png';
+import Layout from '../../components/Layout/Layout.tsx';
+import black from '../../assets/black.png';
 
-export default Page;
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
 	return (
 		<Layout hideTrends>
 			<StyledPage>

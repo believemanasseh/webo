@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --port 3001",
         "build": "tsc && vite build",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
@@ -13,12 +13,15 @@
         "@linaria/core": "^6.0.0",
         "@linaria/react": "^6.0.0",
         "@wyw-in-js/babel-preset": "^0.2.2",
+        "D": "^1.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "vike": "^0.4.154",
         "zustand": "^4.4.7"
     },
     "devDependencies": {
+        "@babel/preset-react": "^7.23.3",
+        "@babel/preset-typescript": "^7.23.3",
         "@types/react": "^18.2.43",
         "@types/react-dom": "^18.2.17",
         "@typescript-eslint/eslint-plugin": "^6.14.0",

@@ -3,9 +3,9 @@ import type {PageContextServer} from 'vike/types';
 
 export {onRenderHtml};
 
-async function onRenderHtml(pageContext: PageContextServer) {
+function onRenderHtml(pageContext: PageContextServer) {
 	if (pageContext.Page)
-		throw Error("Server-side render() hook doesn't expect pageContext.Page to be defined");
+		throw new Error("Server-side render() hook doesn't expect pageContext.Page to be defined");
 	const pageHtml = '';
 	return escapeInject`<!DOCTYPE html>
     <html lang="en">

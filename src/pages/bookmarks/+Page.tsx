@@ -1,10 +1,8 @@
 import {styled} from '@linaria/react';
-import Layout from '@/src/components/Layout/Layout';
-import Posts from '@/src/components/Posts/Posts';
+import Layout from '../../components/Layout/Layout.tsx';
+import Posts from '../../components/Posts/Posts.tsx';
 
-export default Page;
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
 	return (
 		<Layout>
 			<StyledPage>

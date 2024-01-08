@@ -1,20 +1,20 @@
 import {useState} from 'react';
 import {styled} from '@linaria/react';
 
-import at from '@/src/assets/at.png';
-import arrowDown from '@/src/assets/arrow-down.png';
-// import arrowUp from '@/src/assets/arrow-up.png';
-import black from '@/src/assets/black.png';
-import bookmarks from '@/src/assets/bookmarks.png';
-import chatMessage from '@/src/assets/chat-message.png';
-import draft from '@/src/assets/draft.png';
-import ellipsis from '@/src/assets/ellipsis.png';
-import logo from '@/src/assets/webo.png';
-import home from '@/src/assets/home.png';
-import hashtag from '@/src/assets/hashtag.png';
-import more from '@/src/assets/more.png';
-import notification from '@/src/assets/notification.png';
-import profile from '@/src/assets/profile.png';
+import at from '../../assets/at.png';
+import arrowDown from '../../assets/arrow-down.png';
+// import arrowUp from '../../assets/arrow-up.png';
+import black from '../../assets/black.png';
+import bookmarks from '../../assets/bookmarks.png';
+import chatMessage from '../../assets/chat-message.png';
+import draft from '../../assets/draft.png';
+import ellipsis from '../../assets/ellipsis.png';
+import logo from '../../assets/webo.png';
+import home from '../../assets/home.png';
+import hashtag from '../../assets/hashtag.png';
+import more from '../../assets/more.png';
+import notification from '../../assets/notification.png';
+import profile from '../../assets/profile.png';
 
 export default function Navbar(): JSX.Element {
 	const [showModal, setShowModal] = useState(false);

@@ -1,14 +1,12 @@
 import {styled} from '@linaria/react';
 
-import Layout from '@/src/components/Layout/Layout';
+import Layout from '../../../components/Layout/Layout';
 
-import black from '@/src/assets/black.png';
-import ellipsis from '@/src/assets/ellipsis.png';
-import leftArrow from '@/src/assets/left.png';
+import black from '../../../assets/black.png';
+import ellipsis from '../../../assets/ellipsis.png';
+import leftArrow from '../../../assets/left.png';
 
-export default Page;
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
 	return (
 		<Layout>
 			<StyledPage>

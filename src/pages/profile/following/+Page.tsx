@@ -1,11 +1,9 @@
 import {styled} from '@linaria/react';
 
-import Layout from '@/src/components/Layout/Layout';
-import leftArrow from '@/src/assets/left.png';
+import Layout from '../../../components/Layout/Layout';
+import leftArrow from '../../../assets/left.png';
 
-export default Page;
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
 	return (
 		<Layout>
 			<StyledPage>
