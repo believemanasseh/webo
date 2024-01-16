@@ -39,7 +39,7 @@ fun Route.userRouting() {
                     status = HttpStatusCode.Accepted,
                     UserResponse(
                         status = "success",
-                        message = "User login successful",
+                        message = "Users retrieved successfully",
                         data = UserData.UserList(users)
                     )
                 )

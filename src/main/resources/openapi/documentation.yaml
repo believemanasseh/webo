@@ -20,12 +20,12 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: body
+        - in: formData
           name: email
           description: Email of the user
           required: true
           type: string
-        - in: body
+        - in: formData
           name: password
           description: Password of the user
           required: true
@@ -44,17 +44,17 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: body
+        - in: formData
           name: email
           description: Email of the user
           required: true
           type: string
-        - in: body
+        - in: formData
           name: handle
           description: Handle of the user
           required: true
           type: string
-        - in: body
+        - in: formData
           name: password
           description: Password of the user
           required: true
@@ -62,5 +62,36 @@ paths:
       responses:
         201:
           description: Created
+        400:
+          description: Bad request
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Retrieves users.
+      description: Retrieves all users from database.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Bad request
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Retrieves user instance.
+      description: Retrieves a single user from database.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Ok
         400:
           description: Bad request

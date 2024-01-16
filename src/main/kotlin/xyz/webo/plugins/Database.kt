@@ -23,7 +23,6 @@ fun Application.configureDatabase(testing: Boolean = false) {
     )
     transaction {
         addLogger(StdOutSqlLogger)
-        println("wads")
         SchemaUtils.drop(Profiles, Tokens, Posts, Users)
         SchemaUtils.create(Users, Profiles, Tokens, Posts)
 
