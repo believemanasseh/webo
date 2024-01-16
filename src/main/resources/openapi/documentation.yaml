@@ -1,15 +1,13 @@
 swagger: "2.0"
 info:
   title: Webo API
-  description: Backend for Webo Client
+  description: Backend for Webo
   version: 1.0.0
 host: localhost:8080
 basePath: /v1
 schemes:
   - http
-tags:
-  - name: Authentication
-    description: Everything about authentication and authorization
+
 paths:
   /login:
     post:
@@ -90,6 +88,72 @@ paths:
           name: id
           type: integer
           required: true
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Bad request
+  /posts:
+    post:
+      tags:
+        - Posts
+      summary: Creates post.
+      description: Creates new post.
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: text
+          description: Content of the post
+          required: true
+          type: string
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+    get:
+      tags:
+        - Posts
+      summary: Retrieves posts.
+      description: Retrieves all user-specific posts.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Bad request
+  /posts/{id}:
+    delete:
+      tags:
+        - Posts
+      summary: Deletes post.
+      description: Deletes post instance.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        204:
+          description: No content
+        400:
+          description: Bad request
+    patch:
+      tags:
+        - Posts
+      summary: Patches post.
+      description: Patches post instance.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
       responses:
         200:
           description: Ok
