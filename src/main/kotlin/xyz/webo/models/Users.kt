@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.javatime.datetime
-import xyz.webo.models.intermediaries.UserPost
+import xyz.webo.models.intermediaries.UserPosts
 import java.time.LocalDateTime
 
 
@@ -21,5 +21,10 @@ object Users : IntIdTable() {
 class User(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<User>(Users)
 
-    var posts by Post via UserPost
+    var handle by Users.handle
+    var email by Users.email
+    var password by Users.password
+    var dateCreated by Users.dateCreated
+    var dateModified by Users.dateModified
+    var posts by Post via UserPosts
 }

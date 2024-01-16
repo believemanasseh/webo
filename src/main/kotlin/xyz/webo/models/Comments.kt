@@ -7,8 +7,8 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.javatime.datetime
-import xyz.webo.models.intermediaries.CommentRepost
-import xyz.webo.models.intermediaries.UserComment
+import xyz.webo.models.intermediaries.CommentReposts
+import xyz.webo.models.intermediaries.UserComments
 import java.time.LocalDateTime
 
 
@@ -23,6 +23,11 @@ object Comments : IntIdTable() {
 class Comment(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Comment>(Comments)
 
-    var reposts by Repost via CommentRepost
-    var likedBy by User via UserComment
+    var text by Comments.text
+    var likesCount by Comments.likesCount
+    var repostsCount by Comments.repostsCount
+    var dateCreated by Comments.dateCreated
+    var user by User referencedOn Comments.user
+    var reposts by Repost via CommentReposts
+    var likedBy by User via UserComments
 }

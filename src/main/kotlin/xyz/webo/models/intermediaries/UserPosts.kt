@@ -8,8 +8,8 @@ import xyz.webo.models.Posts
 import xyz.webo.models.Users
 
 
-object UserPost : Table() {
+object UserPosts : Table() {
     val user: Column<EntityID<Int>> = reference("user_id", Users, onDelete = ReferenceOption.CASCADE)
     val post: Column<EntityID<Int>> = reference("post_id", Posts, onDelete = ReferenceOption.CASCADE)
-    override val primaryKey = PrimaryKey(user, post)
+    override val primaryKey = PrimaryKey(user, post, name = "PK_UserPosts")
 }

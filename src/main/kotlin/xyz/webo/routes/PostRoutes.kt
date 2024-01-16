@@ -12,8 +12,10 @@ import kotlinx.serialization.MissingFieldException
 import org.jetbrains.exposed.sql.insertAndGetId
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
+import xyz.webo.models.Bookmarks
 import xyz.webo.models.Posts
 import xyz.webo.models.Tokens
+import xyz.webo.models.Users
 import xyz.webo.serializers.PostData
 import xyz.webo.serializers.PostResponse
 import xyz.webo.serializers.PostSerializer
@@ -31,7 +33,7 @@ fun Route.postRouting() {
                             val tokenObj = Tokens.select { Tokens.value eq token!!.name }.first()
                             val id = Posts.insertAndGetId {
                                 it[user] = tokenObj[Tokens.user]
-                                it[text] = data.text
+                                it[text] = data.text.toString()
                                 it[dateCreated] = LocalDateTime.now()
                             }
                             Posts.select { Posts.id eq id }.first()
@@ -52,11 +54,8 @@ fun Route.postRouting() {
                         )
                     }
                     val response = res.await()
-                    if (response is PostResponse) {
-                        call.respond(status = HttpStatusCode.Created, response)
-                    } else {
-                        call.respond(status = HttpStatusCode.UnprocessableEntity, response)
-                    }
+                    call.respond(status = HttpStatusCode.Created, response)
+
                 } catch (e: MissingFieldException) {
                     call.respond(
                         status = HttpStatusCode.BadRequest,
@@ -98,6 +97,36 @@ fun Route.postRouting() {
                             data = PostData.PostList(posts)
                         )
                     )
+                } catch (e: MissingFieldException) {
+                    call.respond(
+                        status = HttpStatusCode.BadRequest,
+                        mapOf("status" to "error", "message" to "Invalid request!", "error" to e.toString())
+                    )
+                }
+            }
+            patch("/{id}") {
+                try {
+                    val token = call.principal<UserIdPrincipal>()
+                    val data = call.receive<PostSerializer>()
+                    val id: Int? = call.parameters["id"]?.toInt()
+                    if (id !is Int) {
+                        call.respond(mapOf("status" to "error", "message" to "Invalid path param"))
+                    }
+                    val tokenObj = transaction {
+                        Tokens.select { Tokens.value eq token!!.name }.firstOrNull()
+                    }
+                    val user = transaction {
+                        Users.select { Users.id eq tokenObj!![Tokens.user] }.firstOrNull()
+                    }
+                    val bookmark = transaction {
+                        Bookmarks.select { Bookmarks.post eq id; Bookmarks.user eq user!![Users.id] }
+                    }
+//                    transaction {
+//                        Bookmark.insert {
+//                            it[post] = id as EntityID<Int>
+//                            it[user] = user!![Users.id]
+//                        }
+//                    }
                 } catch (e: MissingFieldException) {
                     call.respond(
                         status = HttpStatusCode.BadRequest,

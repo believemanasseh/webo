@@ -6,7 +6,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
 import xyz.webo.Config
 import xyz.webo.models.Posts
-import xyz.webo.models.Profile
+import xyz.webo.models.Profiles
 import xyz.webo.models.Tokens
 import xyz.webo.models.Users
 import xyz.webo.utils.generateToken
@@ -23,8 +23,9 @@ fun Application.configureDatabase(testing: Boolean = false) {
     )
     transaction {
         addLogger(StdOutSqlLogger)
-        SchemaUtils.drop(Users, Profile, Tokens, Posts)
-        SchemaUtils.create(Users, Profile, Tokens, Posts)
+        println("wads")
+        SchemaUtils.drop(Profiles, Tokens, Posts, Users)
+        SchemaUtils.create(Users, Profiles, Tokens, Posts)
 
         try {
             val hashedPwd = BCrypt.hashpw(Config.ADMIN_USER_PASSWORD, BCrypt.gensalt())
@@ -38,7 +39,7 @@ fun Application.configureDatabase(testing: Boolean = false) {
             }
             logger.info("Created admin user instance successfully")
 
-            Profile.insert {
+            Profiles.insert {
                 it[name] = "Test Profile"
                 it[dateOfBirth] = LocalDate.now()
                 it[user] = id.value

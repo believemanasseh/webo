@@ -10,42 +10,46 @@ import io.ktor.server.testing.*
 import kotlinx.serialization.json.Json
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.testng.Assert.assertEquals
+import org.testng.annotations.BeforeTest
+import org.testng.annotations.Test
 import xyz.webo.models.Tokens
 import xyz.webo.plugins.configureDatabase
 import xyz.webo.plugins.configureRouting
 import xyz.webo.plugins.configureSerialization
 import xyz.webo.serializers.UserSerializer
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class AuthTest {
     @BeforeTest
     fun setUp() {
         embeddedServer(Netty, port = Config.TEST_SERVER_PORT.toInt()) {
-            install(Authentication) {
-                bearer {
-                    realm = "webo"
-                    authenticate { tokenCredential ->
-                        val token = transaction {
-                            Tokens.select { Tokens.value eq tokenCredential.token }.firstOrNull()
-                        }
-                        if (token != null) {
-                            if (tokenCredential.token == token[Tokens.value].toString()) {
-                                UserIdPrincipal(token[Tokens.value].toString())
-                            } else {
-                                null
-                            }
+            extracted()
+        }.start()
+    }
+
+    private fun Application.extracted() {
+        install(Authentication) {
+            bearer {
+                realm = "webo"
+                authenticate { tokenCredential ->
+                    val token = transaction {
+                        Tokens.select { Tokens.value eq tokenCredential.token }.firstOrNull()
+                    }
+                    if (token != null) {
+                        if (tokenCredential.token == token[Tokens.value].toString()) {
+                            UserIdPrincipal(token[Tokens.value].toString())
                         } else {
                             null
                         }
+                    } else {
+                        null
                     }
                 }
             }
-            configureSerialization()
-            configureDatabase(testing = true)
-            configureRouting()
-        }.start()
+        }
+        configureSerialization()
+        configureDatabase(testing = true)
+        configureRouting()
     }
 
     @Test

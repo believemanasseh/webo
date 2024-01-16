@@ -7,14 +7,15 @@ import xyz.webo.serializers.custom.EntityIDSerializer
 
 @Serializable
 data class PostSerializer(
-    val text: String,
+    val text: String? = null,
     val repostsCount: Int? = null,
     val likesCount: Int? = null,
     val dateCreated: String? = null,
     @Serializable(with = EntityIDSerializer::class)
     val id: EntityID<Int>? = null,
     @Serializable(with = EntityIDSerializer::class)
-    val user: EntityID<Int>? = null
+    val user: EntityID<Int>? = null,
+    val bookmark: Boolean = false
 )
 
 @Serializable

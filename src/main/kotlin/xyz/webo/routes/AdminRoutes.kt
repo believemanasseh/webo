@@ -6,7 +6,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
-import xyz.webo.models.Profile
+import xyz.webo.models.Profiles
 import xyz.webo.models.Users
 import xyz.webo.serializers.ProfileSerializer
 import xyz.webo.serializers.UserSerializer
@@ -44,17 +44,17 @@ fun Route.adminRouting() {
         }
         get("/profiles") {
             val profiles = transaction {
-                val res = Profile.selectAll()
+                val res = Profiles.selectAll()
                 res.map {
                     ProfileSerializer(
-                        it[Profile.name].toString(),
-                        it[Profile.bio].toString(),
-                        it[Profile.location].toString(),
-                        it[Profile.website].toString(),
-                        it[Profile.displayPicture].toString(),
-                        it[Profile.bannerPicture].toString(),
-                        it[Profile.dateOfBirth].toString(),
-                        it[Profile.id]
+                        it[Profiles.name].toString(),
+                        it[Profiles.bio].toString(),
+                        it[Profiles.location].toString(),
+                        it[Profiles.website].toString(),
+                        it[Profiles.displayPicture].toString(),
+                        it[Profiles.bannerPicture].toString(),
+                        it[Profiles.dateOfBirth].toString(),
+                        it[Profiles.id]
                     )
                 }
             }
