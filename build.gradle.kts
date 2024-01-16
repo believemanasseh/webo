@@ -5,7 +5,7 @@ val exposedVersion: String by project
 
 plugins {
     kotlin("jvm") version "1.8.10"
-    id("io.ktor.plugin") version "2.2.4"
+    id("io.ktor.plugin") version "2.3.0"
     kotlin("plugin.serialization") version "1.8.10"
 }
 
@@ -21,8 +21,6 @@ repositories {
 }
 
 dependencies {
-    testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
@@ -35,10 +33,13 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
-    implementation("org.postgresql:postgresql:42.2.2")
+    implementation("org.postgresql:postgresql:42.5.1")
     implementation("io.ktor:ktor-features:1.6.0")
     implementation("org.mindrot:jbcrypt:0.4")
     implementation("io.ktor:ktor-server-mustache:$ktorVersion")
     implementation("io.ktor:ktor-server-cors:$ktorVersion")
     implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
+    testImplementation("org.testng:testng:7.7.0")
+    testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
 }
