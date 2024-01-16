@@ -20,6 +20,13 @@ repositories {
     mavenCentral()
 }
 
+ktor {
+    docker {
+        localImageName.set("webo-server")
+        imageTag.set("0.0.1-preview")
+    }
+}
+
 dependencies {
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
