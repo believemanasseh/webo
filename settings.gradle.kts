@@ -1,0 +1,1 @@
+rootProject.name = "xyz.webo.webo-server"

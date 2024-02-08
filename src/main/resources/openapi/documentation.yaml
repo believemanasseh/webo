@@ -1,0 +1,161 @@
+swagger: "2.0"
+info:
+  title: Webo API
+  description: Backend for Webo
+  version: 0.0.1
+host: localhost:8080
+basePath: /v1
+schemes:
+  - http
+
+paths:
+  /login:
+    post:
+      tags:
+        - Authentication
+      summary: Logs in users.
+      description: Logs in users.
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: email
+          description: Email of the user
+          required: true
+          type: string
+        - in: formData
+          name: password
+          description: Password of the user
+          required: true
+          type: string
+      responses:
+        202:
+          description: Accepted
+        422:
+          description: Unprocessable entity
+  /signup:
+    post:
+      tags:
+        - Authentication
+      summary: Register users.
+      description: Creates new users.
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: email
+          description: Email of the user
+          required: true
+          type: string
+        - in: formData
+          name: handle
+          description: Handle of the user
+          required: true
+          type: string
+        - in: formData
+          name: password
+          description: Password of the user
+          required: true
+          type: string
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Retrieves users.
+      description: Retrieves all users from database.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Bad request
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Retrieves user instance.
+      description: Retrieves a single user from database.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Bad request
+  /posts:
+    post:
+      tags:
+        - Posts
+      summary: Creates post.
+      description: Creates new post.
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: text
+          description: Content of the post
+          required: true
+          type: string
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad request
+    get:
+      tags:
+        - Posts
+      summary: Retrieves posts.
+      description: Retrieves all user-specific posts.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Bad request
+  /posts/{id}:
+    delete:
+      tags:
+        - Posts
+      summary: Deletes post.
+      description: Deletes post instance.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        204:
+          description: No content
+        400:
+          description: Bad request
+    patch:
+      tags:
+        - Posts
+      summary: Patches post.
+      description: Patches post instance.
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Bad request
