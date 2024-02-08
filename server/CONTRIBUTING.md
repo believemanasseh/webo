@@ -16,16 +16,16 @@ Pull requests are the greatest contributions, so be sure they are focused in sco
 
     ```bash
     # Clone your fork of the repository into the current directory
-    git clone https://github.com/<your-username>/webo-server
+    git clone https://github.com/<your-username>/webo
 
     # Navigate to the newly cloned directory
-    cd webo-server
+    cd webo
 
     # Assign the forked repository to a remote call "origin"
-    git remote add origin git://github.com/<your-username>/webo-server.git
+    git remote add origin git://github.com/<your-username>/webo.git
 
     # Assign the original repository to a remote called "upstream"
-    git remote add upstream https://github.com/believemanasseh/webo-server
+    git remote add upstream https://github.com/believemanasseh/webo
     ```
 
 2. Pull latest changes from "upstream" and push these changes to your "origin"(forked)

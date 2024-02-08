@@ -16,16 +16,16 @@ Pull requests are the greatest contributions, so be sure they are focused in sco
 
     ```bash
     # Clone your fork of the repository into the current directory
-    git clone https://github.com/<your-username>/webo-client
+    git clone https://github.com/<your-username>/webo
 
     # Navigate to the newly cloned directory
-    cd webo-client
+    cd webo
 
     # Assign the forked repository to a remote call "origin"
-    git remote add origin git://github.com/<your-username>/webo-client.git
+    git remote add origin git://github.com/<your-username>/webo.git
 
     # Assign the original repository to a remote called "upstream"
-    git remote add upstream https://github.com/believemanasseh/webo-client
+    git remote add upstream https://github.com/believemanasseh/webo
 
     # Install the tools necessary for development
     npm install
