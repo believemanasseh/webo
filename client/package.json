@@ -13,7 +13,6 @@
         "@linaria/core": "^6.0.0",
         "@linaria/react": "^6.0.0",
         "@wyw-in-js/babel-preset": "^0.2.2",
-        "D": "^1.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "vike": "^0.4.154",
