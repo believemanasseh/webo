@@ -48,11 +48,11 @@ export default function Page(): JSX.Element {
 								<span>or</span>
 							</h2>
 							<form onSubmit={handleSubmit}>
-								<textarea name='id' placeholder='email or username' required />
+								<input type="text" name='id' placeholder='email or username' required />
 								<button className='next-btn' type='submit'>
 									Next
 								</button>
-								<button className='forgot-pwd' type='button'>
+								<button className='forgot-pwd-btn' type='button'>
 									Forgot password?
 								</button>
 								<p className='no-account'>
@@ -65,19 +65,19 @@ export default function Page(): JSX.Element {
 							<h1 className='header'>Enter your password</h1>
 							<form onSubmit={handleSubmit}>
 								{authState.initialValue && authState.initialValue.includes('@') ? (
-									<textarea
+									<input type="text"
 										className='email'
-										placeholder={'email' + '\n' + authState.initialValue}
+										placeholder={'email' + ' ' + authState.initialValue}
 										disabled
 									/>
 								) : (
-									<textarea
+									<input type="text"
 										className='username'
 										placeholder={'username' + '\n' + authState.initialValue}
 										disabled
 									/>
 								)}
-								<textarea className='password' placeholder='Password' required />
+								<input type="password" className='password' placeholder='Password' required />
 								<a className='forgot-pwd' href='/'>
 									Forgot password?
 								</a>
@@ -178,17 +178,13 @@ const StyledLogin = styled.div`
 		width: 100%;
 	}
 
-	textarea {
+	input {
 		width: 100%;
-		height: 55px;
-		padding: 20px;
-		box-sizing: border-box;
-		border: 2px solid var(--border-color);
+		margin-top: 0px;
+		padding: 10px;
+		border: 2px solid #ccc;
 		border-radius: 4px;
-		background-color: #f8f8f8;
-		font-size: 14px;
-		resize: none;
-		overflow: hidden;
+		font-size: 15px;
 	}
 
 	button.next-btn {
@@ -207,7 +203,7 @@ const StyledLogin = styled.div`
 		cursor: pointer;
 	}
 
-	button.forgot-pwd {
+	button.forgot-pwd-btn {
 		width: 100%;
 		border-radius: 30px;
 		padding: 10px;
@@ -224,8 +220,8 @@ const StyledLogin = styled.div`
 		background-color: #212020;
 	}
 
-	button.forgot-pwd:hover {
-		background-color: #e0dede;
+	button.forgot-pwd-btn:hover {
+		background-color: #f8f8f8;
 	}
 
 	.login-btn {
@@ -243,7 +239,7 @@ const StyledLogin = styled.div`
 	.email,
 	.username,
 	.password {
-		margin-top: 30px;
+		margin: 10px 0px;
 	}
 
 	.email,
@@ -262,8 +258,8 @@ const StyledLogin = styled.div`
 	}
 
 	.signup,
-	.forgot-pwd {
-		color: #f5f125;
+	.forgot-pwd:hover {
+		color: #d1ce21;
 	}
 
 	p.no-account {
@@ -272,6 +268,10 @@ const StyledLogin = styled.div`
 	}
 
 	p.no-account a {
-		color: #f5f125;
+		color: black;
+	}
+
+	p.no-account a:hover {
+		color: #d1ce21;
 	}
 `;

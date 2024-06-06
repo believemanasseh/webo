@@ -44,7 +44,7 @@ const StyledPage = styled.div`
 		display: flex;
 		flex-flow: row nowrap;
 		border-top: 1px solid var(--border-color);
-		padding: 20px 0px;
+		padding: 20px;
 	}
 
 	textarea {

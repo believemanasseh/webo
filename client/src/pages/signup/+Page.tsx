@@ -1,7 +1,7 @@
 import {useState, ChangeEvent} from 'react';
 import {styled} from '@linaria/react';
 
-import logo from '../../../public/webo.png';
+import logo from '../../assets/webo.png';
 import googleLogo from '../../assets/google.svg';
 import appleLogo from '../../assets/apple.svg';
 
@@ -59,13 +59,14 @@ function Page(): JSX.Element {
 						<div className='slide-two'>
 							<h1 className='header'>Create your account</h1>
 							<form onSubmit={handleSubmit}>
-								<textarea
+								<input
+									type='text'
 									name='username'
 									className='username'
 									placeholder='Username'
 									required
 								/>
-								<textarea name='email' className='email' placeholder='Email' required />
+								<input type='text' name='email' className='email' placeholder='Email' required />
 								<div className='dob'>
 									<h6>Date of birth</h6>
 									<p className='dob-text'>
@@ -186,7 +187,11 @@ const StyledPage = styled.div`
 	}
 
 	p:nth-last-child(1) a {
-		color: #f5f125;
+		color: black;
+	}
+
+	p:nth-last-child(1) a:hover {
+		color: #d1ce21;
 	}
 
 	form {
@@ -211,23 +216,12 @@ const StyledPage = styled.div`
 		padding: auto;
 	}
 
-	textarea {
-		width: 100%;
-		height: 55px;
-		padding: 20px;
-		box-sizing: border-box;
-		border: 2px solid #ccc;
-		border-radius: 4px;
-		background-color: #f8f8f8;
-		font-size: 14px;
-		resize: none;
-		overflow: hidden;
-	}
-
 	input {
 		width: 100%;
 		margin-top: 20px;
 		padding: 10px;
+		border: 2px solid #ccc;
+		border-radius: 4px;
 		font-size: 15px;
 	}
 
