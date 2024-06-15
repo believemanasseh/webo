@@ -3,7 +3,6 @@ package xyz.webo.plugins
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import xyz.webo.routes.adminRouting
 import xyz.webo.routes.authRouting
 import xyz.webo.routes.postRouting
 import xyz.webo.routes.userRouting
@@ -21,7 +20,6 @@ fun Application.configureRouting() {
         }
 
         authRouting()
-        adminRouting()
         userRouting()
         postRouting()
     }
