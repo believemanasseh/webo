@@ -18,9 +18,12 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    env_file: ./server/.env
+    env_file:
+      - ./server/.env
     volumes:
       - ./server:/app
+    ports:
+      - 8080:8080
     depends_on:
       - db
       - nginx
@@ -40,8 +43,10 @@ services:
     image: postgres:latest
     container_name: postgres-db
     restart: always
+    env_file: 
+      - ./server/.env
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
