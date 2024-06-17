@@ -1,28 +1,28 @@
-import {create} from 'zustand';
+import { create } from "zustand";
 
 type AuthState = {
-	id: number | null;
-	email: string | null;
-	initialValue: string | null | undefined;
+  id: number | null;
+  email: string | null;
+  initialValue: string | null | undefined;
 };
 
 type State = {
-	auth: AuthState;
+  auth: AuthState;
 };
 
 type Actions = {
-	setAuthState: (value: AuthState) => void;
+  setAuthState: (value: AuthState) => void;
 };
 
 const initialAuthState: AuthState = {
-	id: null,
-	email: null,
-	initialValue: null,
+  id: null,
+  email: null,
+  initialValue: null,
 };
 
 const useStore = create<State & Actions>((set) => ({
-	auth: initialAuthState,
-	setAuthState: (value: AuthState) => set((_) => ({auth: value})),
+  auth: initialAuthState,
+  setAuthState: (value: AuthState) => set((_) => ({ auth: value })),
 }));
 
 export default useStore;

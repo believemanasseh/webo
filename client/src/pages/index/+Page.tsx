@@ -22,7 +22,7 @@ export default function Page(): JSX.Element {
             <button type="submit">Post</button>
           </div>
         </form>
-        <Posts />
+        <Posts borderTopVisible />
       </StyledPage>
     </Layout>
   );
@@ -30,6 +30,7 @@ export default function Page(): JSX.Element {
 
 const StyledPage = styled.div`
   min-height: 100vh;
+  width: 60%;
 
   h3 {
     font-size: 28px;
@@ -40,7 +41,7 @@ const StyledPage = styled.div`
   form {
     display: flex;
     flex-flow: row nowrap;
-    padding: 20px;
+    padding: 15px 0px;
   }
 
   textarea {

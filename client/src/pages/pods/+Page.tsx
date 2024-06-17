@@ -1,23 +1,22 @@
-import {styled} from '@linaria/react';
+import { styled } from "@linaria/react";
+import Layout from "../../components/Layout/Layout";
 
 export default function Page(): JSX.Element {
-	return (
-		<StyledPage>
-			<div className='outer'>
-				Outer<div className='inner'>Inner</div>
-			</div>
-		</StyledPage>
-	);
+  return (
+    <Layout headerTitle="Pods">
+      <StyledPage>
+        <div className="outer">
+          Outer<div className="inner">Inner</div>
+        </div>
+      </StyledPage>
+    </Layout>
+  );
 }
 
 const StyledPage = styled.div`
-	.outer {
-		background-color: white;
-	}
+  min-height: 100vh;
 
-	.inner {
-		background-color: white;
-		position: fixed;
-		top: 10px;
-	}
+  .outer {
+    background-color: white;
+  }
 `;

@@ -29,19 +29,19 @@ export default function Trends() {
         <input type="text" placeholder="Search Webo" value={value} onChange={handleChange} />
       </form>
       <div className="trends">
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
-        <h3>Trends for you</h3>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
+        <p>Trends for you</p>
       </div>
       <ul>
         <li onClick={() => handleClick("tos")}>Terms of Service</li>

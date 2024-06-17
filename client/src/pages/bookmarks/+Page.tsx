@@ -1,15 +1,11 @@
 import { styled } from "@linaria/react";
-import Layout from "@/components/Layout/Layout.tsx";
-import Posts from "@/components/Posts/Posts.tsx";
+import Layout from "../../components/Layout/Layout.tsx";
+import Posts from "../../components/Posts/Posts.tsx";
 
 export default function Page(): JSX.Element {
   return (
-    <Layout>
+    <Layout headerTitle="Bookmarks">
       <StyledPage>
-        <div>
-          <h3 className="header">Bookmarks</h3>
-          <p className="handle">@believemanasseh</p>
-        </div>
         <Posts />
       </StyledPage>
     </Layout>
@@ -17,17 +13,15 @@ export default function Page(): JSX.Element {
 }
 
 const StyledPage = styled.div`
-  border-right: 1px solid var(--border-color);
-  border-left: 1px solid var(--border-color);
-  width: 30vw;
-  height: 100vh;
+  min-height: 100vh;
+  width: 60%;
 
-  .header,
+  .bookmark-title,
   .handle {
     text-align: left;
   }
 
-  .header {
+  .bookmark-title {
     font-size: 28px;
     text-align: left;
     margin-top: 15px;

@@ -1,36 +1,58 @@
 import { useEffect } from "react";
 import { styled } from "@linaria/react";
-import { usePageContext } from "vike-react/usePageContext";
-import { PageContext } from "vike/types";
 
 import bookmarks from "../../assets/bookmarks.png";
 import chatMessage from "../../assets/chat-message.png";
 import home from "../../assets/home.png";
 import community from "../../assets/community.png";
+import { usePageContext } from "vike-react/usePageContext";
 
 export default function Navbar(): JSX.Element {
-  const pageContext: PageContext = usePageContext();
-  console.log(pageContext?.urlPathname, "page??");
-  useEffect(() => {}, []);
+  const pageContext = usePageContext();
+  console.log(pageContext?.urlPathname, "sd");
+
+  useEffect(() => {
+    if (pageContext?.urlPathname == "/home") {
+      const classList = document.querySelector("li.home")!!.classList;
+      classList.add("active");
+    } else if (pageContext?.urlPathname == "/pods") {
+      const classList = document.querySelector("li.pods")!!.classList;
+      classList.add("active");
+    } else if (pageContext?.urlPathname == "/bookmarks") {
+      const classList = document.querySelector("li.bookmarks")!!.classList;
+      classList.add("active");
+    } else if (pageContext?.urlPathname == "/messages") {
+      const classList = document.querySelector("li.messages")!!.classList;
+      classList.add("active");
+    }
+  }, [pageContext]);
 
   return (
     <StyledNavbar>
       <ul className="navbar">
-        <li>
-          <img src={home} alt="home page" width={20} height={20} />
-          <a href="/">Home</a>
+        <li className="home">
+          <a href="/">
+            <img src={home} alt="home page" width={20} height={20} />
+            Home
+          </a>
         </li>
-        <li>
-          <img src={community} alt="pods" width={20} height={20} />
-          <a href="/pods">Pods</a>
+        <li className="pods">
+          <a href="/pods">
+            <img src={community} alt="pods" width={20} height={20} />
+            Pods
+          </a>
         </li>
-        <li>
-          <img src={bookmarks} alt="bookmarks" width={20} height={20} />
-          <a href="/bookmarks">Bookmarks</a>
+        <li className="bookmarks">
+          <a href="/bookmarks">
+            <img src={bookmarks} alt="bookmarks" width={20} height={20} />
+            Bookmarks
+          </a>
         </li>
-        <li>
-          <img src={chatMessage} alt="chat-message" width={20} height={20} />
-          <a href="/messages">Messages</a>
+        <li className="messages">
+          <a href="/messages">
+            <img src={chatMessage} alt="chat-message" width={20} height={20} />
+            Messages
+          </a>
         </li>
       </ul>
     </StyledNavbar>
@@ -43,7 +65,7 @@ const StyledNavbar = styled.div`
   justify-content: center;
   border-right: 1px solid var(--border-color);
 
-  li {
+  a {
     display: flex;
     align-items: center;
     font-size: 20px;
@@ -51,11 +73,20 @@ const StyledNavbar = styled.div`
     padding: 20px;
   }
 
+  ul {
+    list-style-type: none;
+  }
+
   li:hover {
     background-color: whitesmoke;
   }
+
   .navbar {
     margin: 35px 0px;
     cursor: pointer;
+  }
+
+  .active {
+    background-color: whitesmoke;
   }
 `;
