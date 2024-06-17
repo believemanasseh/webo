@@ -8,6 +8,8 @@ import notifications from "../../assets/notification.png";
 import black from "../../assets/black.png";
 import logout from "../../assets/logout.png";
 import logoutRed from "../../assets/logout-red.png";
+import settings from "../../assets/settings.png";
+import premium from "../../assets/premium.png";
 
 type LayoutProps = {
   headerTitle?: String;
@@ -68,7 +70,26 @@ export default function Layout(props: LayoutProps): JSX.Element {
       <div className="main-section">
         <div className="profile-nav">
           <div>
-            <div></div>
+            <div>
+              <div className="profile-nav-item">
+                <img
+                  src={black}
+                  alt="profile picture"
+                  height={30}
+                  width={30}
+                  style={{ borderRadius: "20px" }}
+                />
+                <p>View Profile</p>
+              </div>
+              <div className="profile-nav-item">
+                <img src={premium} alt="premium" height={30} width={30} />
+                <p>Premium</p>
+              </div>
+              <div className="profile-nav-item">
+                <img src={settings} alt="settings" height={30} width={30} />
+                <p>Manage settings</p>
+              </div>
+            </div>
             <button className="logout-btn">
               Logout
               <img src={onLogout ? logoutRed : logout} alt="logout" height={20} width={20} />
@@ -87,11 +108,15 @@ export default function Layout(props: LayoutProps): JSX.Element {
 
 const StyledLayout = styled.div`
   .header {
+    position: fixed;
+    top: 0;
+    z-index: 2;
     border-bottom: 1px solid var(--border-color);
     padding: 5px 20px;
     display: grid;
     grid-template-columns: ${(props) => (props.page === "messages" ? `36% 64%` : `30% 70%`)};
     align-items: center;
+    width: 100%;
   }
 
   .logo {
@@ -120,7 +145,7 @@ const StyledLayout = styled.div`
     grid-template-columns: 15% 85%;
     padding: auto;
     height: auto;
-    margin: auto;
+    margin-top: 60px;
     text-align: center;
   }
 
@@ -158,6 +183,20 @@ const StyledLayout = styled.div`
     height: 100%;
     display: grid;
     grid-template-rows: 90% 10%;
+  }
+
+  .profile-nav-item {
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-weight: 500;
+  }
+
+  .profile-nav-item:hover {
+    background-color: #edeaea;
+    cursor: pointer;
   }
 
   .profile-nav button {

@@ -1,18 +1,17 @@
 import { useEffect } from "react";
 import { styled } from "@linaria/react";
+import { usePageContext } from "vike-react/usePageContext";
 
 import bookmarks from "../../assets/bookmarks.png";
 import chatMessage from "../../assets/chat-message.png";
 import home from "../../assets/home.png";
 import community from "../../assets/community.png";
-import { usePageContext } from "vike-react/usePageContext";
 
 export default function Navbar(): JSX.Element {
   const pageContext = usePageContext();
-  console.log(pageContext?.urlPathname, "sd");
 
   useEffect(() => {
-    if (pageContext?.urlPathname == "/home") {
+    if (pageContext?.urlPathname == "/") {
       const classList = document.querySelector("li.home")!!.classList;
       classList.add("active");
     } else if (pageContext?.urlPathname == "/pods") {
