@@ -36,9 +36,9 @@ export default function Page(): JSX.Element {
 
 const StyledPage = styled.div`
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 50% 70%;
   margin: auto;
-  min-height: 100vh;
+  min-height: 94vh;
 
   .header {
     text-align: left;
@@ -63,6 +63,9 @@ const StyledPage = styled.div`
 
   .chat-box {
     border-right: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   form {
@@ -87,7 +90,7 @@ const StyledPage = styled.div`
   }
 
   .message:hover {
-    background-color: var(--background-color);
+    background-color: whitesmoke;
     cursor: pointer;
   }
 

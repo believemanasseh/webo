@@ -11,6 +11,7 @@ type PageContextClient = PCClient & {
 let root: Root | null;
 function onRenderClient(pageContext: PageContextClient) {
   const { Page } = pageContext;
+  console.log("fuck");
 
   if (!Page)
     throw new Error("Client-side render() hook expects pageContext.Page to be defined");
