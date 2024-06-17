@@ -14,5 +14,11 @@ const config: UserConfig = {
       },
     }),
   ],
+  resolve: {
+    alias: {
+      "@/components": "./src/components",
+      "@/assets": "./src/assets",
+    },
+  },
 };
 export default config;
