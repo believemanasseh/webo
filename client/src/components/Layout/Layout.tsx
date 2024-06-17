@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { styled } from "@linaria/react";
 import Navbar from "../Navbar/Navbar.tsx";
 import Trends from "../Trends/Trends.tsx";
@@ -5,20 +6,46 @@ import Trends from "../Trends/Trends.tsx";
 import logo from "../../assets/webo.png";
 import notifications from "../../assets/notification.png";
 import black from "../../assets/black.png";
+import logout from "../../assets/logout.png";
+import logoutRed from "../../assets/logout-red.png";
 
 type LayoutProps = {
   headerTitle?: String;
   children: JSX.Element;
   hideTrends?: boolean;
+  page?: String;
 };
 
 export default function Layout(props: LayoutProps): JSX.Element {
+  const [showProfileNav, setShowProfileNav] = useState(false);
+  const [onLogout, setOnLogout] = useState(false);
+
+  useEffect(() => {
+    const btn = document.querySelector(".logout-btn");
+
+    function onMouseOver() {
+      setOnLogout(true);
+    }
+
+    function onMouseLeave() {
+      setOnLogout(false);
+    }
+
+    btn?.addEventListener("mouseover", onMouseOver);
+    btn?.addEventListener("mouseleave", onMouseLeave);
+
+    return () => {
+      btn?.removeEventListener("mouseover", onMouseOver);
+      btn?.removeEventListener("mouseleave", onMouseLeave);
+    };
+  }, []);
+
   return (
-    <StyledLayout>
+    <StyledLayout page={props.page} showProfileNav={showProfileNav}>
       <div className="header">
         <img className="logo" src={logo} alt="webo logo" height={50} width={50} />
         <div>
-          <p className="title">{props.headerTitle}</p>
+          <h3 className="title">{props.headerTitle}</h3>
           <div className="profile">
             <img
               className="notifications"
@@ -33,11 +60,21 @@ export default function Layout(props: LayoutProps): JSX.Element {
               alt="profile picture"
               height={40}
               width={40}
+              onClick={() => setShowProfileNav(!showProfileNav)}
             />
           </div>
         </div>
       </div>
       <div className="main-section">
+        <div className="profile-nav">
+          <div>
+            <div></div>
+            <button className="logout-btn">
+              Logout
+              <img src={onLogout ? logoutRed : logout} alt="logout" height={20} width={20} />
+            </button>
+          </div>
+        </div>
         <Navbar />
         <div className="main">
           {props.children}
@@ -53,12 +90,18 @@ const StyledLayout = styled.div`
     border-bottom: 1px solid var(--border-color);
     padding: 5px 20px;
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: ${(props) => (props.page === "messages" ? `36% 64%` : `30% 70%`)};
     align-items: center;
+  }
+
+  .logo {
+    border-radius: 27px;
   }
 
   .title {
     font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
   }
 
   .header > div {
@@ -92,5 +135,46 @@ const StyledLayout = styled.div`
 
   .profile-pic {
     border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .notifications {
+    cursor: pointer;
+  }
+
+  .profile-nav {
+    display: ${(props) => (props.showProfileNav ? `initial` : `none`)};
+    background-color: whitesmoke;
+    z-index: 1;
+    position: absolute;
+    height: 50%;
+    width: 13%;
+    right: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #e2dede, -5px -5px 10px #e2dede;
+  }
+
+  .profile-nav > div {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 90% 10%;
+  }
+
+  .profile-nav button {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .profile-nav button:hover {
+    border-color: red;
+    color: red;
   }
 `;
