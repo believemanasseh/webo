@@ -4,7 +4,7 @@ import black from "../../assets/black.png";
 
 export default function Page(): JSX.Element {
   return (
-    <Layout headerTitle="Messages" page="messages" hideTrends>
+    <Layout headerTitle="Messages" hideTrends>
       <StyledPage>
         <div className="message-list">
           <form>
@@ -37,8 +37,8 @@ export default function Page(): JSX.Element {
 const StyledPage = styled.div`
   display: grid;
   grid-template-columns: 50% 70%;
-  margin: auto;
   min-height: 94vh;
+  z-index: -1;
 
   .header {
     text-align: left;
@@ -70,13 +70,14 @@ const StyledPage = styled.div`
 
   form {
     margin-top: 15px;
+    display: flex;
+    justify-content: center;
   }
 
   input {
     border-radius: var(--border-radius);
     padding: 15px;
     width: 90%;
-    text-align: center;
     border: 1px solid var(--border-color);
     font-size: 14px;
   }
@@ -119,7 +120,7 @@ const StyledPage = styled.div`
     font-weight: 100;
   }
 
-  .chatBox {
+  .chat-box {
     display: flex;
     flex-flow: nowrap column;
     justify-content: center;
@@ -127,17 +128,17 @@ const StyledPage = styled.div`
     padding: 0px 30px;
   }
 
-  .chatBox div {
+  .chat-box div {
     width: 70%;
     margin: auto;
   }
 
-  .chatBox p {
+  .chat-box p {
     color: var(--font-two);
     margin-top: 10px;
   }
 
-  .chatBox button {
+  .chat-box button {
     border-radius: var(--border-radius);
     padding: 15px;
     width: 60%;
@@ -148,7 +149,7 @@ const StyledPage = styled.div`
     border: none;
   }
 
-  .chatBox button:hover {
+  .chat-box button:hover {
     cursor: pointer;
   }
 `;

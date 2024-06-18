@@ -59,10 +59,12 @@ export default function Navbar(): JSX.Element {
 }
 
 const StyledNavbar = styled.div`
-  width: 100%;
+  border-right: 1px solid var(--border-color);
+  position: fixed;
+  height: 100%;
+  width: 15%;
   display: flex;
   justify-content: center;
-  border-right: 1px solid var(--border-color);
 
   a {
     display: flex;

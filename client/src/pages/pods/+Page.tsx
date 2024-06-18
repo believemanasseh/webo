@@ -4,19 +4,14 @@ import Layout from "../../components/Layout/Layout";
 export default function Page(): JSX.Element {
   return (
     <Layout headerTitle="Pods">
-      <StyledPage>
-        <div className="outer">
-          Outer<div className="inner">Inner</div>
-        </div>
-      </StyledPage>
+      <StyledPage>Coming Soon!</StyledPage>
     </Layout>
   );
 }
 
 const StyledPage = styled.div`
-  min-height: 100vh;
-
-  .outer {
-    background-color: white;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 `;

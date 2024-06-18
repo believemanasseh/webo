@@ -15,7 +15,6 @@ type LayoutProps = {
   headerTitle?: String;
   children: JSX.Element;
   hideTrends?: boolean;
-  page?: String;
 };
 
 export default function Layout(props: LayoutProps): JSX.Element {
@@ -43,7 +42,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
   }, []);
 
   return (
-    <StyledLayout page={props.page} showProfileNav={showProfileNav}>
+    <StyledLayout showProfileNav={showProfileNav}>
       <div className="header">
         <img className="logo" src={logo} alt="webo logo" height={50} width={50} />
         <div>
@@ -96,7 +95,9 @@ export default function Layout(props: LayoutProps): JSX.Element {
             </button>
           </div>
         </div>
-        <Navbar />
+        <div>
+          <Navbar />
+        </div>
         <div className="main">
           {props.children}
           {!props.hideTrends && <Trends />}
@@ -110,13 +111,14 @@ const StyledLayout = styled.div`
   .header {
     position: fixed;
     top: 0;
-    z-index: 2;
+    z-index: 1;
     border-bottom: 1px solid var(--border-color);
     padding: 5px 20px;
     display: grid;
-    grid-template-columns: ${(props) => (props.page === "messages" ? `36% 64%` : `30% 70%`)};
+    grid-template-columns: 30% 70%;
     align-items: center;
     width: 100%;
+    background-color: white;
   }
 
   .logo {
@@ -146,7 +148,6 @@ const StyledLayout = styled.div`
     padding: auto;
     height: auto;
     margin-top: 60px;
-    text-align: center;
   }
 
   .main {
@@ -159,7 +160,7 @@ const StyledLayout = styled.div`
   }
 
   .profile-pic {
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     cursor: pointer;
   }
 

@@ -13,7 +13,6 @@ export default function Page(): JSX.Element {
 }
 
 const StyledPage = styled.div`
-  min-height: 100vh;
   width: 60%;
 
   .bookmark-title,

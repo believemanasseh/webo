@@ -15,7 +15,9 @@ export default function Page(): JSX.Element {
       <StyledPage>
         <form onSubmit={handleSubmit}>
           <textarea name="status" placeholder="What's on your mind?" />
-          <button type="submit">Post</button>
+          <div>
+            <button type="submit">Post</button>
+          </div>
         </form>
         <Posts borderTopVisible />
       </StyledPage>
@@ -24,7 +26,6 @@ export default function Page(): JSX.Element {
 }
 
 const StyledPage = styled.div`
-  min-height: 94vh;
   width: 60%;
 
   h3 {
@@ -35,11 +36,13 @@ const StyledPage = styled.div`
 
   form {
     padding: 15px 0px;
+    margin-bottom: 20px;
   }
 
   textarea {
     width: 100%;
-    padding: 30px;
+    margin-top: 20px;
+    padding-bottom: 100px;
     resize: none;
     overflow: hidden;
     background-color: inherit;
@@ -51,12 +54,15 @@ const StyledPage = styled.div`
     outline: none;
   }
 
+  form > div {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   button {
-    width: 100px;
+    width: 20%;
     border-radius: 30px;
     padding: 10px;
-    margin-left: 340px;
-    margin-top: 25px;
     color: white;
     font-weight: bolder;
     border: none;
