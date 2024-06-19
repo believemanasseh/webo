@@ -18,6 +18,10 @@ type Props = {
   borderTopVisible?: boolean;
 };
 
+type StyledPostsProps = {
+  readonly borderTopVisible?: boolean;
+};
+
 export default function Posts(props: Props): JSX.Element {
   const [actions, setActions] = useState<Actions>({ liked: false, bookmarked: false });
 
@@ -85,7 +89,7 @@ export default function Posts(props: Props): JSX.Element {
   );
 }
 
-const StyledPosts = styled.div`
+const StyledPosts = styled.div<StyledPostsProps>`
   display: flex;
   gap: 10px;
   padding: 20px 10px;

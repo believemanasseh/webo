@@ -1,12 +1,23 @@
+import ReactDOMServer from "react-dom/server";
 import { dangerouslySkipEscape, escapeInject } from "vike/server";
-import type { PageContextServer } from "vike/types";
+import type { PageContextServer as PCServer } from "vike/types";
 
 export { onRenderHtml };
 
+type PageContextServer = PCServer & {
+  Page?: React.FC;
+};
+
 function onRenderHtml(pageContext: PageContextServer) {
-  if (pageContext.Page)
-    throw new Error("Server-side render() hook doesn't expect pageContext.Page to be defined");
-  const pageHtml = "";
+  let pageHtml = "";
+
+  if (pageContext?.Page) {
+    const { Page } = pageContext;
+    pageHtml = ReactDOMServer.renderToString(<Page />);
+  } else {
+    pageHtml = "";
+  }
+
   return escapeInject`<!DOCTYPE html>
     <html lang="en">
       <head>

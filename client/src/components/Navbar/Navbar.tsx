@@ -11,7 +11,7 @@ export default function Navbar(): JSX.Element {
   const pageContext = usePageContext();
 
   useEffect(() => {
-    if (pageContext?.urlPathname == "/") {
+    if (pageContext?.urlPathname == "/home") {
       const classList = document.querySelector("li.home")!!.classList;
       classList.add("active");
     } else if (pageContext?.urlPathname == "/pods") {
@@ -30,7 +30,7 @@ export default function Navbar(): JSX.Element {
     <StyledNavbar>
       <ul className="navbar">
         <li className="home">
-          <a href="/">
+          <a href="/home">
             <img src={home} alt="home page" width={20} height={20} />
             Home
           </a>

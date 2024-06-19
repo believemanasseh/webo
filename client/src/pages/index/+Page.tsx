@@ -1,80 +1,99 @@
-import { ChangeEvent } from "react";
 import { styled } from "@linaria/react";
-import Layout from "../../components/Layout/Layout.tsx";
-import Posts from "../../components/Posts/Posts.tsx";
-import black from "../../assets/black.png";
+
+import logo from "../../assets/webo.png";
 
 export default function Page(): JSX.Element {
-  function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    console.log(e);
-  }
-
   return (
-    <Layout headerTitle="Home">
-      <StyledPage>
-        <form onSubmit={handleSubmit}>
-          <textarea name="status" placeholder="What's on your mind?" />
-          <div>
-            <button type="submit">Post</button>
-          </div>
-        </form>
-        <Posts borderTopVisible />
-      </StyledPage>
-    </Layout>
+    <StyledPage>
+      <div className="navbar">
+        <div>
+          <img src={logo} alt="logo" height={40} width={40} />
+          <nav className="nav-links">
+            <a href="#mission">Mission</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+        <a className="signup-btn" href="/signup">
+          SIGN UP
+        </a>
+      </div>
+      <section className="primary-heading">
+        <h1>
+          Own Your Data, Connect Freely With <span>Webo</span>
+        </h1>
+        <p>
+          Webo is a decentralised social network where you control your data and connect with
+          others on your terms. Experience a censorship-resistant and user-owned online
+          experience.
+        </p>
+      </section>
+    </StyledPage>
   );
 }
 
-const StyledPage = styled.div`
-  width: 60%;
+const StyledPage = styled.main`
+  width: 80%;
+  margin: auto;
 
-  h3 {
-    font-size: 28px;
-    text-align: left;
-    margin: 15px;
-  }
-
-  form {
-    padding: 15px 0px;
-    margin-bottom: 20px;
-  }
-
-  textarea {
-    width: 100%;
-    margin-top: 20px;
-    padding-bottom: 100px;
-    resize: none;
-    overflow: hidden;
-    background-color: inherit;
-    border: none;
-    font-size: 15px;
-  }
-
-  textarea:focus {
-    outline: none;
-  }
-
-  form > div {
+  .navbar {
     display: flex;
-    justify-content: flex-end;
-  }
-
-  button {
-    width: 20%;
-    border-radius: 30px;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
-    color: white;
-    font-weight: bolder;
-    border: none;
-    background-color: #000000;
+    height: 10vh;
   }
 
-  button:hover {
+  .navbar > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links a {
+    margin: 20px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .signup-btn {
+    padding: 15px;
+    width: 10%;
+    font-weight: 600;
+    border-radius: 5px;
     cursor: pointer;
-    background-color: var(--primary-color-lighter);
+    border: 1px solid whitesmoke;
+    text-decoration: none;
+    background-color: whitesmoke;
+    text-align: center;
   }
 
-  img {
-    border-radius: var(--border-radius);
+  .signup-btn:hover {
+    background-color: var(--border-color);
+  }
+
+  .primary-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin: auto;
+    height: 70vh;
+  }
+
+  .primary-heading h1 {
+    font-size: 50px;
+  }
+
+  .primary-heading h1 span {
+    color: var(--secondary-color);
+  }
+
+  .primary-heading p {
+    width: 50%;
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    opacity: 0.5;
   }
 `;

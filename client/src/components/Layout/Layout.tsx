@@ -17,6 +17,10 @@ type LayoutProps = {
   hideTrends?: boolean;
 };
 
+type StyledLayoutProps = {
+  readonly showProfileNav?: boolean;
+};
+
 export default function Layout(props: LayoutProps): JSX.Element {
   const [showProfileNav, setShowProfileNav] = useState(false);
   const [onLogout, setOnLogout] = useState(false);
@@ -107,7 +111,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
   );
 }
 
-const StyledLayout = styled.div`
+const StyledLayout = styled.div<StyledLayoutProps>`
   .header {
     position: fixed;
     top: 0;
