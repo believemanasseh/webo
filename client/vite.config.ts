@@ -8,9 +8,7 @@ const config: UserConfig = {
   plugins: [
     vercel(),
     react(),
-    vike({
-      prerender: { partial: true },
-    }),
+    vike({ prerender: { partial: true } }),
     wyw({
       include: ["**/*.{ts,tsx}"],
       babelOptions: {

@@ -1,6 +1,7 @@
 import { styled } from "@linaria/react";
 
 import logo from "../../assets/webo.png";
+import "../../index.css";
 
 export default function Page(): JSX.Element {
   return (
@@ -55,6 +56,12 @@ const StyledPage = styled.main`
     font-weight: 600;
   }
 
+  .nav-links a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-color);
+    text-decoration-thickness: 5px;
+  }
+
   .signup-btn {
     padding: 15px;
     width: 10%;
@@ -83,6 +90,7 @@ const StyledPage = styled.main`
 
   .primary-heading h1 {
     font-size: 50px;
+    cursor: not-allowed;
   }
 
   .primary-heading h1 span {
@@ -95,5 +103,6 @@ const StyledPage = styled.main`
     font-size: 20px;
     color: black;
     opacity: 0.5;
+    cursor: not-allowed;
   }
 `;

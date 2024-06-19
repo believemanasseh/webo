@@ -3,6 +3,8 @@ import { styled } from "@linaria/react";
 import Navbar from "../Navbar/Navbar.tsx";
 import Trends from "../Trends/Trends.tsx";
 
+import "../../index.css";
+
 import logo from "../../assets/webo.png";
 import notifications from "../../assets/notification.png";
 import black from "../../assets/black.png";
@@ -13,12 +15,12 @@ import premium from "../../assets/premium.png";
 
 type LayoutProps = {
   headerTitle?: String;
-  children: JSX.Element;
+  children?: JSX.Element;
   hideTrends?: boolean;
 };
 
 type StyledLayoutProps = {
-  readonly showProfileNav?: boolean;
+  showProfileNav?: boolean;
 };
 
 export default function Layout(props: LayoutProps): JSX.Element {

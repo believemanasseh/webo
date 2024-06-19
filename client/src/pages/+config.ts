@@ -1,12 +1,9 @@
 import type { Config } from "vike/types";
+import vikeReact from "vike-react/config";
 
 export default {
   clientRouting: true,
   hydrationCanBeAborted: true,
-  meta: {
-    Page: {
-      env: { server: false, client: true }, // SPA for all pages
-    },
-  },
-  onRenderClient: "import:vike-react/renderer/onRenderClient:onRenderClient",
+  prerender: false,
+  extends: vikeReact,
 } satisfies Config;
