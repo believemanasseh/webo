@@ -1,4 +1,4 @@
-FROM node:20.14.0-alpine as build
+FROM node:20.14.0-alpine as builder
 
 WORKDIR /app
 
@@ -10,8 +10,8 @@ RUN npm run build
 
 FROM nginx:stable-alpine
 
-COPY --from=build /app/dist/client /usr/share/nginx/html/
+COPY --from=builder /app/dist/client /usr/share/nginx/html/
 
-COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 
 CMD ["nginx", "-g", "daemon off;"]

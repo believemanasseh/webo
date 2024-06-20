@@ -22,5 +22,8 @@ const config: UserConfig = {
       "@/assets": "./src/assets",
     },
   },
+  server: {
+    host: true,
+  },
 };
 export default config;
