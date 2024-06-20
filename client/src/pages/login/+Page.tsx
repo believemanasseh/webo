@@ -30,7 +30,9 @@ export default function Page(): JSX.Element {
     <StyledLogin>
       <div className="container">
         <div className="logo">
-          <img src={logo} alt="logo" width={50} height={50} />
+          <a href="/">
+            <img src={logo} alt="logo" width={50} height={50} />
+          </a>
         </div>
         {currentSlide === 1 ? (
           <div className="slide-one">
