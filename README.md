@@ -6,7 +6,6 @@ A web-based decentralised social networking app with real-time messaging and voi
 - Real-time messaging
 - Voice/video live calls
 - Engage with mutuals and non-mutuals through the Pods service.
-- Monetise your posts
 - Highly configurable pods
 
 ## Contributing
