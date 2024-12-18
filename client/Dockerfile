@@ -1,4 +1,4 @@
-FROM node:20.14.0-alpine as builder
+FROM node:20.14.0-alpine AS builder
 
 WORKDIR /app
 
@@ -12,6 +12,6 @@ FROM nginx:stable-alpine
 
 COPY --from=builder /app/dist/client /usr/share/nginx/html/
 
-COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 CMD ["nginx", "-g", "daemon off;"]
