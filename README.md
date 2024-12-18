@@ -1,11 +1,12 @@
 # Webo
+
 A web-based decentralised social networking app with real-time messaging and voice/video calls. Webo incentivises creators to monetise their ideas.
 
 ## Features
 
 - Real-time messaging
-- Voice/video live calls
-- Engage with mutuals and non-mutuals through the Pods service.
+- Live voice and video calls
+- Connect with mutuals and non-mutuals through the Pods service.
 - Highly configurable pods
 
 ## Contributing
