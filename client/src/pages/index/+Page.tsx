@@ -12,6 +12,7 @@ export default function Page(): JSX.Element {
           <nav className="nav-links">
             <a href="#mission">Mission</a>
             <a href="#benefits">Benefits</a>
+            <a href="#pods">Pods</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
@@ -24,9 +25,9 @@ export default function Page(): JSX.Element {
           Own Your Data, Connect Freely With <span>Webo</span>
         </h1>
         <p>
-          Webo is a decentralised social network where you control your data and connect with
-          others on your terms. Experience a censorship-resistant and user-owned online
-          experience.
+          Webo is a decentralised social network where you control your data and
+          connect with others on your terms. Experience a censorship-resistant
+          and user-owned online experience.
         </p>
       </section>
     </StyledPage>

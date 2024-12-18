@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { styled } from "@linaria/react";
 import Navbar from "../Navbar/Navbar.tsx";
-import Trends from "../Trends/Trends.tsx";
+import Pods from "../Pods/Pods.tsx";
 
 import "../../index.css";
 
@@ -16,7 +16,8 @@ import premium from "../../assets/premium.png";
 type LayoutProps = {
   headerTitle?: String;
   children?: JSX.Element;
-  hideTrends?: boolean;
+  hidePods?: boolean;
+  hideSearch?: boolean;
 };
 
 type StyledLayoutProps = {
@@ -26,6 +27,7 @@ type StyledLayoutProps = {
 export default function Layout(props: LayoutProps): JSX.Element {
   const [showProfileNav, setShowProfileNav] = useState(false);
   const [onLogout, setOnLogout] = useState(false);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     const btn = document.querySelector(".logout-btn");
@@ -47,10 +49,20 @@ export default function Layout(props: LayoutProps): JSX.Element {
     };
   }, []);
 
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value);
+  }
+
   return (
     <StyledLayout showProfileNav={showProfileNav}>
       <div className="header">
-        <img className="logo" src={logo} alt="webo logo" height={50} width={50} />
+        <img
+          className="logo"
+          src={logo}
+          alt="webo logo"
+          height={50}
+          width={50}
+        />
         <div>
           <h3 className="title">{props.headerTitle}</h3>
           <div className="profile">
@@ -97,7 +109,12 @@ export default function Layout(props: LayoutProps): JSX.Element {
             </div>
             <button className="logout-btn">
               Logout
-              <img src={onLogout ? logoutRed : logout} alt="logout" height={20} width={20} />
+              <img
+                src={onLogout ? logoutRed : logout}
+                alt="logout"
+                height={20}
+                width={20}
+              />
             </button>
           </div>
         </div>
@@ -106,7 +123,19 @@ export default function Layout(props: LayoutProps): JSX.Element {
         </div>
         <div className="main">
           {props.children}
-          {!props.hideTrends && <Trends />}
+          <div>
+            {!props.hideSearch && (
+              <form>
+                <input
+                  type="text"
+                  placeholder="Search Webo"
+                  value={value}
+                  onChange={handleChange}
+                />
+              </form>
+            )}
+            {!props.hidePods && <Pods />}
+          </div>
         </div>
       </div>
     </StyledLayout>
@@ -222,5 +251,19 @@ const StyledLayout = styled.div<StyledLayoutProps>`
   .profile-nav button:hover {
     border-color: red;
     color: red;
+  }
+
+  form > input {
+    border-radius: var(--border-radius);
+    padding: 10px;
+    border: none;
+    margin-top: 20px;
+    background-color: whitesmoke;
+    width: 100%;
+  }
+
+  form > input:focus {
+    border: 1px solid var(--primary-color);
+    outline-color: var(--primary-color);
   }
 `;

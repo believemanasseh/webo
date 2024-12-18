@@ -4,14 +4,20 @@ import black from "../../assets/black.png";
 
 export default function Page(): JSX.Element {
   return (
-    <Layout headerTitle="Messages" hideTrends>
+    <Layout headerTitle="Messages" hidePods hideSearch>
       <StyledPage>
         <div className="message-list">
           <form>
             <input type="text" placeholder="Search Direct Messages" />
           </form>
           <div className="message">
-            <img className="profile-pic" src={black} alt="user pic" height={50} width={50} />
+            <img
+              className="profile-pic"
+              src={black}
+              alt="user pic"
+              height={50}
+              width={50}
+            />
             <div>
               <h6>
                 hiboo <span>@Hiboo94Sh</span> <span>&#x2022; Jan 10</span>
@@ -24,7 +30,8 @@ export default function Page(): JSX.Element {
           <div>
             <h1>Select a message</h1>
             <p>
-              Choose from your existing conversations, start a new one, or just keep swimming.
+              Choose from your existing conversations, start a new one, or just
+              keep swimming.
             </p>
             <button className="new-msg-btn">New message</button>
           </div>

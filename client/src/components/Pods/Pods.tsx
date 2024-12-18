@@ -1,14 +1,7 @@
-import { useState, ChangeEvent } from "react";
 import { navigate } from "vike/client/router";
 import { styled } from "@linaria/react";
 
-export default function Trends() {
-  const [value, setValue] = useState("");
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
-  }
-
+export default function Pods() {
   async function handleClick(name: string) {
     let navigationPromise;
     if (name === "tos") {
@@ -25,23 +18,20 @@ export default function Trends() {
 
   return (
     <StyledPage>
-      <form>
-        <input type="text" placeholder="Search Webo" value={value} onChange={handleChange} />
-      </form>
-      <div className="trends">
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
-        <p>Trends for you</p>
+      <div className="pods">
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
+        <p>Pods for you</p>
       </div>
       <ul>
         <li onClick={() => handleClick("tos")}>Terms of Service</li>
@@ -59,21 +49,7 @@ const StyledPage = styled.div`
   margin-top: 15px;
   text-align: left;
 
-  form > input {
-    border-radius: var(--border-radius);
-    padding: 10px;
-    border: none;
-    margin: auto;
-    background-color: whitesmoke;
-    width: 100%;
-  }
-
-  form > input:focus {
-    border: 1px solid var(--primary-color);
-    outline-color: var(--primary-color);
-  }
-
-  .trends {
+  .pods {
     background-color: whitesmoke;
     border-radius: 12px;
     padding: 15px;
@@ -81,7 +57,7 @@ const StyledPage = styled.div`
     width: 100%;
   }
 
-  .trends > h3 {
+  .pods > h3 {
     text-align: left;
   }
 
