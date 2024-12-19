@@ -13,11 +13,11 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.testng.Assert.assertEquals
 import org.testng.annotations.BeforeTest
 import org.testng.annotations.Test
-import xyz.webo.models.Tokens
+import xyz.webo.models.Token
 import xyz.webo.plugins.configureDatabase
 import xyz.webo.plugins.configureRouting
 import xyz.webo.plugins.configureSerialization
-import xyz.webo.serializers.UserSerializer
+import xyz.webo.serializers.LoginSerializer
 
 class AuthTest {
     @BeforeTest
@@ -33,11 +33,11 @@ class AuthTest {
                 realm = "webo"
                 authenticate { tokenCredential ->
                     val token = transaction {
-                        Tokens.select { Tokens.value eq tokenCredential.token }.firstOrNull()
+                        Token.select { Token.value eq tokenCredential.token }.firstOrNull()
                     }
                     if (token != null) {
-                        if (tokenCredential.token == token[Tokens.value].toString()) {
-                            UserIdPrincipal(token[Tokens.value].toString())
+                        if (tokenCredential.token == token[Token.value].toString()) {
+                            UserIdPrincipal(token[Token.value].toString())
                         } else {
                             null
                         }
@@ -56,7 +56,7 @@ class AuthTest {
     fun testLogin() = testApplication {
         val res = client.post("http://localhost:8082/v1/login") {
             header(HttpHeaders.ContentType, ContentType.Application.Json)
-            setBody(Json.encodeToString(UserSerializer.serializer(), UserSerializer("test@email.com", "password")))
+            setBody(Json.encodeToString(LoginSerializer.serializer(), LoginSerializer("test@email.com", "password")))
         }
         assertEquals(HttpStatusCode.Accepted, res.status)
     }
