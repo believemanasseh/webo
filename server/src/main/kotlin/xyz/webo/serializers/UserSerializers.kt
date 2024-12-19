@@ -6,18 +6,16 @@ import xyz.webo.serializers.custom.EntityIDSerializer
 
 
 @Serializable
-data class CreateUserSerializer(
+data class LoginSerializer(
     val email: String,
-    val handle: String,
-    val password: String,
-    val dateOfBirth: String? = null,
+    val password: String
 )
 
 @Serializable
 data class UserSerializer(
     val email: String,
-    val handle: String? = null,
-    val dateOfBirth: String? = null,
+    val handle: String,
+    val dateOfBirth: String,
     val dateCreated: String? = null,
     val token: String? = null,
     val dateModified: String? = null,
@@ -39,5 +37,5 @@ sealed class UserData {
 data class UserResponse(
     val status: String,
     val message: String,
-    val data: UserData
+    val data: UserData? = null
 )

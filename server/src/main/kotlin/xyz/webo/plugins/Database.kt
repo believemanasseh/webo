@@ -5,10 +5,10 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.mindrot.jbcrypt.BCrypt
 import xyz.webo.Config
-import xyz.webo.models.Posts
-import xyz.webo.models.Profiles
-import xyz.webo.models.Tokens
-import xyz.webo.models.Users
+import xyz.webo.models.Post
+import xyz.webo.models.Profile
+import xyz.webo.models.Token
+import xyz.webo.models.User
 import xyz.webo.utils.generateToken
 import xyz.webo.utils.getLogger
 import java.time.LocalDate
@@ -23,13 +23,13 @@ fun Application.configureDatabase(testing: Boolean = false) {
     )
     transaction {
         addLogger(StdOutSqlLogger)
-        SchemaUtils.drop(Profiles, Tokens, Posts, Users)
-        SchemaUtils.create(Users, Profiles, Tokens, Posts)
+        SchemaUtils.drop(Profile, Token, Post, User)
+        SchemaUtils.create(User, Profile, Token, Post)
 
         try {
             val hashedPwd = BCrypt.hashpw(Config.ADMIN_USER_PASSWORD, BCrypt.gensalt())
 
-            val id = Users.insertAndGetId {
+            val id = User.insertAndGetId {
                 it[email] = Config.ADMIN_USER_EMAIL
                 it[handle] = Config.ADMIN_USER_HANDLE
                 it[password] = hashedPwd
@@ -38,12 +38,12 @@ fun Application.configureDatabase(testing: Boolean = false) {
             }
             logger.info("Created admin user instance successfully")
 
-            Profiles.insert {
+            Profile.insert {
                 it[name] = "Test Profile"
                 it[dateOfBirth] = LocalDate.now()
                 it[user] = id.value
             }
-            Tokens.insert {
+            Token.insert {
                 it[value] = generateToken()
                 it[user] = id
             }

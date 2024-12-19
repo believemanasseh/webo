@@ -22,7 +22,7 @@ data class PostSerializer(
 data class PostResponse(
     val status: String,
     val message: String,
-    val data: PostData
+    val data: PostData? = null
 )
 
 @Serializable

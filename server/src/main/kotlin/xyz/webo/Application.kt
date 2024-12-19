@@ -9,7 +9,7 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.cors.routing.*
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
-import xyz.webo.models.Tokens
+import xyz.webo.models.Token
 import xyz.webo.plugins.*
 
 
@@ -28,11 +28,11 @@ fun Application.module() {
             realm = "webo"
             authenticate { tokenCredential ->
                 val token = transaction {
-                    Tokens.select { Tokens.value eq tokenCredential.token }.firstOrNull()
+                    Token.select { Token.value eq tokenCredential.token }.firstOrNull()
                 }
                 if (token != null) {
-                    if (tokenCredential.token == token[Tokens.value].toString()) {
-                        UserIdPrincipal(token[Tokens.value].toString())
+                    if (tokenCredential.token == token[Token.value].toString()) {
+                        UserIdPrincipal(token[Token.value].toString())
                     } else {
                         null
                     }
