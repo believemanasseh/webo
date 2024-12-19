@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { styled } from "@linaria/react";
 import { usePageContext } from "vike-react/usePageContext";
 
-import bookmarks from "../../assets/bookmarks.png";
-import chatMessage from "../../assets/chat-message.png";
-import home from "../../assets/home.png";
-import community from "../../assets/community.png";
+import bookmarks from "@/assets/bookmarks.png";
+import chatMessage from "@/assets/chat-message.png";
+import home from "@/assets/home.png";
+import community from "@/assets/community.png";
 
 export default function Navbar(): JSX.Element {
   const pageContext = usePageContext();

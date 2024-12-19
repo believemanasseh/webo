@@ -1,9 +1,10 @@
 import { useState, ChangeEvent } from "react";
 import { styled } from "@linaria/react";
+import "../../index.css";
 
-import logo from "../../assets/webo.png";
-import googleLogo from "../../assets/google.svg";
-import appleLogo from "../../assets/apple.svg";
+import logo from "@/assets/webo.png";
+import googleLogo from "@/assets/google.svg";
+import appleLogo from "@/assets/apple.svg";
 
 export { Page };
 
@@ -15,6 +16,7 @@ function Page(): JSX.Element {
     const formData = new FormData(e.target);
     console.log(formData.get("dob"));
     console.log(formData.get("email"));
+    console.log(formData.get("username"));
   }
 
   return (
@@ -47,8 +49,8 @@ function Page(): JSX.Element {
               Create account
             </button>
             <p>
-              By signing up, you agree to the Terms of Service and Privacy Policy, including
-              Cookie Use.
+              By signing up, you agree to the Terms of Service and Privacy
+              Policy, including Cookie Use.
             </p>
             <p>
               Have an account already? <a href="/login">Log in</a>
@@ -65,14 +67,20 @@ function Page(): JSX.Element {
                 placeholder="Username"
                 required
               />
-              <input type="text" name="email" className="email" placeholder="Email" required />
+              <input
+                type="text"
+                name="email"
+                className="email"
+                placeholder="Email"
+                required
+              />
               <div className="dob">
                 <h6>Date of birth</h6>
                 <p className="dob-text">
-                  This will not be shown publicly. Confirm your own age, even if this account
-                  is for a business, a pet, or something else.
+                  This will not be shown publicly. Confirm your own age, even if
+                  this account is for a business, a pet, or something else.
                 </p>
-                <input name="dob" type="date" required />
+                <input name="dob" className="dob" type="date" required />
               </div>
               <button className="signup" type="submit">
                 Sign up
@@ -97,7 +105,7 @@ const StyledPage = styled.div`
     background-color: white;
     border: 1px solid white;
     border-radius: 20px;
-    height: 600px;
+    height: 60%;
     width: 30%;
     margin: auto;
   }
@@ -201,19 +209,6 @@ const StyledPage = styled.div`
     margin-top: 30px;
   }
 
-  .username {
-    padding: auto;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    line-height: 1.5;
-  }
-
-  .email {
-    background-color: inherit;
-    padding: auto;
-  }
-
   input {
     width: 100%;
     margin-top: 20px;
@@ -233,12 +228,10 @@ const StyledPage = styled.div`
     color: #87898a;
     font-size: 14px;
     font-weight: lighter;
-    margin: auto;
-    padding: auto;
   }
 
-  .signup {
-    margin-top: 120px;
+  button.signup {
+    margin: 50px auto;
     padding: 16px;
     font-weight: bolder;
   }

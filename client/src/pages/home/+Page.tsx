@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { styled } from "@linaria/react";
-import Layout from "../../components/Layout/Layout.tsx";
-import Posts from "../../components/Posts/Posts.tsx";
+import Layout from "@/components/Layout/Layout.tsx";
+import Posts from "@/components/Posts/Posts.tsx";
 
 export default function Page(): JSX.Element {
   function handleSubmit(e: ChangeEvent<HTMLFormElement>) {

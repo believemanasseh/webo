@@ -1,6 +1,6 @@
 import type { Config } from "vike/types";
-import vercelConfig from "@vite-plugin-vercel/vike/config";
 import vikeReact from "vike-react/config";
+import vikeReactQuery from "vike-react-query/config";
 
 export default {
   clientRouting: true,
@@ -8,6 +8,6 @@ export default {
   title: "Webo - Right to Ownership",
   favicon: "/webo.png",
   ssr: false,
-  extends: [vercelConfig, vikeReact],
+  extends: [vikeReact, vikeReactQuery],
   onRenderClient: "import:vike-react/renderer/onRenderClient:onRenderClient",
 } satisfies Config;

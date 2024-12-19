@@ -1,6 +1,6 @@
 import { styled } from "@linaria/react";
 
-import logo from "../../assets/webo.png";
+import logo from "@/assets/webo.png";
 import "../../index.css";
 
 export default function Page(): JSX.Element {

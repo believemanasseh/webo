@@ -1,9 +1,11 @@
 import { ChangeEvent, useState } from "react";
 import { styled } from "@linaria/react";
 import useStore from "../../store.ts";
-import logo from "../../assets/webo.png";
-import googleLogo from "../../assets/google.svg";
-import appleLogo from "../../assets/apple.svg";
+import "../../index.css";
+
+import logo from "@/assets/webo.png";
+import googleLogo from "@/assets/google.svg";
+import appleLogo from "@/assets/apple.svg";
 
 export default function Page(): JSX.Element {
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -49,7 +51,12 @@ export default function Page(): JSX.Element {
               <span>or</span>
             </h2>
             <form onSubmit={handleSubmit}>
-              <input type="text" name="id" placeholder="email or username" required />
+              <input
+                type="text"
+                name="id"
+                placeholder="email or username"
+                required
+              />
               <button className="next-btn" type="submit">
                 Next
               </button>
@@ -65,7 +72,8 @@ export default function Page(): JSX.Element {
           <div className="slide-two">
             <h1 className="header">Enter your password</h1>
             <form onSubmit={handleSubmit}>
-              {authState.initialValue && authState.initialValue.includes("@") ? (
+              {authState.initialValue &&
+              authState.initialValue.includes("@") ? (
                 <input
                   type="text"
                   className="email"
@@ -80,7 +88,12 @@ export default function Page(): JSX.Element {
                   disabled
                 />
               )}
-              <input type="password" className="password" placeholder="Password" required />
+              <input
+                type="password"
+                className="password"
+                placeholder="Password"
+                required
+              />
               <a className="forgot-pwd" href="/">
                 Forgot password?
               </a>
@@ -113,7 +126,7 @@ const StyledLogin = styled.div`
     background-color: white;
     border: 1px solid white;
     border-radius: 20px;
-    height: 600px;
+    height: 60%;
     width: 30%;
     margin: auto;
   }
@@ -182,7 +195,6 @@ const StyledLogin = styled.div`
 
   input {
     width: 100%;
-    margin-top: 0px;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 4px;

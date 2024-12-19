@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { styled } from "@linaria/react";
 
-import black from "../../assets/black.png";
-import bookmark from "../../assets/bookmark.png";
-import bookmarkWhite from "../../assets/bookmarkwhite.png";
-import comment from "../../assets/comment.png";
-import favorite from "../../assets/favorite.png";
-import favoriteWhite from "../../assets/favoritewhite.png";
-import retwitch from "../../assets/retwitch.png";
+import black from "@/assets/black.png";
+import bookmark from "@/assets/bookmark.png";
+import bookmarkWhite from "@/assets/bookmarkwhite.png";
+import comment from "@/assets/comment.png";
+import favorite from "@/assets/favorite.png";
+import favoriteWhite from "@/assets/favoritewhite.png";
+import retwitch from "@/assets/retwitch.png";
 
 type Actions = {
   liked: boolean;
@@ -19,7 +19,10 @@ type Props = {
 };
 
 export default function Posts(props: Props): JSX.Element {
-  const [actions, setActions] = useState<Actions>({ liked: false, bookmarked: false });
+  const [actions, setActions] = useState<Actions>({
+    liked: false,
+    bookmarked: false,
+  });
 
   function handleClick(action: string) {
     if (action === "like") {
@@ -39,8 +42,8 @@ export default function Posts(props: Props): JSX.Element {
           Manasseh <span>@believemanasseh</span> <span>&#x2022; 11h</span>
         </h6>
         <p>
-          I kinda need help deciding what drawing I wanssssssssssssssssssna mint. Or if I
-          should just wait
+          I kinda need help deciding what drawing I wanssssssssssssssssssna
+          mint. Or if I should just wait
         </p>
         <span className="actions">
           <img src={comment} alt="comment on post" height={20} width={20} />

@@ -5,13 +5,13 @@ import Pods from "../Pods/Pods.tsx";
 
 import "../../index.css";
 
-import logo from "../../assets/webo.png";
-import notifications from "../../assets/notification.png";
-import black from "../../assets/black.png";
-import logout from "../../assets/logout.png";
-import logoutRed from "../../assets/logout-red.png";
-import settings from "../../assets/settings.png";
-import premium from "../../assets/premium.png";
+import logo from "@/assets/webo.png";
+import notifications from "@/assets/notification.png";
+import black from "@/assets/black.png";
+import logout from "@/assets/logout.png";
+import logoutRed from "@/assets/logout-red.png";
+import settings from "@/assets/settings.png";
+import premium from "@/assets/premium.png";
 
 type LayoutProps = {
   headerTitle?: String;

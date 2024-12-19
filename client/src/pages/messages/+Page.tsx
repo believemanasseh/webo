@@ -1,6 +1,6 @@
 import { styled } from "@linaria/react";
-import Layout from "../../components/Layout/Layout.tsx";
-import black from "../../assets/black.png";
+import Layout from "@/components/Layout/Layout.tsx";
+import black from "@/assets/black.png";
 
 export default function Page(): JSX.Element {
   return (
