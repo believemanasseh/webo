@@ -43,8 +43,6 @@ services:
     restart: always
     volumes:
       - db:/var/lib/postgresql/data
-    env_file:
-      - ./server/.env
     environment:
     - POSTGRES_DB=${DB_NAME}
     - POSTGRES_USER=${DB_USER}
