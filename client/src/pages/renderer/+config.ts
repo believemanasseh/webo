@@ -9,6 +9,6 @@ export default {
   title: "Webo - Right to Ownership",
   favicon: "/webo.png",
   ssr: false,
-  extends: [vikeReact, vikeReactQuery, vercelConfig],
+  extends: [vercelConfig, vikeReact, vikeReactQuery],
   onRenderClient: "import:vike-react/renderer/onRenderClient:onRenderClient",
 } satisfies Config;
