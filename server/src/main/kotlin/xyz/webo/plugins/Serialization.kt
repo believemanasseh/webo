@@ -20,7 +20,6 @@ fun configureEntityIDSerialization(): Json {
     val module = SerializersModule {
         contextual(EntityIDSerializer)
         contextual(LocalDateTimeSerializer)
-//        contextual(EntityID::class) { args -> EntityIDSerializer(args[0]) }
     }
 
     return Json { serializersModule = module }
