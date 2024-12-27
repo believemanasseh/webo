@@ -46,7 +46,12 @@ fun Application.module() {
     configureLogger()
     configureSerialization()
     install(CORS) {
-        anyHost()
+        allowHost("localhost:3000", listOf("http"))
+        allowHost("webo.daimones.xyz", listOf("https"))
+        allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Put)
+        allowMethod(HttpMethod.Patch)
+        allowMethod(HttpMethod.Delete)
         allowHeader(HttpHeaders.ContentType)
     }
     configureDatabase()
