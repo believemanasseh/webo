@@ -20,7 +20,7 @@ export default function Page(): JSX.Element {
   const mutation = useMutation({
     mutationFn: login,
     mutationKey: ["login"],
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, _variables, _context) => {
       messageApi.open({
         type: data.status,
         content: data.message,
@@ -28,7 +28,7 @@ export default function Page(): JSX.Element {
       });
       setNavigateToHome(true);
     },
-    onError: (error, variables, context) => {
+    onError: (error, _variables, _context) => {
       messageApi.open({ type: "error", content: error.message, duration: 10 });
     },
   });

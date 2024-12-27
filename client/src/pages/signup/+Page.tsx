@@ -16,14 +16,14 @@ export default function Page(): JSX.Element {
   const [messageApi, contextHolder] = message.useMessage();
   const mutation = useMutation({
     mutationFn: signUp,
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, _variables, _context) => {
       messageApi.open({
         type: data.status,
         content: data.message,
         duration: 10,
       });
     },
-    onError: (error, variables, context) => {
+    onError: (error, _variables, _context) => {
       messageApi.open({
         type: "error",
         content: error.message,
