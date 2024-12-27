@@ -54,7 +54,7 @@ fun Route.authRouting() {
             } catch (e: BadRequestException) {
                 call.respond(
                     status = HttpStatusCode.BadRequest,
-                    mapOf("status" to "error", "message" to "Invalid request!")
+                    mapOf("status" to "error", "message" to "Invalid request! $e")
                 )
             } catch (e: NoSuchElementException) {
                 call.respond(

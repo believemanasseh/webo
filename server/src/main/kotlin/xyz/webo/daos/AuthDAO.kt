@@ -54,8 +54,14 @@ suspend fun creatUser(data: UserSerializer): UserResponse {
 suspend fun loginUser(data: LoginSerializer): UserResponse {
     try {
         val user = transaction {
-            User.innerJoin(Token, { User.id }, { Token.id }).innerJoin(Profile, { User.id }, { Profile.id })
-                .select { User.email eq data.email }.first()
+            if (data.email.toString().contains("@")) {
+                User.innerJoin(Token, { User.id }, { Token.id }).innerJoin(Profile, { User.id }, { Profile.id })
+                    .select { User.email eq data.email.toString() }.first()
+            } else {
+                User.innerJoin(Token, { User.id }, { Token.id }).innerJoin(Profile, { User.id }, { Profile.id })
+                    .select { User.handle eq data.handle.toString() }.first()
+            }
+
         }
 
         // Validate password

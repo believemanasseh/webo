@@ -7,7 +7,8 @@ import xyz.webo.serializers.custom.EntityIDSerializer
 
 @Serializable
 data class LoginSerializer(
-    val email: String,
+    val email: String? = null,
+    val handle: String? = null,
     val password: String
 )
 
