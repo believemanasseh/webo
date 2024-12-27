@@ -3,7 +3,7 @@ info:
   title: Webo API
   description: Backend for Webo
   version: 0.0.1
-host: localhost:8080
+host: webo-server.daimones.xyz
 basePath: /v1
 schemes:
   - http
