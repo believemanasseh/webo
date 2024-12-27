@@ -1,95 +1,136 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, Suspense } from "react";
 import { styled } from "@linaria/react";
-import "../../index.css";
+import { useMutation } from "@tanstack/react-query";
+import { message } from "antd";
 
+import { signUp } from "@/api/auth";
+import Loading from "@/components/Spinner/Spinner";
+
+import "@/src/index.css";
 import logo from "@/assets/webo.png";
 import googleLogo from "@/assets/google.svg";
 import appleLogo from "@/assets/apple.svg";
 
-export { Page };
-
-function Page(): JSX.Element {
+export default function Page(): JSX.Element {
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [messageApi, contextHolder] = message.useMessage();
+  const mutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: (data, variables, context) => {
+      messageApi.open({
+        type: data.status,
+        content: data.message,
+        duration: 10,
+      });
+    },
+    onError: (error, variables, context) => {
+      messageApi.open({
+        type: "error",
+        content: error.message,
+        duration: 10,
+      });
+    },
+  });
 
   function handleSubmit(e: ChangeEvent<HTMLFormElement>): void {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData.get("dob"));
-    console.log(formData.get("email"));
-    console.log(formData.get("username"));
+    const email = formData.get("email")?.toString();
+    const username = formData.get("username")?.toString();
+    const dateOfBirth = formData.get("dob")?.toString();
+    const password = formData.get("password")?.toString();
+
+    mutation.mutate({
+      email: email,
+      handle: username,
+      dateOfBirth: dateOfBirth,
+      password: password,
+    });
   }
 
   return (
-    <StyledPage>
-      <div className="container">
-        {currentSlide === 1 && (
-          <div className="logo">
-            <img src={logo} alt="logo" width={50} height={50} />
-          </div>
-        )}
-        {currentSlide === 1 ? (
-          <div className="slide-one">
-            <h1 className="header">Join Webo today</h1>
-            <div className="auth-btn">
-              <img src={googleLogo} alt="google svg" height={20} width={20} />
-              <span>Sign up with Google</span>
-            </div>
-            <div className="auth-btn">
-              <img src={appleLogo} alt="apple svg" height={20} width={20} />
-              <span>Sign up with Apple</span>
-            </div>
-            <h2>
-              <span>or</span>
-            </h2>
-            <button
-              className="create-account"
-              type="button"
-              onClick={() => setCurrentSlide(currentSlide + 1)}
-            >
-              Create account
-            </button>
-            <p>
-              By signing up, you agree to the Terms of Service and Privacy
-              Policy, including Cookie Use.
-            </p>
-            <p>
-              Have an account already? <a href="/login">Log in</a>
-            </p>
-          </div>
-        ) : (
-          <div className="slide-two">
-            <h1 className="header">Create your account</h1>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="username"
-                className="username"
-                placeholder="Username"
-                required
-              />
-              <input
-                type="text"
-                name="email"
-                className="email"
-                placeholder="Email"
-                required
-              />
-              <div className="dob">
-                <h6>Date of birth</h6>
-                <p className="dob-text">
-                  This will not be shown publicly. Confirm your own age, even if
-                  this account is for a business, a pet, or something else.
-                </p>
-                <input name="dob" className="dob" type="date" required />
+    <Suspense fallback={<Loading />}>
+      {contextHolder}
+      <StyledPage>
+        <div className="container">
+          {currentSlide === 1 ? (
+            <div className="slide-one">
+              <div className="logo">
+                <a href="/">
+                  <img src={logo} alt="logo" width={50} height={50} />
+                </a>
               </div>
-              <button className="signup" type="submit">
-                Sign up
+              <h1 className="header">Join Webo today</h1>
+              <div className="auth-btn">
+                <img src={googleLogo} alt="google svg" height={20} width={20} />
+                <span>Sign up with Google</span>
+              </div>
+              <div className="auth-btn">
+                <img src={appleLogo} alt="apple svg" height={20} width={20} />
+                <span>Sign up with Apple</span>
+              </div>
+              <h2>
+                <span>or</span>
+              </h2>
+              <button
+                className="create-account"
+                type="button"
+                onClick={() => setCurrentSlide(currentSlide + 1)}
+              >
+                Create account
               </button>
-            </form>
-          </div>
-        )}
-      </div>
-    </StyledPage>
+              <p>
+                By signing up, you agree to the Terms of Service and Privacy
+                Policy, including Cookie Use.
+              </p>
+              <p>
+                Have an account already? <a href="/login">Log in</a>
+              </p>
+            </div>
+          ) : (
+            <div className="slide-two">
+              <h1 className="header">Create your account</h1>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="username"
+                  className="username"
+                  placeholder="Username"
+                  required
+                />
+                <input
+                  type="text"
+                  name="email"
+                  className="email"
+                  placeholder="Email"
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  className="password"
+                  placeholder="Alphanumeric password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                  required
+                />
+                <div className="dob">
+                  <h6>Date of birth</h6>
+                  <p className="dob-text">
+                    This will not be shown publicly. Confirm your own age, even
+                    if this account is for a business, a pet, or something else.
+                  </p>
+                  <input name="dob" className="dob" type="date" required />
+                </div>
+                <button className="signup" type="submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      </StyledPage>
+    </Suspense>
   );
 }
 

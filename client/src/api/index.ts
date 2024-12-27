@@ -1,1 +1,1 @@
-export const BASE_URL = "https://webo-server.daimones.xyz/v1";
+export const BASE_URL = "http://localhost:8080/v1";

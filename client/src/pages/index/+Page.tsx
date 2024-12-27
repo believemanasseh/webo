@@ -16,8 +16,8 @@ export default function Page(): JSX.Element {
             <a href="#contact">Contact</a>
           </nav>
         </div>
-        <a className="signup-btn" href="/signup">
-          SIGN UP
+        <a className="login-btn" href="/login">
+          LOGIN
         </a>
       </div>
       <section className="primary-heading">
@@ -63,7 +63,7 @@ const StyledPage = styled.main`
     text-decoration-thickness: 5px;
   }
 
-  .signup-btn {
+  .login-btn {
     padding: 15px;
     width: 10%;
     font-weight: 600;
@@ -75,7 +75,7 @@ const StyledPage = styled.main`
     text-align: center;
   }
 
-  .signup-btn:hover {
+  .login-btn:hover {
     background-color: var(--border-color);
   }
 

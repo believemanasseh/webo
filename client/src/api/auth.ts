@@ -1,40 +1,38 @@
 import { BASE_URL } from ".";
 
 type Login = {
-  username: string;
-  password: string;
+  email?: string | undefined;
+  handle?: string | null | undefined;
+  password?: string | undefined;
 };
 
 type SignUp = {
-  email: string;
+  email?: string | undefined;
+  dateOfBirth?: string | undefined;
 } & Login;
 
-export async function login(body: Login) {
+export async function login(payload: Login) {
   try {
     const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify(payload),
+      headers: { "content-type": "application/json" },
     });
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
     return response.json();
   } catch (err) {
-    console.log(err);
+    console.log(err, "ERR");
   }
 }
 
-export async function signUp(body: SignUp) {
+export async function signUp(payload: SignUp) {
   try {
     const response = await fetch(`${BASE_URL}/signup`, {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify(payload),
+      headers: { "content-type": "application/json" },
     });
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
     return response.json();
   } catch (err) {
-    console.log(err);
+    console.log(err, "err");
   }
 }

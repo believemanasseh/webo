@@ -8,6 +8,7 @@ const StyledSpinner = styled.span`
   font-size: 10px;
   width: 1em;
   height: 1em;
+  border: 2px solid #000000;
   border-radius: 50%;
   position: relative;
   text-indent: -9999em;
